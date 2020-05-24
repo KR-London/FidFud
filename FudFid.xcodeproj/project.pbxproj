@@ -176,6 +176,7 @@
 		446FB99A247A825A00C556AC /* Bokeh - 5196.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 446FB96B247A825900C556AC /* Bokeh - 5196.mp4 */; };
 		446FBAC1247AD7B200C556AC /* signInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC0247AD7B200C556AC /* signInViewController.swift */; };
 		446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC2247AD7DB00C556AC /* signUpViewController.swift */; };
+		446FBAC5247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
 		449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FC247A5B830009FF3C /* SceneDelegate.swift */; };
 		449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A00247A5B830009FF3C /* AddViewController.swift */; };
@@ -379,6 +380,7 @@
 		446FB96B247A825900C556AC /* Bokeh - 5196.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bokeh - 5196.mp4"; sourceTree = "<group>"; };
 		446FBAC0247AD7B200C556AC /* signInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
 		446FBAC2247AD7DB00C556AC /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
+		446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = superWhizzyVideoEditorViewController.swift; sourceTree = "<group>"; };
 		449D49F7247A5B830009FF3C /* FudFid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudFid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449D49FA247A5B830009FF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449D49FC247A5B830009FF3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				449D4A02247A5B830009FF3C /* Main.storyboard */,
+				446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */,
 				449D4A0A247A5B840009FF3C /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -1149,6 +1152,7 @@
 				446FB862247A7BCC00C556AC /* InteractionUtil.swift in Sources */,
 				446FB879247A7C3C00C556AC /* FeedFetchService.swift in Sources */,
 				449D4A07247A5B830009FF3C /* FudFid.xcdatamodeld in Sources */,
+				446FBAC5247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift in Sources */,
 				446FBAC1247AD7B200C556AC /* signInViewController.swift in Sources */,
 				446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */,
 				446FB86E247A7BD700C556AC /* ProfileItemCollectionViewCell.swift in Sources */,
