@@ -40,6 +40,7 @@ extension FeedPageViewController: UIPageViewControllerDataSource, UIPageViewCont
         guard let indexedFeed = presenter.fetchPreviousFeed() else {
             return nil
         }
+        
         return FeedViewController.instantiate(feed: indexedFeed.feed, andIndex: indexedFeed.index)
     }
     
@@ -59,6 +60,9 @@ extension FeedPageViewController: UIPageViewControllerDataSource, UIPageViewCont
             previousViewController.pause()
             viewController.play()
             presenter.updateFeedIndex(fromIndex: viewController.index)
+            if previousViewController.index < viewController.index{
+                presenter.updateFeed( index:  viewController.index as Int, increasing: true )
+            }
         }
     }
 }

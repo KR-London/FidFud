@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import FirebaseAuth
+//import FirebaseStorage
 
 protocol FeedFetchDelegate: class {
     func feedFetchService(_ service: FeedFetchProtocol, didFetchFeeds feeds: [Feed], withError error: Error?)
@@ -39,6 +41,10 @@ class FeedFetcher: FeedFetchProtocol {
             }
             serviceSelf.fetchFeedSuccess(withData: data)
         }
+        
+    //    let storageReference = Storage.storage().reference()
+        
+      //  let videoToDownload = storageReference.bucket.randomElement()
     }
     
     
