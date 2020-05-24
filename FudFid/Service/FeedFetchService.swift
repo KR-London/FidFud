@@ -34,19 +34,20 @@ class FeedFetcher: FeedFetchProtocol {
             guard let serviceSelf = self else {
                 return
             }
-            serviceSelf.fetchFeedFailed(withError: error)
+            //serviceSelf.fetchFeedFailed(withError: error)
+            serviceSelf.fetchFeedSuccess(withData: Data())
         }) { [weak self] data, _ in
             guard let serviceSelf = self else {
                 return
             }
             serviceSelf.fetchFeedSuccess(withData: data)
         }
-        
+
     //    let storageReference = Storage.storage().reference()
-        
+
       //  let videoToDownload = storageReference.bucket.randomElement()
     }
-    
+
     
     
     

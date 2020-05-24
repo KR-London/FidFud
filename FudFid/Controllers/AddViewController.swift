@@ -9,6 +9,8 @@
 import UIKit
 import AVKit
 import MobileCoreServices
+import FirebaseAuth
+import FirebaseStorage
 
 class AddViewController: UIViewController {
     
@@ -24,15 +26,18 @@ class AddViewController: UIViewController {
         button.addTarget(self, action: #selector(record), for: .touchUpInside)
         return button
     }()
-    
-
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
+        if Auth.auth().currentUser == nil{
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "signIn") as! signInViewController
+            self.present(newViewController, animated: true, completion: nil)
+        }
+        
         addRecordButton()
-    
-        // Do any additional setup after loading the view.
     }
     
     func addRecordButton(){
@@ -50,7 +55,6 @@ class AddViewController: UIViewController {
   @objc func record(){
         print("recording")
         VideoHelper.startMediaBrowser(delegate: self, sourceType: .camera)
-        
     }
     
     @objc func video(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo info: AnyObject) {
@@ -85,6 +89,11 @@ extension AddViewController: UIImagePickerControllerDelegate {
         self,
         #selector(video(_:didFinishSavingWithError:contextInfo:)),
         nil)
+        
+        
+        /// save to firebase
+        
+        
     }
 }
 

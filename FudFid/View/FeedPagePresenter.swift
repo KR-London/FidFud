@@ -148,6 +148,10 @@ extension FeedPagePresenter: FeedFetchDelegate {
         
         print(self.feeds.map{$0.id})
         
+        DispatchQueue.global(qos: .background).async {
+            print("This is run on the background queue")
+        }
+        
         return feeds
     }
     
@@ -175,7 +179,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
             let soundsArray = try fileManager.contentsOfDirectory(atPath: docsPath!).filter({$0.hasSuffix(".mp3")})
             let imageArray = try fileManager.contentsOfDirectory(atPath: docsPath!).filter({$0.hasSuffix(".jpeg") || $0.hasSuffix(".png")})
             
-            let onboarding = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Swipe Up To SnikSnak!", gif: nil, sound: nil, image: nil)
+            let onboarding = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Swipe Left To Have Some Fun!", gif: nil, sound: nil, image: nil)
             list.append(onboarding)
                
             for i in 1...15{

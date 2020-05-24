@@ -222,7 +222,8 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
            // if  isPlaying == true
            // {
                 utterance = AVSpeechUtterance(string: say)
-                utterance.pitchMultiplier = 2.5
+                utterance.pitchMultiplier = 1.5
+                utterance.rate = 0.4
                 synthesizer.speak(utterance)
            // }
         }
