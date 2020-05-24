@@ -7,10 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		446FB842247A690E00C556AC /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FB841247A690E00C556AC /* VideoHelper.swift */; };
+		446FB845247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
+		446FB846247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
+		446FB847247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
+		446FB849247A74C500C556AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB848247A74C500C556AC /* GoogleService-Info.plist */; };
+		446FB84A247A74C500C556AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB848247A74C500C556AC /* GoogleService-Info.plist */; };
+		446FB84B247A74C500C556AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB848247A74C500C556AC /* GoogleService-Info.plist */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
 		449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FC247A5B830009FF3C /* SceneDelegate.swift */; };
-		449D49FF247A5B830009FF3C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FE247A5B830009FF3C /* FirstViewController.swift */; };
-		449D4A01247A5B830009FF3C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A00247A5B830009FF3C /* SecondViewController.swift */; };
+		449D49FF247A5B830009FF3C /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FE247A5B830009FF3C /* FeedViewController.swift */; };
+		449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A00247A5B830009FF3C /* AddViewController.swift */; };
 		449D4A04247A5B830009FF3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 449D4A02247A5B830009FF3C /* Main.storyboard */; };
 		449D4A07247A5B830009FF3C /* FudFid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A05247A5B830009FF3C /* FudFid.xcdatamodeld */; };
 		449D4A09247A5B840009FF3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449D4A08247A5B840009FF3C /* Assets.xcassets */; };
@@ -40,11 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		446FB841247A690E00C556AC /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
+		446FB844247A699200C556AC /* allMySecrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = allMySecrets.plist; sourceTree = "<group>"; };
+		446FB848247A74C500C556AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		449D49F7247A5B830009FF3C /* FudFid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudFid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449D49FA247A5B830009FF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449D49FC247A5B830009FF3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		449D49FE247A5B830009FF3C /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		449D4A00247A5B830009FF3C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		449D49FE247A5B830009FF3C /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		449D4A00247A5B830009FF3C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		449D4A03247A5B830009FF3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		449D4A06247A5B830009FF3C /* FudFid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FudFid.xcdatamodel; sourceTree = "<group>"; };
 		449D4A08247A5B840009FF3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		446FB843247A691300C556AC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				446FB841247A690E00C556AC /* VideoHelper.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		449D49EE247A5B830009FF3C = {
 			isa = PBXGroup;
 			children = (
@@ -110,12 +128,15 @@
 			children = (
 				449D49FA247A5B830009FF3C /* AppDelegate.swift */,
 				449D49FC247A5B830009FF3C /* SceneDelegate.swift */,
-				449D49FE247A5B830009FF3C /* FirstViewController.swift */,
-				449D4A00247A5B830009FF3C /* SecondViewController.swift */,
+				446FB843247A691300C556AC /* Extensions */,
+				449D49FE247A5B830009FF3C /* FeedViewController.swift */,
+				449D4A00247A5B830009FF3C /* AddViewController.swift */,
 				449D4A02247A5B830009FF3C /* Main.storyboard */,
 				449D4A08247A5B840009FF3C /* Assets.xcassets */,
 				449D4A0A247A5B840009FF3C /* LaunchScreen.storyboard */,
 				449D4A0D247A5B840009FF3C /* Info.plist */,
+				446FB848247A74C500C556AC /* GoogleService-Info.plist */,
+				446FB844247A699200C556AC /* allMySecrets.plist */,
 				449D4A05247A5B830009FF3C /* FudFid.xcdatamodeld */,
 			);
 			path = FudFid;
@@ -243,10 +264,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446FB845247A699200C556AC /* allMySecrets.plist in Resources */,
 				449D4A30247A5B920009FF3C /* .gitignore in Resources */,
 				449D4A0C247A5B840009FF3C /* LaunchScreen.storyboard in Resources */,
 				449D4A09247A5B840009FF3C /* Assets.xcassets in Resources */,
 				449D4A04247A5B830009FF3C /* Main.storyboard in Resources */,
+				446FB849247A74C500C556AC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +277,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446FB846247A699200C556AC /* allMySecrets.plist in Resources */,
 				449D4A31247A5B920009FF3C /* .gitignore in Resources */,
+				446FB84A247A74C500C556AC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +287,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446FB847247A699200C556AC /* allMySecrets.plist in Resources */,
 				449D4A32247A5B920009FF3C /* .gitignore in Resources */,
+				446FB84B247A74C500C556AC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,8 +301,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				449D4A07247A5B830009FF3C /* FudFid.xcdatamodeld in Sources */,
-				449D4A01247A5B830009FF3C /* SecondViewController.swift in Sources */,
-				449D49FF247A5B830009FF3C /* FirstViewController.swift in Sources */,
+				449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */,
+				449D49FF247A5B830009FF3C /* FeedViewController.swift in Sources */,
+				446FB842247A690E00C556AC /* VideoHelper.swift in Sources */,
 				449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */,
 				449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */,
 			);
