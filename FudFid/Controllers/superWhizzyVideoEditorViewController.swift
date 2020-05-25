@@ -259,16 +259,28 @@ class superWhizzyVideoEditorViewController: UIViewController {
         let currentUser = Auth.auth().currentUser
 
         // Create a reference to 'images/mountains.jpg'
-        let myImagesRef = storageRef.child("user").child(currentUser!.uid).child("carrot.png")
+        let myImagesRef = storageRef.child("user").child(currentUser!.uid).child( String(Date.timeIntervalSinceReferenceDate).filter{$0 != "."} + "pic")
+        let myVideoRef = storageRef.child("user").child(currentUser!.uid).child( String(Date.timeIntervalSinceReferenceDate).filter{$0 != "."} + "vid")
                               
         let uploadMetadata = StorageMetadata()
-        uploadMetadata.contentType = "image/png"
+       // uploadMetadata.contentType = "image/png"
+        uploadMetadata.contentType = "image/MP4"
          
         //UIImageJP
        //let data = exporter.
-        if let data = UIImage(named: "carrot.png")?.pngData()
-        {
-            myImagesRef.putData(data, metadata: uploadMetadata){
+//        if let data = UIImage(named: "carrot.png")?.pngData()
+//        {
+//            myImagesRef.putData(data, metadata: uploadMetadata){
+//                (uploadedImageMeta, error) in
+//                if error != nil{
+//                    print("Error happened \(String(describing: error?.localizedDescription))")
+//                }else{
+//                    print("Metadata of uploaded image \(String(describing: uploadedImageMeta))")
+//                }
+//            }
+//            //uploadImage(imageData: data)
+//        }
+        do{ myVideoRef.putFile(from: url as! URL, metadata: uploadMetadata){
                 (uploadedImageMeta, error) in
                 if error != nil{
                     print("Error happened \(String(describing: error?.localizedDescription))")
@@ -276,11 +288,27 @@ class superWhizzyVideoEditorViewController: UIViewController {
                     print("Metadata of uploaded image \(String(describing: uploadedImageMeta))")
                 }
             }
-            //uploadImage(imageData: data)
         }
-        else{
-            print("Sending image data to firebase didn't work")
+        catch{
+            print(error.localizedDescription)
         }
+                //uploadImage(imageData: data)
+ 
+//        if let data = UIImage(named: "carrot.png")?.pngData()
+//        {
+//            myImagesRef.putData(data, metadata: uploadMetadata){
+//                (uploadedImageMeta, error) in
+//                if error != nil{
+//                    print("Error happened \(String(describing: error?.localizedDescription))")
+//                }else{
+//                    print("Metadata of uploaded image \(String(describing: uploadedImageMeta))")
+//                }
+//            }
+//            //uploadImage(imageData: data)
+////        }
+//        else{
+//            print("Sending image data to firebase didn't work")
+//        }
 
        // While the file names are the same, the references point to different files
                             //  mountainsRef.name == mountainImagesRef.name
