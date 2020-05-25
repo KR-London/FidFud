@@ -11,8 +11,10 @@ import FirebaseAuth
 import MobileCoreServices
 import MediaPlayer
 import AVFoundation
+import FirebaseStorage
 import Photos
 import AVKit
+//import
 
 let path = Bundle.main.path(forResource: "bac2.mov", ofType: nil)
 let url = URL(fileURLWithPath: path!)
@@ -28,6 +30,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
     lazy var addSoundButton: systemImageButton = {
         let button = systemImageButton()
         button.setImage(UIImage(systemName: "tv.music.note"), for: .normal)
+        button.addTarget(self, action: #selector(loadAudio), for: .touchUpInside)
         return button
     }()
     
@@ -38,10 +41,11 @@ class superWhizzyVideoEditorViewController: UIViewController {
        }()
     
     lazy var finishedButton: systemImageButton = {
-           let button = systemImageButton()
-           button.setImage(UIImage(systemName: "checkmark.seal"), for: .normal)
-        //button.alpha = 0.2
-           return button
+            let button = systemImageButton()
+            button.setImage(UIImage(systemName: "checkmark.seal"), for: .normal)
+            //button.alpha = 0.2
+            button.addTarget(self, action: #selector(save), for: .touchUpInside)
+            return button
        }()
     
     lazy var sharingPreferenceController: UISegmentedControl = {
@@ -130,6 +134,8 @@ class superWhizzyVideoEditorViewController: UIViewController {
        // playerLayer.frame = self.view.bounds
        // let VC = AVpla
        // self.view.layer.addSublayer(playerLayer)
+        
+        loadAssets()
     }
     
     func layoutSubviews(){
@@ -230,14 +236,59 @@ class superWhizzyVideoEditorViewController: UIViewController {
           PHPhotoLibrary.requestAuthorization({ status in
             if status == .authorized {
               saveVideoToPhotos()
+                if self.sharingPreferenceController.selectedSegmentIndex == 0 {
+                    self.sendVideoToFirebase(url: outputURL)
+                }
             }
           })
         } else {
           saveVideoToPhotos()
+            if self.sharingPreferenceController.selectedSegmentIndex == 0 {
+                self.sendVideoToFirebase(url: outputURL)
+            }
         }
       }
+    
+    func sendVideoToFirebase(url: URL){
+        
+        // Create a root reference
+        let storageRef = Storage.storage().reference()
+
+        // Create a reference to "mountains.jpg"
+      //  let mountainsRef = storageRef.child("carrot.png")
+        let currentUser = Auth.auth().currentUser
+
+        // Create a reference to 'images/mountains.jpg'
+        let myImagesRef = storageRef.child("user").child(currentUser!.uid).child("carrot.png")
+                              
+        let uploadMetadata = StorageMetadata()
+        uploadMetadata.contentType = "image/png"
+         
+        //UIImageJP
+       //let data = exporter.
+        if let data = UIImage(named: "carrot.png")?.pngData()
+        {
+            myImagesRef.putData(data, metadata: uploadMetadata){
+                (uploadedImageMeta, error) in
+                if error != nil{
+                    print("Error happened \(String(describing: error?.localizedDescription))")
+                }else{
+                    print("Metadata of uploaded image \(String(describing: uploadedImageMeta))")
+                }
+            }
+            //uploadImage(imageData: data)
+        }
+        else{
+            print("Sending image data to firebase didn't work")
+        }
+
+       // While the file names are the same, the references point to different files
+                            //  mountainsRef.name == mountainImagesRef.name
+        
+    }
+    
       
-      @IBAction func loadAssetOne(_ sender: AnyObject) {
+      func loadAssets() {
       //  if savedPhotosAvailable() {
        //   loadingAssetOne = true
        //   VideoHelper.startMediaBrowser(delegate: self, sourceType: .savedPhotosAlbum)
@@ -259,9 +310,9 @@ class superWhizzyVideoEditorViewController: UIViewController {
         }
       }
       
-      @IBAction
+      
     
-    func loadAudio(_ sender: AnyObject) {
+     @objc func loadAudio(_ sender: AnyObject) {
         //let mediaPickerController = MPMediaPickerController(mediaTypes: .any)
         //mediaPickerController.delegate = self
        // mediaPickerController.prompt = "Select Audio"
@@ -271,13 +322,129 @@ class superWhizzyVideoEditorViewController: UIViewController {
         do{
             audioAsset = try AVAsset(url: url)
                 //try AVAudioFile(forReading: url)
+            mergeAudio(audioAsset!)
+            
+            
+            
         }catch{
             print("Couldn't load that file")
         }
         //audioAsset
       }
         
-      @IBAction func merge(_ sender: AnyObject) {
+    func mergeAudio(_ sender: AVAsset) {
+        guard let firstAsset = firstAsset, let secondAsset = secondAsset else { return }
+        
+        
+        //activityMonitor.startAnimating()
+        
+        // 1 - Create AVMutableComposition object. This object will hold your AVMutableCompositionTrack instances.
+        let mixComposition = AVMutableComposition()
+        
+        // 2 - Create two video tracks
+        guard let firstTrack = mixComposition.addMutableTrack(withMediaType: .video,
+                                                              preferredTrackID: Int32(kCMPersistentTrackID_Invalid)) else { return }
+        do {
+          try firstTrack.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: firstAsset.duration),
+                                         of: secondAsset.tracks(withMediaType: .video)[0],
+                                         at: CMTime.zero)
+        } catch {
+          print("Failed to load first track")
+          return
+        }
+        
+        
+//        // 2.1
+//        let mainInstruction = AVMutableVideoCompositionInstruction()
+//        mainInstruction.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: CMTimeAdd(firstAsset.duration, secondAsset.duration))
+//
+//        // 2.2
+//        let firstInstruction = VideoHelper.videoCompositionInstruction(firstTrack, asset: firstAsset)
+//        firstInstruction.setOpacity(0.0, at: firstAsset.duration)
+//        let secondInstruction = VideoHelper.videoCompositionInstruction(secondTrack, asset: secondAsset)
+//
+//        // 2.3
+//        mainInstruction.layerInstructions = [firstInstruction, secondInstruction]
+//        let mainComposition = AVMutableVideoComposition()
+//        mainComposition.instructions = [mainInstruction]
+//        mainComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
+//        mainComposition.renderSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+//
+        // 3 - Audio track
+      //  if let loadedAudioAsset = sender {
+          let audioTrack = mixComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: 0)
+          do {
+            try audioTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: firstAsset.duration),
+                                            of: sender.tracks(withMediaType: .audio)[0] ,
+                                            at: CMTime.zero)
+          } catch {
+            print("Failed to load Audio track")
+          }
+      //  }
+        
+        
+      //  mixComposition.
+        
+        playerViewController?.player?.replaceCurrentItem(with: AVPlayerItem(asset: mixComposition))
+    
+        playerViewController?.player?.play()
+        //playerViewController?.player = AVPlayer(playerItem: AVPlayerItem())
+        
+//        // 4 - Get path
+//        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = .long
+//        dateFormatter.timeStyle = .short
+//        let date = dateFormatter.string(from: Date())
+//        let url = documentDirectory.appendingPathComponent("mergeVideo-\(date).mov")
+//
+//        // 5 - Create Exporter
+//        guard let exporter = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality) else { return }
+//        exporter.outputURL = url
+//        exporter.outputFileType = AVFileType.mov
+//        exporter.shouldOptimizeForNetworkUse = true
+//        exporter.videoComposition = mainComposition
+//
+//        // 6 - Perform the Export
+//        exporter.exportAsynchronously() {
+//          DispatchQueue.main.async {
+//            self.exportDidFinish(exporter)
+//          }
+ //      }
+//      }
+      
+    }
+
+    @objc func save(){
+
+        
+           // 4 - Get path
+            guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .long
+            dateFormatter.timeStyle = .short
+            let date = dateFormatter.string(from: Date())
+            let url = documentDirectory.appendingPathComponent("mergeVideo-\(date).mov")
+    
+            // 5 - Create Exporter
+            guard let exporter = AVAssetExportSession(asset: (playerViewController?.player?.currentItem!.asset)!, presetName: AVAssetExportPresetHighestQuality) else { return }
+            exporter.outputURL = url
+            exporter.outputFileType = AVFileType.mov
+            exporter.shouldOptimizeForNetworkUse = true
+           // exporter.videoComposition = mainComposition
+        
+    
+            // 6 - Perform the Export
+            exporter.exportAsynchronously() {
+              DispatchQueue.main.async {
+                self.exportDidFinish(exporter)
+              }
+           }
+          }
+//    }
+    
+      
+    func merge(_ sender: AnyObject) {
         guard let firstAsset = firstAsset, let secondAsset = secondAsset else { return }
         
         
