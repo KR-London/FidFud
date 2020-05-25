@@ -101,51 +101,49 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     
   
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    fileprivate func kateExtractedFunc() {
         initializeFeed()
         
-            if feed.gif == nil{
-                    if feed.image == nil {
-                        gifView.isHidden = true
-                    }
-               }
-               else{
-                    gifView.isHidden  = false
-                    gifView = UIImageView(frame: self.view.frame)
-                    gifView.contentMode = .scaleAspectFit
-                    gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
-                    self.contentOverlayView?.addSubview(gifView)
-                    view.bringSubviewToFront(gifView)
-                    
+        if feed.gif == nil{
+            if feed.image == nil {
+                gifView.isHidden = true
+            }
+        }
+        else{
+            gifView.isHidden  = false
+            gifView = UIImageView(frame: self.view.frame)
+            gifView.contentMode = .scaleAspectFit
+            gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
+            self.contentOverlayView?.addSubview(gifView)
+            view.bringSubviewToFront(gifView)
+            
             if feed.sound != nil{
                 let path = Bundle.main.path(forResource: feed.sound, ofType:nil)!
-                        let url = URL(fileURLWithPath: path)
-
-                        do {
-                            soundtrack = try AVAudioPlayer(contentsOf: url)
-                            //soundtrack.play()
-                        } catch {
-                        // couldn't load file :(
-                        }
-                    }
-               }
-                if feed.image == nil{
-                        if feed.gif == nil {
-                            gifView.isHidden = true
-                        }
-                     }
-                     else{
-                            gifView.isHidden  = false
-                          gifView = UIImageView(frame: self.view.frame)
-                          gifView.contentMode = .scaleAspectFit
-                            let imageName = feed.image?.components(separatedBy: ".")[0]
-        
-                    gifView.image = UIImage(named: feed.image ?? "")
-                        ///gifView.contentMode = .scaleAspectFit
-                          self.contentOverlayView?.addSubview(gifView)
-                          view.bringSubviewToFront(gifView)
+                let url = URL(fileURLWithPath: path)
+                
+                do {
+                    soundtrack = try AVAudioPlayer(contentsOf: url)
+                    //soundtrack.play()
+                } catch {
+                    // couldn't load file :(
+                }
+            }
+        }
+        if feed.image == nil{
+            if feed.gif == nil {
+                gifView.isHidden = true
+            }
+        }
+        else{
+            gifView.isHidden  = false
+            gifView = UIImageView(frame: self.view.frame)
+            gifView.contentMode = .scaleAspectFit
+            let imageName = feed.image?.components(separatedBy: ".")[0]
+            
+            gifView.image = UIImage(named: feed.image ?? "")
+            ///gifView.contentMode = .scaleAspectFit
+            self.contentOverlayView?.addSubview(gifView)
+            view.bringSubviewToFront(gifView)
         }
         
         if feed.text == nil{
@@ -162,13 +160,29 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             Label.frame.inset(by: UIEdgeInsets(top: 15,left: 15,bottom: 15,right: 15))
             Label.textColor = [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),#colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1),#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1),#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1),#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)].randomElement()
             view.bringSubviewToFront(Label)
-          
+            
         }
         
-       
+        
         
         showsPlaybackControls = false
         videoGravity = AVLayerVideoGravity.resizeAspectFill
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        kateExtractedFunc()
+        
+        
+//        gifView.isHidden  = false
+//        gifView = UIImageView(frame: self.view.frame)
+//        gifView.contentMode = .scaleAspectFit
+//
+//        let itemToLoad = allGifs.randomElement()
+//        gifView.sd_setImage(with: allGifs.randomElement()!, placeholderImage: UIImage(named: "peas.jpg"))
+//        self.contentOverlayView?.addSubview(gifView)
+//        view.bringSubviewToFront(gifView)
         
         profilePicture.image = UIImage(named: ["carrot.png", "cheese.jpg", "peas.jpg"].randomElement()!)
         

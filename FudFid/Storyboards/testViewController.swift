@@ -43,7 +43,7 @@ class testViewController: UIViewController {
                 allGifs.append(item)
             }
         }
-        
+          myImageView.sd_setImage(with: imageDownloadURLReference, placeholderImage: UIImage(named: "peas.jpg"))
                 // Create a reference to the file you want to download
                 //let starsRef = storageRef.child("images/stars.jpg")
 //        for i in 1 ... 15

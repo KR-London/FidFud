@@ -408,6 +408,16 @@ class superWhizzyVideoEditorViewController: UIViewController {
         
         let secondTrack = firstTrack
         
+        let videoLayer = CALayer()
+        videoLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        let overlayLayer = CALayer()
+        overlayLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        addConfetti(to: overlayLayer)
+        let outputLayer = CALayer()
+        outputLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+       // outputLayer.addSublayer(backgroundLayer)
+        outputLayer.addSublayer(videoLayer)
+        outputLayer.addSublayer(overlayLayer)
         
         // 2.1
         let mainInstruction = AVMutableVideoCompositionInstruction()
@@ -423,8 +433,12 @@ class superWhizzyVideoEditorViewController: UIViewController {
         let mainComposition = AVMutableVideoComposition()
         mainComposition.instructions = [mainInstruction]
        // mainInstruction.
+
+        
+        
         mainComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
         mainComposition.renderSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        mainComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: videoLayer, in: outputLayer)
         
        // mixComposition.preferredTransform = firstTrack.preferredTransform
          
@@ -655,5 +669,33 @@ class superWhizzyVideoEditorViewController: UIViewController {
             if sender.selectedSegmentIndex == 1 {
                 sharingChoiceUserFeedbackImage.image = UIImage(systemName: "eye.slash")
             }
+        }
+        
+        private func addConfetti(to layer: CALayer) {
+            let images: [UIImage] = (0...5).map { UIImage(named: "confetti\($0)")! }
+            let colors: [UIColor] = [.systemGreen, .systemRed, .systemBlue, .systemPink, .systemOrange, .systemPurple, .systemYellow]
+            let cells: [CAEmitterCell] = (0...16).map { _ in
+                let cell = CAEmitterCell()
+                cell.contents = images.randomElement()?.cgImage
+                cell.birthRate = 3
+                cell.lifetime = 12
+                cell.lifetimeRange = 0
+                cell.velocity = CGFloat.random(in: 100...200)
+                cell.velocityRange = 0
+                cell.emissionLongitude = 0
+                cell.emissionRange = 0.8
+                cell.spin = 4
+                cell.color = colors.randomElement()?.cgColor
+                cell.scale = CGFloat.random(in: 0.2...0.8)
+                return cell
+            }
+            
+            let emitter = CAEmitterLayer()
+            emitter.emitterPosition = CGPoint(x: layer.frame.size.width / 2, y: layer.frame.size.height + 5)
+            emitter.emitterShape = .line
+            emitter.emitterSize = CGSize(width: layer.frame.size.width, height: 2)
+            emitter.emitterCells = cells
+            
+            layer.addSublayer(emitter)
         }
     }

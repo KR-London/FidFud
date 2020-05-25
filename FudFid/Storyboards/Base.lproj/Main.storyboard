@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gwu-ZC-ThZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -97,21 +97,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="6iT-aL-9eI">
-                                <rect key="frame" x="54" y="232" width="306" height="432"/>
+                                <rect key="frame" x="30" y="232" width="354" height="432"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9E-dc-zch" customClass="bubbleLabel" customModule="FudFid" customModuleProvider="target">
-                                        <rect key="frame" x="77" y="0.0" width="152" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9E-dc-zch" customClass="bubbleLabel" customModule="FudFid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pCY-wi-dwe">
-                                        <rect key="frame" x="0.0" y="126" width="306" height="306"/>
+                                        <rect key="frame" x="24" y="126" width="306" height="306"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="M9E-dc-zch" firstAttribute="centerX" secondItem="6iT-aL-9eI" secondAttribute="centerX" id="3Xw-Tn-MvR"/>
+                                    <constraint firstItem="M9E-dc-zch" firstAttribute="width" secondItem="6iT-aL-9eI" secondAttribute="width" id="A33-jF-aUk"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JX4-1d-pLz" customClass="myButton" customModule="FudFid" customModuleProvider="target">
-                                <rect key="frame" x="54" y="713" width="306" height="74"/>
+                                <rect key="frame" x="30" y="713" width="354" height="74"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="I rock!"/>
                                 <connections>
@@ -127,7 +131,7 @@
                             <constraint firstItem="JX4-1d-pLz" firstAttribute="top" secondItem="6iT-aL-9eI" secondAttribute="bottom" constant="49" id="Q32-HQ-koj"/>
                             <constraint firstItem="JX4-1d-pLz" firstAttribute="leading" secondItem="6iT-aL-9eI" secondAttribute="leading" id="cHt-v5-5uD"/>
                             <constraint firstItem="6iT-aL-9eI" firstAttribute="centerX" secondItem="pSw-sL-gZs" secondAttribute="centerX" id="geI-bb-DAw"/>
-                            <constraint firstItem="6iT-aL-9eI" firstAttribute="leading" secondItem="JDh-Hl-jZ7" secondAttribute="leading" constant="54" id="jDF-ng-xhv"/>
+                            <constraint firstItem="6iT-aL-9eI" firstAttribute="leading" secondItem="JDh-Hl-jZ7" secondAttribute="leading" constant="30" id="jDF-ng-xhv"/>
                             <constraint firstItem="JX4-1d-pLz" firstAttribute="trailing" secondItem="6iT-aL-9eI" secondAttribute="trailing" id="s7R-Ec-OmU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JDh-Hl-jZ7"/>
