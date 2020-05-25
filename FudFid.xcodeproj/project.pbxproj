@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* systemImageButton.swift */; };
+		444A71B2247BF3560084032B /* celebrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B1247BF3560084032B /* celebrationVC.swift */; };
+		444A71B4247BF3AB0084032B /* little dude3.png in Resources */ = {isa = PBXBuildFile; fileRef = 444A71B3247BF3AB0084032B /* little dude3.png */; };
+		444A71B6247BF3B40084032B /* little dude7.png in Resources */ = {isa = PBXBuildFile; fileRef = 444A71B5247BF3B40084032B /* little dude7.png */; };
+		444A71B8247BF3BB0084032B /* little dude6.png in Resources */ = {isa = PBXBuildFile; fileRef = 444A71B7247BF3BA0084032B /* little dude6.png */; };
+		444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B9247BFED20084032B /* bubbleLabel.swift */; };
+		444A71BC247BFF190084032B /* myButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71BB247BFF190084032B /* myButton.swift */; };
+		444A71C7247C3D140084032B /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71C6247C3D140084032B /* testViewController.swift */; };
 		446FB842247A690E00C556AC /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FB841247A690E00C556AC /* VideoHelper.swift */; };
 		446FB845247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
 		446FB846247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
@@ -217,6 +224,13 @@
 		0BF364B0F9CDCCA3EA74AE5E /* Pods-FudFid-FudFidUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid-FudFidUITests.release.xcconfig"; path = "Target Support Files/Pods-FudFid-FudFidUITests/Pods-FudFid-FudFidUITests.release.xcconfig"; sourceTree = "<group>"; };
 		29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.release.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.release.xcconfig"; sourceTree = "<group>"; };
 		444A71AF247BA6C90084032B /* systemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = systemImageButton.swift; sourceTree = "<group>"; };
+		444A71B1247BF3560084032B /* celebrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celebrationVC.swift; sourceTree = "<group>"; };
+		444A71B3247BF3AB0084032B /* little dude3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little dude3.png"; sourceTree = "<group>"; };
+		444A71B5247BF3B40084032B /* little dude7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little dude7.png"; sourceTree = "<group>"; };
+		444A71B7247BF3BA0084032B /* little dude6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little dude6.png"; sourceTree = "<group>"; };
+		444A71B9247BFED20084032B /* bubbleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bubbleLabel.swift; sourceTree = "<group>"; };
+		444A71BB247BFF190084032B /* myButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myButton.swift; sourceTree = "<group>"; };
+		444A71C6247C3D140084032B /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		446FB841247A690E00C556AC /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
 		446FB844247A699200C556AC /* allMySecrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = allMySecrets.plist; sourceTree = "<group>"; };
 		446FB848247A74C500C556AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -442,6 +456,7 @@
 				446FB87A247A7E4400C556AC /* StoryboardScene.swift */,
 				444A71AF247BA6C90084032B /* systemImageButton.swift */,
 				446FB841247A690E00C556AC /* VideoHelper.swift */,
+				444A71B9247BFED20084032B /* bubbleLabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,6 +470,7 @@
 				446FBAC2247AD7DB00C556AC /* signUpViewController.swift */,
 				446FBAC0247AD7B200C556AC /* signInViewController.swift */,
 				446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */,
+				444A71B1247BF3560084032B /* celebrationVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -463,6 +479,8 @@
 			isa = PBXGroup;
 			children = (
 				449D4A02247A5B830009FF3C /* Main.storyboard */,
+				444A71C6247C3D140084032B /* testViewController.swift */,
+				444A71BB247BFF190084032B /* myButton.swift */,
 				449D4A0A247A5B840009FF3C /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -651,6 +669,9 @@
 			isa = PBXGroup;
 			children = (
 				449D4A2F247A5B920009FF3C /* .gitignore */,
+				444A71B3247BF3AB0084032B /* little dude3.png */,
+				444A71B5247BF3B40084032B /* little dude7.png */,
+				444A71B7247BF3BA0084032B /* little dude6.png */,
 				446FB956247A825400C556AC /* bac2.mov */,
 				446FB96A247A825900C556AC /* bac3.mp4 */,
 				446FB969247A825800C556AC /* background3.mp4 */,
@@ -887,6 +908,7 @@
 				446FB91C247A824E00C556AC /* images (5).png in Resources */,
 				446FB983247A825A00C556AC /* v09044440000bqn0cl2asdpko6ccp790.MP4 in Resources */,
 				446FB920247A824E00C556AC /* images (19).jpeg in Resources */,
+				444A71B8247BF3BB0084032B /* little dude6.png in Resources */,
 				446FB916247A824E00C556AC /* images (43).jpeg in Resources */,
 				446FB8F2247A824E00C556AC /* images (29).jpeg in Resources */,
 				446FB97D247A825A00C556AC /* v09044f10000bqpl8jg3rmgvn1heqfvg.MP4 in Resources */,
@@ -930,6 +952,7 @@
 				446FB913247A824E00C556AC /* images (5).jpeg in Resources */,
 				446FB8ED247A824E00C556AC /* images (1).png in Resources */,
 				446FB919247A824E00C556AC /* images (39).jpeg in Resources */,
+				444A71B4247BF3AB0084032B /* little dude3.png in Resources */,
 				446FB905247A824E00C556AC /* download (6).jpeg in Resources */,
 				446FB979247A825900C556AC /* vid3.MP4 in Resources */,
 				446FB925247A824E00C556AC /* download (11).jpeg in Resources */,
@@ -967,6 +990,7 @@
 				446FB8EC247A824E00C556AC /* download (1).png in Resources */,
 				446FB904247A824E00C556AC /* images (33).jpeg in Resources */,
 				446FB8F7247A824E00C556AC /* images (36).jpeg in Resources */,
+				444A71B6247BF3B40084032B /* little dude7.png in Resources */,
 				446FB934247A824E00C556AC /* images (2).png in Resources */,
 				446FB938247A824E00C556AC /* download (9).jpeg in Resources */,
 				446FB908247A824E00C556AC /* download (4).jpeg in Resources */,
@@ -1158,6 +1182,7 @@
 				446FBAC5247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift in Sources */,
 				446FBAC1247AD7B200C556AC /* signInViewController.swift in Sources */,
 				446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */,
+				444A71BC247BFF190084032B /* myButton.swift in Sources */,
 				446FB86E247A7BD700C556AC /* ProfileItemCollectionViewCell.swift in Sources */,
 				446FB860247A7BCC00C556AC /* Constant.swift in Sources */,
 				446FB87B247A7E4400C556AC /* StoryboardScene.swift in Sources */,
@@ -1166,14 +1191,17 @@
 				446FB86F247A7BD700C556AC /* ProgressIndicatorHUDView.swift in Sources */,
 				446FB873247A7BD700C556AC /* CircleImageView.swift in Sources */,
 				446FB864247A7BCC00C556AC /* HTTPError.swift in Sources */,
+				444A71B2247BF3560084032B /* celebrationVC.swift in Sources */,
 				446FB876247A7BF200C556AC /* Feed.swift in Sources */,
 				446FB871247A7BD700C556AC /* RoundCornerButton.swift in Sources */,
+				444A71C7247C3D140084032B /* testViewController.swift in Sources */,
 				446FB872247A7BD700C556AC /* FeedPagePresenter.swift in Sources */,
 				446FB870247A7BD700C556AC /* ProgressIndicatorHUDMessageView.swift in Sources */,
 				446FB86D247A7BD700C556AC /* ProgressIndicatorHUDPresenter.swift in Sources */,
 				444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */,
 				449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */,
 				446FB84D247A79D500C556AC /* FeedViewController.swift in Sources */,
+				444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */,
 				446FB861247A7BCC00C556AC /* Connection.swift in Sources */,
 				446FB863247A7BCC00C556AC /* HTTPRequest.swift in Sources */,
 				449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */,

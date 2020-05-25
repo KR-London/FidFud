@@ -57,7 +57,8 @@ class VideoHelper {
       } else if transform.a == -1.0 && transform.b == 0 && transform.c == 0 && transform.d == -1.0 {
         assetOrientation = .down
       }
-      return (assetOrientation, isPortrait)
+      //return (assetOrientation, isPortrait)
+        return (.left, false)
     }
     
     static func videoCompositionInstruction(_ track: AVCompositionTrack, asset: AVAsset) -> AVMutableVideoCompositionLayerInstruction {
@@ -66,7 +67,7 @@ class VideoHelper {
       
       let transform = assetTrack.preferredTransform
       let assetInfo = orientationFromTransform(transform)
-      
+     
       var scaleToFitRatio = UIScreen.main.bounds.width / assetTrack.naturalSize.width
       if assetInfo.isPortrait {
         scaleToFitRatio = UIScreen.main.bounds.width / assetTrack.naturalSize.height

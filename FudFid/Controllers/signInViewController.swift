@@ -39,9 +39,9 @@ class signInViewController: UIViewController {
             if user != nil
             {
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                       // let newViewController = storyBoard.instantiateViewController(withIdentifier: "addContent") as! AddViewController
+                       let newViewController = storyBoard.instantiateViewController(withIdentifier: "addContent") as! AddViewController
                 
-                let newViewController = storyBoard.instantiateViewController(withIdentifier: "superWhizzyVideoEditor") as! superWhizzyVideoEditorViewController
+              //  let newViewController = storyBoard.instantiateViewController(withIdentifier: "superWhizzyVideoEditor") as! superWhizzyVideoEditorViewController
                         self.present(newViewController, animated: true, completion: nil)
             }
         }

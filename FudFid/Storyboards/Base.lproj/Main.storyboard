@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A9l-tn-EWM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gwu-ZC-ThZ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2223" y="289"/>
+            <point key="canvasLocation" x="2584" y="287"/>
         </scene>
         <!--Super Whizzy Video Editor View Controller-->
         <scene sceneID="WIj-wg-9A2">
@@ -86,7 +86,60 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="raX-Zq-spv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4710" y="246"/>
+            <point key="canvasLocation" x="3400" y="287"/>
+        </scene>
+        <!--Celebration View Controller-->
+        <scene sceneID="to6-tU-uz4">
+            <objects>
+                <viewController storyboardIdentifier="celebrationVCscreen" id="lDq-vk-v0s" customClass="celebrationViewController" customModule="FudFid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pSw-sL-gZs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="6iT-aL-9eI">
+                                <rect key="frame" x="54" y="232" width="306" height="432"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Awesome!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9E-dc-zch" customClass="bubbleLabel" customModule="FudFid" customModuleProvider="target">
+                                        <rect key="frame" x="77" y="0.0" width="152" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pCY-wi-dwe">
+                                        <rect key="frame" x="0.0" y="126" width="306" height="306"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JX4-1d-pLz" customClass="myButton" customModule="FudFid" customModuleProvider="target">
+                                <rect key="frame" x="54" y="713" width="306" height="74"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="I rock!"/>
+                                <connections>
+                                    <segue destination="F3N-C4-lPx" kind="unwind" unwindAction="unwindToAdd:" id="w2X-ER-I0u"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6iT-aL-9eI" firstAttribute="top" secondItem="JDh-Hl-jZ7" secondAttribute="top" constant="188" id="F31-M8-Vr9"/>
+                            <constraint firstItem="JDh-Hl-jZ7" firstAttribute="bottom" secondItem="JX4-1d-pLz" secondAttribute="bottom" constant="75" id="Jhi-24-arc"/>
+                            <constraint firstItem="6iT-aL-9eI" firstAttribute="centerY" secondItem="pSw-sL-gZs" secondAttribute="centerY" id="NN4-om-Rhd"/>
+                            <constraint firstItem="JX4-1d-pLz" firstAttribute="top" secondItem="6iT-aL-9eI" secondAttribute="bottom" constant="49" id="Q32-HQ-koj"/>
+                            <constraint firstItem="JX4-1d-pLz" firstAttribute="leading" secondItem="6iT-aL-9eI" secondAttribute="leading" id="cHt-v5-5uD"/>
+                            <constraint firstItem="6iT-aL-9eI" firstAttribute="centerX" secondItem="pSw-sL-gZs" secondAttribute="centerX" id="geI-bb-DAw"/>
+                            <constraint firstItem="6iT-aL-9eI" firstAttribute="leading" secondItem="JDh-Hl-jZ7" secondAttribute="leading" constant="54" id="jDF-ng-xhv"/>
+                            <constraint firstItem="JX4-1d-pLz" firstAttribute="trailing" secondItem="6iT-aL-9eI" secondAttribute="trailing" id="s7R-Ec-OmU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JDh-Hl-jZ7"/>
+                    </view>
+                    <connections>
+                        <outlet property="dancingHappy" destination="pCY-wi-dwe" id="Hd6-UU-a4m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QOz-6H-Jqx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="F3N-C4-lPx" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4215.9420289855079" y="286.60714285714283"/>
         </scene>
         <!--Me-->
         <scene sceneID="U5H-h4-v06">
@@ -190,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oca-Ab-OD5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3774" y="957"/>
+            <point key="canvasLocation" x="3729" y="1085"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="jwY-et-JG4">
@@ -270,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ou3-EM-Dpf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3909" y="247"/>
+            <point key="canvasLocation" x="4491" y="957"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -290,6 +343,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="V2E-cF-nKW">
+            <objects>
+                <viewController id="gwu-ZC-ThZ" customClass="testViewController" customModule="FudFid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JlK-qH-sTn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ChU-Ed-Evg">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ChU-Ed-Evg" firstAttribute="top" secondItem="two-0B-Lv7" secondAttribute="top" id="QvB-Uo-hSS"/>
+                            <constraint firstItem="two-0B-Lv7" firstAttribute="bottom" secondItem="ChU-Ed-Evg" secondAttribute="bottom" id="SJU-NU-sRb"/>
+                            <constraint firstItem="ChU-Ed-Evg" firstAttribute="leading" secondItem="two-0B-Lv7" secondAttribute="leading" id="auY-cx-HwG"/>
+                            <constraint firstItem="two-0B-Lv7" firstAttribute="trailing" secondItem="ChU-Ed-Evg" secondAttribute="trailing" id="vUU-qH-8Nk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="two-0B-Lv7"/>
+                    </view>
+                    <connections>
+                        <outlet property="myImageView" destination="ChU-Ed-Evg" id="pMS-BM-FBB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EtR-wL-ctA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="877"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="U3k-Ai-mKK">

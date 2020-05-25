@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import ProgressHUD
+import FirebaseStorage
 
 var maxID = 15
 
@@ -92,8 +93,8 @@ extension FeedPagePresenter: FeedFetchDelegate {
             return
         }
         
-        self.feeds = self.initialiseHardCodedFeed()
-        
+        //self.feeds = self.initialiseHardCodedFeed()
+        self.feeds = self.initialiseFirebaseFeed()
         
         /// our feed is stored in presenter
         //self.feeds = feeds
@@ -153,6 +154,55 @@ extension FeedPagePresenter: FeedFetchDelegate {
         }
         
         return feeds
+    }
+    
+    func initialiseFirebaseFeed() ->[Feed]{
+        
+        
+        var list = [Feed]()
+        
+        let storageReference = Storage.storage().reference()
+        
+        let imageDownloadURLReference = storageReference.child("centralGifs/200-5.gif")
+        
+        // Create a reference to the file you want to download
+        //let starsRef = storageRef.child("images/stars.jpg")
+        
+        // Fetch the download URL
+        imageDownloadURLReference.downloadURL { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("image url me got is \(String(describing: url!))")
+            }
+        }
+        
+        // Create local filesystem URL
+        let path = String((Bundle.main.path(forResource: "bac2.mov", ofType: nil)?.dropLast(8))!)
+        let localURL = URL(string: path + "test.gif")!
+
+        // Download to the local filesystem
+        let downloadTask = imageDownloadURLReference.write(toFile: localURL) { url, error in
+          if let error = error {
+            print(error.localizedDescription)
+          } else {
+            print("Hurrah!")
+          }
+        }
+        do{
+        let gifArray = try FileManager.default.contentsOfDirectory(atPath: path).filter({$0.hasSuffix("test.gif")})
+        for i in 1...15{
+        /// later include remote video and sti;; images
+        
+            let vid = Feed(id: i, url: nil, path: nil, text: nil, gif: gifArray.randomElement(), sound: nil, image: nil)
+        list.append(vid)
+        }
+        }
+        catch{
+            print(error.localizedDescription)
+        }
+        
+        return list
     }
     
     /// this is an ugly hack . I am placing this in view when it clearly should be model

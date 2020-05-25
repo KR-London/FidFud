@@ -26,6 +26,18 @@ class AddViewController: UIViewController {
         button.addTarget(self, action: #selector(record), for: .touchUpInside)
         return button
     }()
+    
+    lazy var thumbsUp: UIImageView = {
+       let imageView = UIImageView()
+       imageView.image = "👍".emojiImage()
+        //imageView.image = UIImage(named: "carrot.png")
+        return imageView
+    }()
+    
+    @IBAction func unwindToAdd(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        showThumbsUp()
+    }
 
     override func viewDidLoad() {
         
@@ -38,6 +50,37 @@ class AddViewController: UIViewController {
         }
         
         addRecordButton()
+    }
+    
+    func showThumbsUp(){
+        
+        view.addSubview(thumbsUp)
+        thumbsUp.alpha = 1
+        thumbsUp.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            thumbsUp.heightAnchor.constraint(equalToConstant: 100),
+            thumbsUp.widthAnchor.constraint(equalToConstant: 100),
+            thumbsUp.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            thumbsUp.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        view.reloadInputViews()
+        view.bringSubviewToFront(thumbsUp)
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.thumbsUp.transform = CGAffineTransform(scaleX: 4, y: 4)
+        }) { (finished) in
+            UIView.animate(withDuration: 1, animations: {
+                self.thumbsUp.transform = CGAffineTransform.identity
+            }){
+                (finished) in
+                UIView.animate(withDuration: 1.5, animations: {
+                 self.thumbsUp.alpha = 0
+                })
+            }
+        }
+        
+      
+        
     }
     
     func addRecordButton(){
@@ -60,10 +103,17 @@ class AddViewController: UIViewController {
     @objc func video(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo info: AnyObject) {
       let title = (error == nil) ? "Success" : "Error"
       let message = (error == nil) ? "Video was saved" : "Video failed to save"
-      
+
       let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
       present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func mySegue(_ url: URL){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "superWhizzyVideoEditor") as! superWhizzyVideoEditorViewController
+        newViewController.sentURL = url
+        self.present(newViewController, animated: true, completion: nil)
     }
 
 }
@@ -82,14 +132,14 @@ extension AddViewController: UIImagePickerControllerDelegate {
         else {
           return
       }
+               // #selector(video(_:didFinishSavingWithError:contextInfo:)),
       
       // Handle a movie capture
-      UISaveVideoAtPathToSavedPhotosAlbum(
-        url.path,
-        self,
-        #selector(video(_:didFinishSavingWithError:contextInfo:)),
-        nil)
+//
         
+        UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, nil, nil)
+        
+        mySegue(url)
         
         /// save to firebase
         

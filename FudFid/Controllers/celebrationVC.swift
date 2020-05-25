@@ -8,7 +8,7 @@
 
 import UIKit
 
-class celebrationVC: UIViewController {
+class celebrationViewController: UIViewController {
         
         lazy var b1: myButton = {
             let button = myButton()
@@ -17,9 +17,7 @@ class celebrationVC: UIViewController {
             button.titleLabel!.font = UIFont(name: "TwCenMT-CondensedExtraBold", size: 24 )
             return button
         }()
-        
         @IBOutlet weak var dancingHappy: UIImageView!
-        
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -52,53 +50,55 @@ class celebrationVC: UIViewController {
             //nav.presentState = .ReturnFromCelebrationScreen
             let margins = view.layoutMarginsGuide
             
-            view.addSubview(b1)
-            b1.translatesAutoresizingMaskIntoConstraints = false
-          //  b1.addTarget(self, action: #selector(home), for: .touchUpInside)
-            b1.alpha = 1
-            NSLayoutConstraint.activate(
-                [
-                    b1.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -50),
-                    b1.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.85),
-                    b1.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-                    b1.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.1)
-                ]
-            )
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)){
-              let _ = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
-                                   self.b1.alpha = 1
-                               }
-            }
+           // view.addSubview(b1)
+//            b1.translatesAutoresizingMaskIntoConstraints = false
+//           // b1.addTarget(self, action: home, for: .touchUpInside)
+//            b1.alpha = 1
+//            NSLayoutConstraint.activate(
+//                [
+//                    b1.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -50),
+//                    b1.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.85),
+//                    b1.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
+//                    b1.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.1)
+//                ]
+//            )
+//            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)){
+//              let _ = UIViewPropertyAnimator(duration: 3, curve: .easeOut) {
+//                                   self.b1.alpha = 1
+//                               }
+//            }
         }
-        
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "celebrationBackToMain"{
-    //            let dvc = segue.destination as! customNavigationController
-    //            dvc.presentState = .ReturnFromCelebrationScreen
-    //            dvc.happyTracker = true
-    //        }
-    //    }
-     //   @objc func home(){
-            
-          //  let myNav = customNavigationController()
-            
-            //rootViewController.myNav?.presentState = pre
-            
-            //let newViewController = storyBoard.instantiateViewController(withIdentifier: "newDataInputViewController") as! newDataInputViewController
-            
-        //    weak var main = navigationController?.viewControllers[0] as? newMainViewController
-          //        main?.isRainingConfetti = true
-          //        main?.reloadInputViews()
-          //        navigationController?.popToRootViewController(animated: true)
-    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //        let nextViewController = storyboard.instantiateViewController(withIdentifier: "newMainViewController" ) as! newMainViewController
-    //        nextViewController.isRainingConfetti = true
-    //        let myNav = self.navigationController as! customNavigationController
-    //        myNav.pushViewController(nextViewController, animated: true)
-           // self.present(myNav, animated: true, completion: nil)
-            
-            
-            /// want it full screen
- }
 
+ }
+//@objc func home(){
+//   // popToRootViewController
+//}
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "celebrationBackToMain"{
+//            let dvc = segue.destination as! customNavigationController
+//            dvc.presentState = .ReturnFromCelebrationScreen
+//            dvc.happyTracker = true
+//        }
+//    }
+ //   @objc func home(){
+        
+      //  let myNav = customNavigationController()
+        
+        //rootViewController.myNav?.presentState = pre
+        
+        //let newViewController = storyBoard.instantiateViewController(withIdentifier: "newDataInputViewController") as! newDataInputViewController
+        
+    //    weak var main = navigationController?.viewControllers[0] as? newMainViewController
+      //        main?.isRainingConfetti = true
+      //        main?.reloadInputViews()
+      //        navigationController?.popToRootViewController(animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let nextViewController = storyboard.instantiateViewController(withIdentifier: "newMainViewController" ) as! newMainViewController
+//        nextViewController.isRainingConfetti = true
+//        let myNav = self.navigationController as! customNavigationController
+//        myNav.pushViewController(nextViewController, animated: true)
+       // self.present(myNav, animated: true, completion: nil)
+        
+        
+        /// want it full screen

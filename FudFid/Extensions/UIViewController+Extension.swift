@@ -433,3 +433,28 @@ extension UIImage {
     }
 }
 
+extension String {
+//    func emojiImage() -> UIImage? {
+//        let size = CGSize(width: 40, height: 40)
+//        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+//        UIColor.white.set()
+//        let rect = CGRect(origin: .zero, size: size)
+//        UIRectFill(CGRect(origin: .zero, size: size))
+//        (self as AnyObject).draw(in: rect, withAttributes: [.font: UIFont.systemFont(ofSize: 40)])
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return image
+//    }
+    
+    func emojiImage() -> UIImage? {
+           let size = CGSize(width: 30, height: 35)
+           UIGraphicsBeginImageContextWithOptions(size, false, 0)
+           UIColor.clear.set()
+           let rect = CGRect(origin: CGPoint(), size: size)
+           UIRectFill(CGRect(origin: CGPoint(), size: size))
+           (self as NSString).draw(in: rect, withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30)])
+           let image = UIGraphicsGetImageFromCurrentImageContext()
+           UIGraphicsEndImageContext()
+           return image
+       }
+}
