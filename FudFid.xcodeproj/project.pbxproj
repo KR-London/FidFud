@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* systemImageButton.swift */; };
 		446FB842247A690E00C556AC /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FB841247A690E00C556AC /* VideoHelper.swift */; };
 		446FB845247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
 		446FB846247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
@@ -215,6 +216,7 @@
 		077E87947A489E55DF30209E /* Pods-FudFidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFidTests.release.xcconfig"; path = "Target Support Files/Pods-FudFidTests/Pods-FudFidTests.release.xcconfig"; sourceTree = "<group>"; };
 		0BF364B0F9CDCCA3EA74AE5E /* Pods-FudFid-FudFidUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid-FudFidUITests.release.xcconfig"; path = "Target Support Files/Pods-FudFid-FudFidUITests/Pods-FudFid-FudFidUITests.release.xcconfig"; sourceTree = "<group>"; };
 		29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.release.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.release.xcconfig"; sourceTree = "<group>"; };
+		444A71AF247BA6C90084032B /* systemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = systemImageButton.swift; sourceTree = "<group>"; };
 		446FB841247A690E00C556AC /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
 		446FB844247A699200C556AC /* allMySecrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = allMySecrets.plist; sourceTree = "<group>"; };
 		446FB848247A74C500C556AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 			children = (
 				446FB856247A7AAA00C556AC /* UIViewController+Extension.swift */,
 				446FB87A247A7E4400C556AC /* StoryboardScene.swift */,
+				444A71AF247BA6C90084032B /* systemImageButton.swift */,
 				446FB841247A690E00C556AC /* VideoHelper.swift */,
 			);
 			path = Extensions;
@@ -451,6 +454,7 @@
 				449D4A00247A5B830009FF3C /* AddViewController.swift */,
 				446FBAC2247AD7DB00C556AC /* signUpViewController.swift */,
 				446FBAC0247AD7B200C556AC /* signInViewController.swift */,
+				446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -459,7 +463,6 @@
 			isa = PBXGroup;
 			children = (
 				449D4A02247A5B830009FF3C /* Main.storyboard */,
-				446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */,
 				449D4A0A247A5B840009FF3C /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -1168,6 +1171,7 @@
 				446FB872247A7BD700C556AC /* FeedPagePresenter.swift in Sources */,
 				446FB870247A7BD700C556AC /* ProgressIndicatorHUDMessageView.swift in Sources */,
 				446FB86D247A7BD700C556AC /* ProgressIndicatorHUDPresenter.swift in Sources */,
+				444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */,
 				449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */,
 				446FB84D247A79D500C556AC /* FeedViewController.swift in Sources */,
 				446FB861247A7BCC00C556AC /* Connection.swift in Sources */,
@@ -1350,6 +1354,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E5MDC86ME;
 				INFOPLIST_FILE = FudFid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1369,6 +1374,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E5MDC86ME;
 				INFOPLIST_FILE = FudFid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
