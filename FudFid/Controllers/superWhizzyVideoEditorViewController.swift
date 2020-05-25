@@ -40,6 +40,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
     lazy var finishedButton: systemImageButton = {
            let button = systemImageButton()
            button.setImage(UIImage(systemName: "checkmark.seal"), for: .normal)
+        //button.alpha = 0.2
            return button
        }()
     
@@ -56,6 +57,9 @@ class superWhizzyVideoEditorViewController: UIViewController {
         let feedback = UIImageView()
         feedback.tintColor = .placeholderText
         feedback.alpha = 0.5
+        feedback.image?.withAlignmentRectInsets(UIEdgeInsets(top: -20, left: -20, bottom: -20, right: -20))
+      //  alignmentRectInsets = UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10)
+            //= UIImage().withAlignmentRectInsets(UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10))
         return feedback
     }()
     
@@ -148,7 +152,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         view.addSubview(addMagicButton)
         addMagicButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addMagicButton.trailingAnchor.constraint(equalTo: playerViewController!.view.trailingAnchor),
+            addMagicButton.trailingAnchor.constraint(equalTo: playerViewController!.view.trailingAnchor, constant: 20),
             addMagicButton.bottomAnchor.constraint(equalTo: playerViewController!.view.topAnchor, constant: -10),
             addMagicButton.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07),
             addMagicButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07)
@@ -157,7 +161,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         view.addSubview(addSoundButton)
         addSoundButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addSoundButton.leadingAnchor.constraint(equalTo: playerViewController!.view.leadingAnchor),
+            addSoundButton.leadingAnchor.constraint(equalTo: playerViewController!.view.leadingAnchor, constant: -20),
             addSoundButton.bottomAnchor.constraint(equalTo: playerViewController!.view.topAnchor, constant: -10),
             addSoundButton.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07),
             addSoundButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07)
@@ -166,7 +170,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         view.addSubview(finishedButton)
         finishedButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-              finishedButton.trailingAnchor.constraint(equalTo: playerViewController!.view.trailingAnchor),
+              finishedButton.trailingAnchor.constraint(equalTo: playerViewController!.view.trailingAnchor, constant: 20),
               finishedButton.topAnchor.constraint(equalTo: playerViewController!.view.bottomAnchor, constant: 10),
               finishedButton.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07),
               finishedButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07)
@@ -255,7 +259,9 @@ class superWhizzyVideoEditorViewController: UIViewController {
         }
       }
       
-      @IBAction func loadAudio(_ sender: AnyObject) {
+      @IBAction
+    
+    func loadAudio(_ sender: AnyObject) {
         //let mediaPickerController = MPMediaPickerController(mediaTypes: .any)
         //mediaPickerController.delegate = self
        // mediaPickerController.prompt = "Select Audio"

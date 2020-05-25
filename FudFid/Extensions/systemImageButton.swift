@@ -19,12 +19,19 @@ class systemImageButton: UIButton {
             super.init(frame: .zero)
             
             tintColor = .black
-            imageView?.preferredSymbolConfiguration = UIImage.SymbolConfiguration(weight: .heavy)
-            contentMode = .scaleAspectFit
+            imageView?.preferredSymbolConfiguration = UIImage.SymbolConfiguration(weight: .black).applying(UIImage.SymbolConfiguration(scale: .large))
+            contentMode = .scaleAspectFill
             // set other operations after super.init, if required
-            layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0)
+            layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+            
+            layer.cornerRadius = 5.0
            // black
-            layer.borderWidth = 5.0
+            layer.borderWidth = 1.0
+            
+            layer.shadowColor = CGColor(srgbRed: 0, green: 1, blue: 0, alpha: 1)
+          
+           // backgroundColor = .lightGray
+            titleLabel?.adjustsFontSizeToFitWidth = true
         }
 
         required init?(coder aDecoder: NSCoder) {
