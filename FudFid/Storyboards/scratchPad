@@ -1,0 +1,69 @@
+
+
+let listOfFiles == [String]()
+
+let fileManager = FileManager.default
+let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+do {
+    listOfFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+    // process files
+} catch {
+    print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
+}
+
+/// filter list of files to .gif suffix
+
+for i in 1 .. 10
+{
+  
+  
+  //// $0.dropLast(4).lastCharacter = i
+  
+  if count of this is zero, copy from bundle to
+  documentURL + "0" + String(i) + ".gif"
+  /// should I delete these and reload?
+  
+  /// I should have an intermediate object to store all the gifs and then move it to the Feed
+  list.append(Feed(i, documentURL + "0" + String(i) + ".gif"))
+  
+  
+  download asynchronously from firebase to
+  documentURL + "1" + String(i) + ".gif"
+  
+  if count of this is 1
+  let marker = $0.dropLast(5).lastCharacter
+  
+  switch marker{
+    case "2":
+        list.append(Feed(i, documentURL + "2" + String(i) + ".gif"))
+        download asynchronously random gif from firebase to documentURL + "0" + String(i) + ".gif"
+    case "1":
+        list.append(Feed(i, documentURL + "1" + String(i) + ".gif"))
+        download asynchronously from firebase to documentURL + "2" + String(i) + ".gif"
+    case "0":
+        list.append(Feed(i, documentURL + "0" + String(i) + ".gif"))
+        download asynchronously random gif from firebase to documentURL + "1" + String(i) + ".gif"
+    default:
+        print("Freakout")
+}
+  
+  if count of this is >1
+  let marker = [$0.dropLast(5).lastCharacter].max
+  
+  switch marker{
+    case "2":
+        list.append(Feed(i, documentURL + "2" + String(i) + ".gif"))
+        delete [$0.dropLast(5).lastCharacter] != [$0.dropLast(5).lastCharacter].max
+        download asynchronously random gif from firebase to documentURL + "0" + String(i) + ".gif"
+    case "1":
+        list.append(Feed(i, documentURL + "1" + String(i) + ".gif"))
+        delete [$0.dropLast(5).lastCharacter] != [$0.dropLast(5).lastCharacter].max
+        download asynchronously from firebase to documentURL + "2" + String(i) + ".gif"
+    case "0":
+        list.append(Feed(i, documentURL + "0" + String(i) + ".gif"))
+        delete [$0.dropLast(5).lastCharacter] != [$0.dropLast(5).lastCharacter].max
+        download asynchronously random gif from firebase to documentURL + "1" + String(i) + ".gif"
+    default:
+        print("Freakout")
+}
+}

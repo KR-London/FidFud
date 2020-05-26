@@ -185,6 +185,7 @@
 		446FBAC1247AD7B200C556AC /* signInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC0247AD7B200C556AC /* signInViewController.swift */; };
 		446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC2247AD7DB00C556AC /* signUpViewController.swift */; };
 		446FBAC5247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */; };
+		446FD00C247CF7A3003020F7 /* scratchPad in Resources */ = {isa = PBXBuildFile; fileRef = 446FD00B247CF7A3003020F7 /* scratchPad */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
 		449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FC247A5B830009FF3C /* SceneDelegate.swift */; };
 		449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A00247A5B830009FF3C /* AddViewController.swift */; };
@@ -397,6 +398,7 @@
 		446FBAC0247AD7B200C556AC /* signInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
 		446FBAC2247AD7DB00C556AC /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
 		446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = superWhizzyVideoEditorViewController.swift; sourceTree = "<group>"; };
+		446FD00B247CF7A3003020F7 /* scratchPad */ = {isa = PBXFileReference; lastKnownFileType = text; path = scratchPad; sourceTree = "<group>"; };
 		449D49F7247A5B830009FF3C /* FudFid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudFid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449D49FA247A5B830009FF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449D49FC247A5B830009FF3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			children = (
 				449D4A02247A5B830009FF3C /* Main.storyboard */,
 				444A71C6247C3D140084032B /* testViewController.swift */,
+				446FD00B247CF7A3003020F7 /* scratchPad */,
 				444A71BB247BFF190084032B /* myButton.swift */,
 				449D4A0A247A5B840009FF3C /* LaunchScreen.storyboard */,
 			);
@@ -906,6 +909,7 @@
 				446FB90A247A824E00C556AC /* images (3).jpeg in Resources */,
 				446FB973247A825900C556AC /* giphy-2.gif in Resources */,
 				446FB91C247A824E00C556AC /* images (5).png in Resources */,
+				446FD00C247CF7A3003020F7 /* scratchPad in Resources */,
 				446FB983247A825A00C556AC /* v09044440000bqn0cl2asdpko6ccp790.MP4 in Resources */,
 				446FB920247A824E00C556AC /* images (19).jpeg in Resources */,
 				444A71B8247BF3BB0084032B /* little dude6.png in Resources */,
