@@ -94,11 +94,13 @@ extension FeedPagePresenter: FeedFetchDelegate {
             return
         }
         
-       self.feeds = self.initialiseHardCodedFeed()
+      // self.feeds = self.initialiseHardCodedFeed()
        // self.feeds = self.initialiseFirebaseFeed()
         
         /// our feed is stored in presenter
         //self.feeds = feeds
+        
+         self.feeds =  freshGifs()
         
         
         guard let initialFeed = self.feeds.first else {
@@ -157,22 +159,24 @@ extension FeedPagePresenter: FeedFetchDelegate {
         return feeds
     }
     
-    func initialiseFirebaseFeed() ->[Feed]{
-        //FeedPagePresenter.initialiseFirebaseFeed()
-
+    
+    func freshGifs() -> [Feed]{
         
         var list = [Feed]()
-        
+        var listOfFiles = [URL]()
+
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
         let storageReference = Storage.storage().reference()
-        
-        // let imageDownloadURLReference = storageReference.child("centralImages/fbtestpic.jpeg")
         let imageDownloadURLReference = storageReference.child("centralGifs/")
-//        var allGifs = [StorageReference]()
         
-        let fileContents = imageDownloadURLReference.listAll{ (result, error) in
+        /// this seems to be problematic because it doesn't return quick enough for me to use it
+        /// thinking I should have a local or database list of files for this
+        /// indeed that would let me prioritise content I haven's seen yet.
+        imageDownloadURLReference.listAll{ (result, error) in
             if let error = error {
-                // ...
+                print("Can't see the files")
             }
             for prefix in result.prefixes {
                 // The prefixes under storageReference.
@@ -183,6 +187,173 @@ extension FeedPagePresenter: FeedFetchDelegate {
                 print(item)
             }
         }
+    
+        
+        do {
+            listOfFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            // process files
+        } catch {
+            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
+        }
+
+        /// filter list of files to .gif suffix
+        
+        var listOfFilenames = listOfFiles.map{$0.absoluteString}.filter{$0.suffix(4) == ".gif"}.map{$0.dropLast(4)}
+        print(listOfFilenames)
+
+        for i in 1 ... 5
+        {
+            let iStoredFiles = listOfFilenames.filter{String($0.last!) == String(i)}
+            
+            switch iStoredFiles.count{
+                case 0:
+                    print("No files found - going to copy from bundle and download to cache")
+                    
+                    let localSavePath = documentsURL.appendingPathComponent("0" + String(i) + ".gif")
+                     let storageReference = imageDownloadURLReference.child("giphy-3" + ".gif")
+              
+                        //allGifs.randomElement()
+                    
+                    DispatchQueue.main.async {
+                        // Download to the local filesystem
+                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
+                            if let error = error {
+                                // Uh-oh, an error occurred!
+                                print("Bart has left the building \(String(error.localizedDescription))")
+                            } else {
+                                print("click to see Bart")
+                            }
+                        }
+                        
+                        downloadTask.observe(.progress) { snapshot in
+                            // Download reported progress
+                            let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
+                                / Double(snapshot.progress!.totalUnitCount)
+                        }
+                    }
+                
+                    let myFeed = Feed(id: i, url: nil, path: nil, text: nil, gif: localSavePath.absoluteString, sound: nil, image: nil)
+                    list.append(myFeed)
+                    
+                case 1:
+                    print("1 file found - going to reference it to feed and download another cache")
+                    let localSavePath = documentsURL.appendingPathComponent("1" + String(i) + ".gif")
+                   
+                    //allGifs.randomElement()
+                    let storageReference = imageDownloadURLReference.child("200w-1" + String(i) + ".gif")
+                    DispatchQueue.main.async {
+                        // Download to the local filesystem
+                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
+                            if let error = error {
+                                // Uh-oh, an error occurred!
+                                print("Lisa has left the building \(String(error.localizedDescription))")
+                            } else {
+                                print("click to see Lisa")
+                            }
+                        }
+                        
+                        downloadTask.observe(.progress) { snapshot in
+                            // Download reported progress
+                            let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
+                                / Double(snapshot.progress!.totalUnitCount)
+                        }
+                }
+                
+                    let myFeed = Feed(id: i, url: nil, path: nil, text: nil, gif: localSavePath.absoluteString, sound: nil, image: nil)
+                    list.append(myFeed)
+                
+                default:
+                    print("More than 1 file found - going to reference the highest indexed, delete the others and download a fresh file cache at the next highest number")
+            }
+
+        }
+
+//
+//            //// $0.dropLast(4).lastCharacter = i
+//
+//            if count of this is zero, copy from bundle to
+//            documentURL + "0" + String(i) + ".gif"
+//            /// should I delete these and reload?
+//
+//            /// I should have an intermediate object to store all the gifs and then move it to the Feed
+//            list.append(Feed(i, documentURL + "0" + String(i) + ".gif"))
+//
+//
+//            download asynchronously from firebase to
+//            documentURL + "1" + String(i) + ".gif"
+//
+//            if count of this is 1
+//            let marker = $0.dropLast(5).lastCharacter
+//
+//            switch marker{
+//                case "2":
+//                    list.append(Feed(i, documentURL + "2" + String(i) + ".gif"))
+//                    download asynchronously random gif from firebase to documentURL + "0" + String(i) + ".gif"
+//                case "1":
+//                    list.append(Feed(i, documentURL + "1" + String(i) + ".gif"))
+//                    download asynchronously from firebase to documentURL + "2" + String(i) + ".gif"
+//                case "0":
+//                    list.append(Feed(i, documentURL + "0" + String(i) + ".gif"))
+//                    download asynchronously random gif from firebase to documentURL + "1" + String(i) + ".gif"
+//                default:
+//                    print("Freakout")
+//            }
+//
+//            if count of this is >1
+//            let marker = [$0.dropLast(5).lastCharacter].max
+//
+//            switch marker{
+//                case "2":
+//                    list.append(Feed(i, documentURL + "2" + String(i) + ".gif"))
+//                    delete [$0.dropLast(5).lastCharacter] != [$0.dropLast(5).lastCharacter].max
+//                    download asynchronously random gif from firebase to documentURL + "0" + String(i) + ".gif"
+//                case "1":
+//                    list.append(Feed(i, documentURL + "1" + String(i) + ".gif"))
+//                    delete [$0.dropLast(5).lastCharacter] != [$0.dropLast(5).lastCharacter].max
+//                    download asynchronously from firebase to documentURL + "2" + String(i) + ".gif"
+//                case "0":
+//                    list.append(Feed(i, documentURL + "0" + String(i) + ".gif"))
+//                    delete [$0.dropLast(5).lastCharacter] != [$0.dropLast(5).lastCharacter].max
+//                    download asynchronously random gif from firebase to documentURL + "1" + String(i) + ".gif"
+//                default:
+//                    print("Freakout")
+//            }
+//        }
+return list
+    }
+    
+    func initialiseFirebaseFeed() ->[Feed]{
+        //FeedPagePresenter.initialiseFirebaseFeed()
+
+        
+        var list = [Feed]()
+        
+        
+        
+        
+        
+        
+        
+        
+//        let storageReference = Storage.storage().reference()
+//
+//        // let imageDownloadURLReference = storageReference.child("centralImages/fbtestpic.jpeg")
+//        let imageDownloadURLReference = storageReference.child("centralGifs/")
+////        var allGifs = [StorageReference]()
+//
+//        let fileContents = imageDownloadURLReference.listAll{ (result, error) in
+//            if let error = error {
+//                // ...
+//            }
+//            for prefix in result.prefixes {
+//                // The prefixes under storageReference.
+//                // You may call listAll(completion:) recursively on them.
+//            }
+//            for item in result.items {
+//                allGifs.append(item)
+//                print(item)
+//            }
+//        }
   //      myImageView.sd_setImage(with: imageDownloadURLReference, placeholderImage: UIImage(named: "peas.jpg"))
         
 //        let storageReference = Storage.storage().reference()

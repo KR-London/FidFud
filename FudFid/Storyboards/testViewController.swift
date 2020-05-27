@@ -39,20 +39,20 @@ class testViewController: UIViewController {
         
         super.viewDidLoad()
         
-//        myImageView.image = UIImage.gifImageWithName(name: "200.gif")
-//
-//        let storageReference = Storage.storage().reference().child("centralGifs/200w-10.gif")
-//        DispatchQueue.main.async {
-//            // Download to the local filesystem
-//            let downloadTask = storageReference.write(toFile: destinationUrl!) { url, error in
-//                if let error = error {
-//                    // Uh-oh, an error occurred!
-//                    print("Bart has left the building \(String(error.localizedDescription))")
-//                } else {
-//                    print("click to see Bart")
-//                }
-//            }
-//        }
+        myImageView.image = UIImage.gifImageWithName(name: "200.gif")
+
+        let storageReference = Storage.storage().reference().child("centralGifs/200w-10.gif")
+        DispatchQueue.main.async {
+            // Download to the local filesystem
+            let downloadTask = storageReference.write(toFile: destinationUrl!) { url, error in
+                if let error = error {
+                    // Uh-oh, an error occurred!
+                    print("Bart has left the building \(String(error.localizedDescription))")
+                } else {
+                    print("click to see Bart")
+                }
+            }
+        }
         
         do{
             try FileManager.default.removeItem(at: destinationUrl!)
