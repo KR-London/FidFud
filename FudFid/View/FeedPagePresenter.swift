@@ -174,19 +174,19 @@ extension FeedPagePresenter: FeedFetchDelegate {
         /// this seems to be problematic because it doesn't return quick enough for me to use it
         /// thinking I should have a local or database list of files for this
         /// indeed that would let me prioritise content I haven's seen yet.
-        imageDownloadURLReference.listAll{ (result, error) in
-            if let error = error {
-                print("Can't see the files")
-            }
-            for prefix in result.prefixes {
-                // The prefixes under storageReference.
-                // You may call listAll(completion:) recursively on them.
-            }
-            for item in result.items {
-                allGifs.append(item)
-                print(item)
-            }
-        }
+//        imageDownloadURLReference.listAll{ (result, error) in
+//            if let error = error {
+//                print("Can't see the files")
+//            }
+//            for prefix in result.prefixes {
+//                // The prefixes under storageReference.
+//                // You may call listAll(completion:) recursively on them.
+//            }
+//            for item in result.items {
+//                allGifs.append(item)
+//                print(item)
+//            }
+//        }
     
         
         do {
@@ -232,7 +232,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
                         }
                     }
                 
-                    let myFeed = Feed(id: i, url: nil, path: nil, text: nil, gif: localSavePath.absoluteString, sound: nil, image: nil)
+                    let myFeed = Feed(id: i, url: nil, path: nil, text: nil, gif: "0" + String(i) + ".gif", sound: nil, image: nil)
                     list.append(myFeed)
                     
                 case 1:
@@ -252,18 +252,21 @@ extension FeedPagePresenter: FeedFetchDelegate {
                             }
                         }
                         
-                        downloadTask.observe(.progress) { snapshot in
-                            // Download reported progress
-                            let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
-                                / Double(snapshot.progress!.totalUnitCount)
-                        }
+                    downloadTask.observe(.progress) { snapshot in
+                        // Download reported progress
+                        let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
+                            / Double(snapshot.progress!.totalUnitCount)
+                    }
                 }
                 
-                    let myFeed = Feed(id: i, url: nil, path: nil, text: nil, gif: localSavePath.absoluteString, sound: nil, image: nil)
+                   // let myFeed = Feed(id: i, url: nil, path: nil, text: nil, gif: localSavePath.absoluteString, sound: nil, image: nil)
+                    let myFeed = Feed(id: i, url: nil, path: nil, text: nil, gif: "1" + String(i) + ".gif", sound: nil, image: nil)
                     list.append(myFeed)
                 
                 default:
-                    print("More than 1 file found - going to reference the highest indexed, delete the others and download a fresh file cache at the next highest number")
+                    print("More than 2 file found - going to reference the highest indexed, delete the others and download a fresh file cache at the next highest number")
+                    let myFeed = Feed(id: i, url: nil, path: nil, text: nil, gif: "1" + String(i) + ".gif", sound: nil, image: nil)
+                    list.append(myFeed)
             }
 
         }

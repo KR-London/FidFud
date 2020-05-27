@@ -104,6 +104,9 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     fileprivate func kateExtractedFunc() {
         initializeFeed()
         
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
         if feed.gif == nil{
             if feed.image == nil {
                 gifView.isHidden = true
@@ -113,7 +116,12 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             gifView.isHidden  = false
             gifView = UIImageView(frame: self.view.frame)
             gifView.contentMode = .scaleAspectFit
-            gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
+           // gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
+            gifView.image = UIImage.gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")).absoluteString)
+            //gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")))
+          //  Name(name: docsPath + "/" +  String(feed.gif ?? ""))
+            
+            print("I'm trying to open " + (feed.gif ?? "bugger all"))
             self.contentOverlayView?.addSubview(gifView)
             view.bringSubviewToFront(gifView)
             
