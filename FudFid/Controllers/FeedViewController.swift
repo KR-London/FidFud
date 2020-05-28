@@ -111,15 +111,33 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             if feed.image == nil {
                 gifView.isHidden = true
             }
+            else{
+                gifView.isHidden  = false
+                gifView = UIImageView(frame: self.view.frame)
+                gifView.contentMode = .scaleAspectFit
+                //  let imageName = feed.image?.components(separatedBy: ".")[0]
+                
+                //  gifView.image = UIImage(named: feed.image ?? "")
+                //gifView.image = UIImage(contentsOfFile: documentsURL.appendingPathComponent(String(feed.image ?? "")).absoluteString)
+                ///gifView.contentMode = .scaleAspectFit
+                
+                let imgData = try! Data.init(contentsOf: documentsURL.appendingPathComponent(String(feed.image ?? "")))
+                //print(imgs[indx].jpegData(compressionQuality: 1.0) == imgData)
+                gifView.image = UIImage.init(data: imgData)!
+                
+                
+                self.contentOverlayView?.addSubview(gifView)
+                view.bringSubviewToFront(gifView)
+            }
         }
         else{
             gifView.isHidden  = false
             gifView = UIImageView(frame: self.view.frame)
             gifView.contentMode = .scaleAspectFit
-           // gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
+            // gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
             gifView.image = UIImage.gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")).absoluteString)
             //gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")))
-          //  Name(name: docsPath + "/" +  String(feed.gif ?? ""))
+            //  Name(name: docsPath + "/" +  String(feed.gif ?? ""))
             
             print("I'm trying to open " + (feed.gif ?? "bugger all"))
             self.contentOverlayView?.addSubview(gifView)
@@ -137,22 +155,8 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
                 }
             }
         }
-        if feed.image == nil{
-            if feed.gif == nil {
-                gifView.isHidden = true
-            }
-        }
-        else{
-            gifView.isHidden  = false
-            gifView = UIImageView(frame: self.view.frame)
-            gifView.contentMode = .scaleAspectFit
-            let imageName = feed.image?.components(separatedBy: ".")[0]
-            
-            gifView.image = UIImage(named: feed.image ?? "")
-            ///gifView.contentMode = .scaleAspectFit
-            self.contentOverlayView?.addSubview(gifView)
-            view.bringSubviewToFront(gifView)
-        }
+
+  
         
         if feed.text == nil{
             Label.isHidden = true
@@ -268,15 +272,34 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     
     
     fileprivate func initializeFeed() {
-        // MARK: I need to bifurcate here to handle the different types of content
         
-        let url = feed.url
-        let input = feed.path
-        guard let path = Bundle.main.path(forResource: input?.name, ofType:input?.format) else {
-            debugPrint("video not found")
-            return
+        // MARK: I need to bifurcate here to handle the different types of content
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        if let path = feed.path{
+            
+             let url = documentsURL.appendingPathComponent( String(((path.name)!)) + "." + String(((path.format)!)))
+            
+             player = AVPlayer(url: url)
+            
         }
-        player = AVPlayer(url: URL(fileURLWithPath: path))
+//        let input = feed.path
+//        guard let path = Bundle.main.path(forResource: input?.name, ofType:input?.format) else {
+//            debugPrint("video not found")
+//            return
+//        }
+        
+//        let input = feed.path
+//        guard let path = documentsURL.path(
+//
+//            Bundle.main.path(forResource: input?.name, ofType:input?.format) else {
+//            debugPrint("video not found")
+//            return
+//        }
+        
+        
+//        player = AVPlayer(url: URL(fileURLWithPath: url))
         isPlaying ? play() : nil
  
     }

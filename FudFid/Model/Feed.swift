@@ -13,7 +13,7 @@ import Foundation
 
 struct Feed: Decodable {
     
-    let id: Int
+    var id: Int
     let url: URL?
     let path: savedContent?
     let text: String?
