@@ -23,35 +23,15 @@ protocol FeedPagePresenterProtocol: class {
 }
 
 
-var listOfRemoteFiles = [
-    "centralGifs" :     [
-                        "200-5.gif",
-                        "200-6.gif",
-                        "200w-10.gif",
-                        "200w-11.gif", "200w-12.gif", "200w-13.gif",
-                        "200w-14.gif",
-                        "200w-15.gif",
-                        "200w-16.gif",
-                        "200w-17.gif",
-                        "200w-18.gif", "200w-19.gif", "200w-20.gif",
-                        "200w-9.gif"
-                        ],
-    "centralImages":   [
-                        "92182160-633E-49F5-991E-6F754070A6E7.jpeg",
-                        "97040F93-7E91-441D-B24E-EC29AC23377A.jpeg",
-                        "E239E9A2-39DC-4774-B9D9-A8F2E23515CF.jpeg",
-                        "fbtestpic.jpeg"
-                        ],
-     "centralVideos":  [
-                        "IMG_1316.MOV",
-                        "IMG_1317.MOV",
-                        "IMG_1318.MOV",
-                        "IMG_1320.MP4",
-                        "IMG_1321.MP4",
-                        "IMG_1322.MP4",
-                        "IMG_1323.MOV"
-                        ]
-]
+
+
+
+
+struct listOfFiles: Decodable{
+    var gifs: [String]
+    var images: [String]
+    var videos: [String]
+}
 
 class FeedPagePresenter: FeedPagePresenterProtocol {
     
@@ -68,6 +48,10 @@ class FeedPagePresenter: FeedPagePresenterProtocol {
     }
     
     func viewDidLoad() {
+        
+        
+        
+        
         fetcher.delegate = self
         configureAudioSession()
         fetchFeeds()
@@ -313,19 +297,143 @@ extension FeedPagePresenter: FeedFetchDelegate {
         return list
     }
     
+//    var listOfRemoteFiles = [
+//        "centralGifs" :     [
+//            //                        "200-5.gif",
+//            //                        "200-6.gif",
+//            //                        "200w-10.gif",
+//            //                        "200w-11.gif", "200w-12.gif", "200w-13.gif",
+//            //                        "200w-14.gif",
+//            //                        "200w-15.gif",
+//            //                        "200w-16.gif",
+//            //                        "200w-17.gif",
+//            //                        "200w-18.gif", "200w-19.gif", "200w-20.gif",
+//            //                        "200w-9.gif"
+//        ],
+//        "centralImages":   [
+//            //                        "92182160-633E-49F5-991E-6F754070A6E7.jpeg",
+//            //                        "97040F93-7E91-441D-B24E-EC29AC23377A.jpeg",
+//            //                        "E239E9A2-39DC-4774-B9D9-A8F2E23515CF.jpeg",
+//            //                        "fbtestpic.jpeg"
+//        ],
+//        "centralVideos":  [
+//            //                        "IMG_1316.MOV",
+//            //                        "IMG_1317.MOV",
+//            //                        "IMG_1318.MOV",
+//            //                        "IMG_1320.MP4",
+//            //                        "IMG_1321.MP4",
+//            //                        "IMG_1322.MP4",
+//            //                        "IMG_1323.MOV"
+//        ]
+//    ]
     
     func freshMeat(folderReference: String, suffix: [String]) -> [Feed]{
         
         var list = [Feed]()
         var listOfFiles = [URL]()
+        let storageReference = Storage.storage().reference()
+        
+        // Create a reference to the file you want to download
+        let starsRef = storageReference.child("/masterFluffyList")
+        print(starsRef)
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        starsRef.getData(maxSize: 1 * 1024 * 1024 * 1024) { data, error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+            } else {
+                // Data for "images/island.jpg" is returned
+                let image = UIImage(data: data!)
+            }
+        }
+        
+      //  print(starsRef.)
+        // Create a reference with an initial file path and name
+       // let listReference = Storage.storage().reference(withPath: "/masterFluffyList")
+        
+      //  let decoder = JSONDecoder()
+        
+       // let fileContent = NSString(contentsOfFile: location, encoding: NSUTF8StringEncoding, error: nil)
+        
+        ///var listOfRemoteFiles : listOfFiles
+        
+//        let masterFluffyList = storageReference.child("masterFluffyList").write(toFile: " masterFluffyList" ){ data, error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                // Data for "images/island.jpg" is returned
+//                print("HHHEEEETTRRRRRRREEEE")
+//                print(data)
+//               // listOfRemoteFiles = try! decoder.decode(listOfFiles.self, from: data)
+//            }
+//        }
+var listOfRemoteFiles = [String: [String]]()
+        /// Bundle.main.path(forResource: input?.name, ofType:input?.format)
+        let stringy = try! String(contentsOfFile: Bundle.main.path(forResource: "masterFluffyList", ofType: ".txt")!)
+        print(stringy)
+        // Create local filesystem URL
+        //let localURL = URL(string: "masterFluffyLister")!
+        // var stringy = String()
+        // Fetch the download URL
+//        print(storageReference.child("masterFluffyList").getData(maxSize: <#T##Int64#>, completion: <#T##(Data?, Error?) -> Void#>))
+//        let stringy = try! String(contentsOf: URL(fileURLWithPath:storageReference.child("masterFluffyList").fullPath )
+//        )
+        
+        //        {
+//            url, error in
+//            if let error = error {
+//                print( error.localizedDescription )
+//            } else {
+//                stringy =  try! String(contentsOf: url as URL)
+               let elements = stringy.components(separatedBy: "$")
+              for i in 0 ... elements.count - 1 {
+                
+                var dictKey = ""
+                switch i{
+                    case 0: dictKey = "centralGifs"
+                    case 1: dictKey = "centralImages"
+                    case 2: dictKey = "centralVideos"
+                    default: dictKey = "central"
+                }
+            
+                listOfRemoteFiles[dictKey] = elements[i].components(separatedBy: ",")
+}
+//        })
+//
+       // let stringy = String(contentsOf: storageReference.child("masterFluffyList").)
+        
+//  //       Download to the local filesystem
+//        let downloadTask = storageReference.child("masterFluffyList").write(toFile: localURL) { url, error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                 print("asasdadasfasfasf")
+//            } else {
+//                print("HHHEEEETTRRRRRRREEEE")
+//                print(url)
+//            }
+//        }
+        //    Bundle.main
+            
+//            /// bundle
+//            .write(toFile: localSavePath) { url, error in
+//            if let error = error {
+//                // Uh-oh, an error occurred!
+//                print("Bart has left the building \(String(error.localizedDescription))")
+//            } else {
+//                print("click to see Bart" + String(folderReference))
+//            }
+//        }
+
+//        print(listOfRemoteFiles)
+      //  var listOfRemoteFiles = try! decoder.decode(listOfFiles.self, from: masterFluffyList)
         var listOfFilesWithThisFormat = listOfRemoteFiles[folderReference]
+        
         
         var saveSuffix = String()
 
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
-        let storageReference = Storage.storage().reference()
+        
         let imageDownloadURLReference = storageReference.child(folderReference)
         
         switch folderReference{
@@ -353,7 +461,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
                     print("No files found - going to copy from bundle and download to cache")
                     
                     let localSavePath = documentsURL.appendingPathComponent("0" + String(i) + saveSuffix)
-                    let storageReference = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())!)
+                    let storageReference = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! as! String)
                     
                     DispatchQueue.main.async {
                         // Download to the local filesystem
@@ -381,7 +489,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
                     let localSavePath = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
                     
                     //allGifs.randomElement()
-                    let storageReference = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())!)
+                    let storageReference = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! as! String)
                     DispatchQueue.main.async {
                         // Download to the local filesystem
                         let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
@@ -432,7 +540,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
                         }
                     }
                     
-                    list.append(AddToFeed(folderReference: folderReference, prefix:  "2" + String(i)))
+                    list.append(AddToFeed(folderReference: folderReference, prefix:  "1" + String(i)))
             }
         }
         

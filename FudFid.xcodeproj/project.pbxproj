@@ -185,6 +185,7 @@
 		446FBAC1247AD7B200C556AC /* signInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC0247AD7B200C556AC /* signInViewController.swift */; };
 		446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC2247AD7DB00C556AC /* signUpViewController.swift */; };
 		446FBAC5247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */; };
+		446FC27F2480E14900F82E93 /* masterFluffyList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 446FC27E2480E14900F82E93 /* masterFluffyList.txt */; };
 		446FD00C247CF7A3003020F7 /* scratchPad in Resources */ = {isa = PBXBuildFile; fileRef = 446FD00B247CF7A3003020F7 /* scratchPad */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
 		449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FC247A5B830009FF3C /* SceneDelegate.swift */; };
@@ -398,6 +399,7 @@
 		446FBAC0247AD7B200C556AC /* signInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
 		446FBAC2247AD7DB00C556AC /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
 		446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = superWhizzyVideoEditorViewController.swift; sourceTree = "<group>"; };
+		446FC27E2480E14900F82E93 /* masterFluffyList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = masterFluffyList.txt; sourceTree = "<group>"; };
 		446FD00B247CF7A3003020F7 /* scratchPad */ = {isa = PBXFileReference; lastKnownFileType = text; path = scratchPad; sourceTree = "<group>"; };
 		449D49F7247A5B830009FF3C /* FudFid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudFid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449D49FA247A5B830009FF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 		449D49EE247A5B830009FF3C = {
 			isa = PBXGroup;
 			children = (
+				446FC27E2480E14900F82E93 /* masterFluffyList.txt */,
 				449D4A2F247A5B920009FF3C /* .gitignore */,
 				444A71B3247BF3AB0084032B /* little dude3.png */,
 				444A71B5247BF3B40084032B /* little dude7.png */,
@@ -903,6 +906,7 @@
 				446FB8DF247A824E00C556AC /* bensound-happyrock.mp3 in Resources */,
 				446FB990247A825A00C556AC /* 200w-7.gif in Resources */,
 				446FB90F247A824E00C556AC /* images (6).png in Resources */,
+				446FC27F2480E14900F82E93 /* masterFluffyList.txt in Resources */,
 				446FB900247A824E00C556AC /* images (34).jpeg in Resources */,
 				446FB91F247A824E00C556AC /* images (24).jpeg in Resources */,
 				446FB96E247A825900C556AC /* 3293b2884bf7d0d50da1b88f0c25fc26.MOV in Resources */,
