@@ -27,13 +27,15 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     
     static var sceneStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var index: Int!
-    fileprivate var feed: Feed!
+    var feed: Feed!
     fileprivate var isPlaying: Bool!
     var Label = UILabel()
     let synthesizer = AVSpeechSynthesizer()
     var utterance = AVSpeechUtterance()
     var gifView = UIImageView()
     var soundtrack = AVAudioPlayer()
+    
+    let defaults = UserDefaults.standard
     
 
     lazy var likeButton :        UIButton = {
@@ -54,14 +56,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             //button.layer.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
             return button
         }()
-//        
-//        myLikeButton = {
-//        let button = myLikeButton()
-//        button.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//         button.widthAnchor.constraint(equalToConstant: 100).isActive = true
-//        //button.addTarget(self, action: #selector(eatNowSegue), for: .touchUpInside)
-//        return button
-//    }()
 
     lazy var profilePicture : UIImageView = {
         let pic = UIImageView()
@@ -85,7 +79,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         stack.alignment = .trailing
         stack.contentMode = .scaleAspectFit
         stack.distribution = .fillProportionally
-        //stack.spacing = 10
         return stack
     }()
     
@@ -121,10 +114,10 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
                 //gifView.image = UIImage(contentsOfFile: documentsURL.appendingPathComponent(String(feed.image ?? "")).absoluteString)
                 ///gifView.contentMode = .scaleAspectFit
                 
-                let imgData = try! Data.init(contentsOf: documentsURL.appendingPathComponent(String(feed.image ?? "")))
-                //print(imgs[indx].jpegData(compressionQuality: 1.0) == imgData)
-                gifView.image = UIImage.init(data: imgData)!
-                
+               if let imgData = try? Data.init(contentsOf: documentsURL.appendingPathComponent(String(feed.image ?? "")))
+               {
+                gifView.image = UIImage.init(data: imgData )!
+                }
                 
                 self.contentOverlayView?.addSubview(gifView)
                 view.bringSubviewToFront(gifView)
@@ -162,6 +155,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             Label.isHidden = true
         }
         else{
+            view.backgroundColor = [#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1),#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1),#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1),#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1),#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)].randomElement()
             Label = UILabel(frame: self.view.frame)
             Label.text = feed.text
             self.contentOverlayView?.addSubview(Label)
@@ -170,7 +164,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             Label.lineBreakMode = .byWordWrapping
             Label.numberOfLines = 7
             Label.frame.inset(by: UIEdgeInsets(top: 15,left: 15,bottom: 15,right: 15))
-            Label.textColor = [#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),#colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1),#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1),#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1),#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)].randomElement()
+            Label.textColor = [#colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1), #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1),#colorLiteral(red: 0.1921568662, green: 0.007843137719, blue: 0.09019608051, alpha: 1),#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1),#colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1),#colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)].randomElement()
             view.bringSubviewToFront(Label)
             
         }
@@ -185,16 +179,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         super.viewDidLoad()
         
         kateExtractedFunc()
-        
-        
-//        gifView.isHidden  = false
-//        gifView = UIImageView(frame: self.view.frame)
-//        gifView.contentMode = .scaleAspectFit
-//
-//        let itemToLoad = allGifs.randomElement()
-//        gifView.sd_setImage(with: allGifs.randomElement()!, placeholderImage: UIImage(named: "peas.jpg"))
-//        self.contentOverlayView?.addSubview(gifView)
-//        view.bringSubviewToFront(gifView)
         
         profilePicture.image = UIImage(named: ["carrot.png", "cheese.jpg", "peas.jpg"].randomElement()!)
         
@@ -239,6 +223,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
              else{
                 likeButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
             }
+        likeButton.tag = feed.id
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -248,10 +233,11 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
            // if  isPlaying == true
            // {
                 utterance = AVSpeechUtterance(string: say)
-                utterance.pitchMultiplier = 1.5
-                utterance.rate = 0.4
+            utterance.pitchMultiplier = [Float(1), Float(1.1), Float(1.4), Float(1.5) ].randomElement() as! Float
+            utterance.rate = [Float(0.5), Float(0.4),Float(0.6),Float(0.7)].randomElement() as! Float
+            let language = [AVSpeechSynthesisVoice(language: "en-AU"),AVSpeechSynthesisVoice(language: "en-GB"),AVSpeechSynthesisVoice(language: "en-IE"),AVSpeechSynthesisVoice(language: "en-US"),AVSpeechSynthesisVoice(language: "en-IN"), AVSpeechSynthesisVoice(language: "en-ZA")]
+            utterance.voice =  language.randomElement()!!
                 synthesizer.speak(utterance)
-           // }
         }
         
         if feed.sound != nil
@@ -304,12 +290,26 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
  
     }
     
+    
     @objc func likeTapped(_ sender: UIButton) {
+        var liked = defaults.array(forKey: "Liked") as? [String]
+        
         if sender.backgroundImage(for: .normal) == UIImage(systemName: "heart")
         {
             sender.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
             sender.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
             feed.liked = true
+            
+            let ref = feed.gif ?? feed.image ?? feed.text ??  ""
+            
+            if let _ = liked {
+                liked = liked! + [ref]
+            }
+            else{
+                liked =  [ref]
+            }
+         
+            defaults.set( liked , forKey: "Liked")
             
         }
         else

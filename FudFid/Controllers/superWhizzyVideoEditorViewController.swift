@@ -20,7 +20,7 @@ import AVKit
 //let url = URL(fileURLWithPath: path!)
 
 class superWhizzyVideoEditorViewController: UIViewController {
-    var firstAsset: AVAsset?
+    var firstAsset : AVAsset?
     var secondAsset: AVAsset?
     var audioAsset: AVAsset?
     var loadingAssetOne = false
@@ -215,7 +215,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         
         // Cleanup assets
       //  activityMonitor.stopAnimating()
-        firstAsset = nil
+       // firstAsset = nil
         secondAsset = nil
         audioAsset = nil
         
@@ -384,8 +384,8 @@ class superWhizzyVideoEditorViewController: UIViewController {
       }
         
     func mergeAudio(_ sender: AVAsset) {
-        guard let firstAsset = firstAsset, let secondAsset = secondAsset else { return }
-        
+       guard let firstAsset = firstAsset, let secondAsset = secondAsset else { return }
+
         
         //activityMonitor.startAnimating()
         
