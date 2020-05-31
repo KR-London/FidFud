@@ -36,6 +36,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     var soundtrack = AVAudioPlayer()
     
     let defaults = UserDefaults.standard
+
     
 
     lazy var likeButton :        UIButton = {
@@ -187,6 +188,13 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         buttonStack.addArrangedSubview(profilePicture)
         buttonStack.addArrangedSubview(likeButton)
         
+        if let liked = defaults.array(forKey: "Liked") as? [String]
+        {
+            if liked.contains(((feed.gif ?? feed.text ?? feed.image ?? "")!) )
+            {
+                feed.liked = true
+            }
+        }
        // likeButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         ///buttonStack.alignment = .trailing
        // buttonStack.translatesAutoresizingMaskIntoConstraints = false
@@ -317,6 +325,13 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             sender.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
             sender.tintColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
             feed.liked = false
+            
+            let ref = feed.gif ?? feed.image ?? feed.text ??  ""
+            
+            if let _ = liked {
+                liked = liked!.filter{ $0 != ref}
+            }
+            defaults.set( liked , forKey: "Liked")
         }
         print(feed)
 }
