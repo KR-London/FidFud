@@ -27,6 +27,8 @@ class superWhizzyVideoEditorViewController: UIViewController {
     var playerViewController: AVPlayerViewController?
     var sentURL: URL?
     
+     private let editor = VideoEditor()
+    
     
     lazy var addSoundButton: systemImageButton = {
         let button = systemImageButton()
@@ -38,6 +40,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
     lazy var addMagicButton: systemImageButton = {
            let button = systemImageButton()
            button.setImage(UIImage(systemName: "wand.and.stars"), for: .normal)
+            button.addTarget(self, action: #selector(addMagic), for: .touchUpInside)
            return button
        }()
     
@@ -413,11 +416,13 @@ class superWhizzyVideoEditorViewController: UIViewController {
         let overlayLayer = CALayer()
         overlayLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         addConfetti(to: overlayLayer)
+        overlayLayer.opacity = 0
         let outputLayer = CALayer()
         outputLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
        // outputLayer.addSublayer(backgroundLayer)
-        outputLayer.addSublayer(videoLayer)
+      
         outputLayer.addSublayer(overlayLayer)
+          outputLayer.addSublayer(videoLayer)
         
         // 2.1
         let mainInstruction = AVMutableVideoCompositionInstruction()
@@ -438,7 +443,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         
         mainComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
         mainComposition.renderSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        mainComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: videoLayer, in: outputLayer)
+        mainComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: outputLayer, in: outputLayer)
         
        // mixComposition.preferredTransform = firstTrack.preferredTransform
          
@@ -488,6 +493,105 @@ class superWhizzyVideoEditorViewController: UIViewController {
 //      }
       
     }
+    
+     @objc func addMagic(_ sender: AVAsset) {
+ 
+        // 1 - Create AVMutableComposition object. This object will hold your AVMutableCompositionTrack instances.
+        let mixComposition = AVMutableComposition()
+        
+        // 2 - Create two video tracks
+        guard let firstTrack = mixComposition.addMutableTrack(withMediaType: .video,
+                                                              preferredTrackID: Int32(kCMPersistentTrackID_Invalid)) else { return }
+     
+        
+        let videoLayer = CALayer()
+        videoLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        let overlayLayer = CALayer()
+        overlayLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        addConfetti(to: overlayLayer)
+        let outputLayer = CALayer()
+        outputLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        outputLayer.addSublayer(videoLayer)
+    
+        
+        guard let compositionTrack = mixComposition.addMutableTrack(
+                withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)
+            else {
+                print("Something is wrong with the asset.")
+                return
+        }
+        
+//       compositionTrack.preferredTransform = firstTrack.preferredTransform
+//        let videoInfo = firstTrack.preferredTransform
+//
+//        let videoSize: CGSize
+//        if videoInfo.isPortrait {
+//            videoSize = CGSize(
+//                width: firstTrack.naturalSize.height,
+//                height: firstTrack.naturalSize.width)
+//        } else {
+//            videoSize = firstTrack.naturalSize
+//        }
+//
+       
+        let mainComposition = AVMutableVideoComposition()
+   
+        
+        
+        
+        mainComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
+      //  mainComposition.renderSize = vid
+        mainComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: videoLayer, in: outputLayer)
+        
+        // mixComposition.preferredTransform = firstTrack.preferredTransform
+        
+        
+        
+//        // 3 - Audio track
+//        //  if let loadedAudioAsset = sender {
+//        let audioTrack = mixComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: 0)
+//        do {
+//            try audioTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: firstAsset.duration),
+//                                            of: sender.tracks(withMediaType: .audio)[0] ,
+//                                            at: CMTime.zero)
+//        } catch {
+//            print("Failed to load Audio track")
+//        }
+//        //  }
+        
+        
+        //  mixComposition.
+        
+        playerViewController?.player?.replaceCurrentItem(with: AVPlayerItem(asset: mixComposition))
+        
+        playerViewController?.player?.play()
+        //playerViewController?.player = AVPlayer(playerItem: AVPlayerItem())
+        
+        //        // 4 - Get path
+        //        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateStyle = .long
+        //        dateFormatter.timeStyle = .short
+        //        let date = dateFormatter.string(from: Date())
+        //        let url = documentDirectory.appendingPathComponent("mergeVideo-\(date).mov")
+        //
+        //        // 5 - Create Exporter
+        //        guard let exporter = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality) else { return }
+        //        exporter.outputURL = url
+        //        exporter.outputFileType = AVFileType.mov
+        //        exporter.shouldOptimizeForNetworkUse = true
+        //        exporter.videoComposition = mainComposition
+        //
+        //        // 6 - Perform the Export
+        //        exporter.exportAsynchronously() {
+        //          DispatchQueue.main.async {
+        //            self.exportDidFinish(exporter)
+        //          }
+        //      }
+        //      }
+        
+    }
+
 
     @objc func save(){
 

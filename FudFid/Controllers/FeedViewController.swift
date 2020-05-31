@@ -109,11 +109,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
                 gifView.isHidden  = false
                 gifView = UIImageView(frame: self.view.frame)
                 gifView.contentMode = .scaleAspectFit
-                //  let imageName = feed.image?.components(separatedBy: ".")[0]
-                
-                //  gifView.image = UIImage(named: feed.image ?? "")
-                //gifView.image = UIImage(contentsOfFile: documentsURL.appendingPathComponent(String(feed.image ?? "")).absoluteString)
-                ///gifView.contentMode = .scaleAspectFit
                 
                if let imgData = try? Data.init(contentsOf: documentsURL.appendingPathComponent(String(feed.image ?? "")))
                {
@@ -130,10 +125,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             gifView.contentMode = .scaleAspectFit
             // gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
             gifView.image = UIImage.gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")).absoluteString)
-            //gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")))
-            //  Name(name: docsPath + "/" +  String(feed.gif ?? ""))
-            
-            print("I'm trying to open " + (feed.gif ?? "bugger all"))
             self.contentOverlayView?.addSubview(gifView)
             view.bringSubviewToFront(gifView)
             
@@ -149,8 +140,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
                 }
             }
         }
-
-  
         
         if feed.text == nil{
             Label.isHidden = true
@@ -169,9 +158,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             view.bringSubviewToFront(Label)
             
         }
-        
-        
-        
+
         showsPlaybackControls = false
         videoGravity = AVLayerVideoGravity.resizeAspectFill
     }

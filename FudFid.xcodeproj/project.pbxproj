@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DFF052483D08D0091E685 /* VideoEditor.swift */; };
 		444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* systemImageButton.swift */; };
 		444A71B2247BF3560084032B /* celebrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B1247BF3560084032B /* celebrationVC.swift */; };
 		444A71B4247BF3AB0084032B /* little dude3.png in Resources */ = {isa = PBXBuildFile; fileRef = 444A71B3247BF3AB0084032B /* little dude3.png */; };
@@ -229,6 +230,7 @@
 		077E87947A489E55DF30209E /* Pods-FudFidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFidTests.release.xcconfig"; path = "Target Support Files/Pods-FudFidTests/Pods-FudFidTests.release.xcconfig"; sourceTree = "<group>"; };
 		0BF364B0F9CDCCA3EA74AE5E /* Pods-FudFid-FudFidUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid-FudFidUITests.release.xcconfig"; path = "Target Support Files/Pods-FudFid-FudFidUITests/Pods-FudFid-FudFidUITests.release.xcconfig"; sourceTree = "<group>"; };
 		29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.release.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.release.xcconfig"; sourceTree = "<group>"; };
+		443DFF052483D08D0091E685 /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
 		444A71AF247BA6C90084032B /* systemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = systemImageButton.swift; sourceTree = "<group>"; };
 		444A71B1247BF3560084032B /* celebrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celebrationVC.swift; sourceTree = "<group>"; };
 		444A71B3247BF3AB0084032B /* little dude3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little dude3.png"; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				446FBAC2247AD7DB00C556AC /* signUpViewController.swift */,
 				446FBAC0247AD7B200C556AC /* signInViewController.swift */,
 				446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */,
+				443DFF052483D08D0091E685 /* VideoEditor.swift */,
 				444A71B1247BF3560084032B /* celebrationVC.swift */,
 			);
 			path = Controllers;
@@ -1213,6 +1216,7 @@
 				444A71BC247BFF190084032B /* myButton.swift in Sources */,
 				446FB86E247A7BD700C556AC /* ProfileItemCollectionViewCell.swift in Sources */,
 				446FB860247A7BCC00C556AC /* Constant.swift in Sources */,
+				443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */,
 				446FB87B247A7E4400C556AC /* StoryboardScene.swift in Sources */,
 				449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */,
 				446FB842247A690E00C556AC /* VideoHelper.swift in Sources */,

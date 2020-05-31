@@ -30,9 +30,7 @@ class FeedPageViewController: UIPageViewController, FeedPageView {
         presenter = FeedPagePresenter(view: self)
         presenter.viewDidLoad()
     }
-    
 }
-
 
 extension FeedPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
