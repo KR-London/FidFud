@@ -168,7 +168,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         
         kateExtractedFunc()
         
-        profilePicture.image = UIImage(named: ["carrot.png", "cheese.jpg", "peas.jpg"].randomElement()!)
+        profilePicture.image = UIImage(named: ["carrot.png", "cheese.jpg", "baby-pea.jpg"].randomElement()!)
         
       
         
@@ -262,7 +262,17 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             
              let url = documentsURL.appendingPathComponent( String(((path.name)!)) + "." + String(((path.format)!)))
             
-             player = AVPlayer(url: url)
+//            CacheManager.shared.getFileWith(stringUrl: "http://techslides.com/demos/sample-videos/small.mp4") { result in
+//
+//                switch result {
+//                    case .success(let url):
+//                        self.player = AVPlayer(url: url)
+//                    case .failure(let error):
+//                   print("Failed")
+//                }
+//            }
+            
+        player = AVPlayer(url: url)
             
         }
 //        let input = feed.path

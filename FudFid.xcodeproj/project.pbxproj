@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4406AA2E2488D94F00BB9387 /* baby-pea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4406AA2D2488D94F00BB9387 /* baby-pea.jpg */; };
 		443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DFF052483D08D0091E685 /* VideoEditor.swift */; };
 		444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* systemImageButton.swift */; };
 		444A71B2247BF3560084032B /* celebrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B1247BF3560084032B /* celebrationVC.swift */; };
@@ -16,6 +17,7 @@
 		444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B9247BFED20084032B /* bubbleLabel.swift */; };
 		444A71BC247BFF190084032B /* myButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71BB247BFF190084032B /* myButton.swift */; };
 		444A71C7247C3D140084032B /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71C6247C3D140084032B /* testViewController.swift */; };
+		446BC2E12484D0320096017B /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446BC2E02484D0320096017B /* CacheManager.swift */; };
 		446E0DAB24838B770038965F /* phrases.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAA24838B760038965F /* phrases.tsv */; };
 		446E0DAE2483AC010038965F /* 07891284.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAD2483A7860038965F /* 07891284.ttf */; };
 		446E0DAF2483AC020038965F /* 07891284.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAD2483A7860038965F /* 07891284.ttf */; };
@@ -230,6 +232,7 @@
 		077E87947A489E55DF30209E /* Pods-FudFidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFidTests.release.xcconfig"; path = "Target Support Files/Pods-FudFidTests/Pods-FudFidTests.release.xcconfig"; sourceTree = "<group>"; };
 		0BF364B0F9CDCCA3EA74AE5E /* Pods-FudFid-FudFidUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid-FudFidUITests.release.xcconfig"; path = "Target Support Files/Pods-FudFid-FudFidUITests/Pods-FudFid-FudFidUITests.release.xcconfig"; sourceTree = "<group>"; };
 		29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.release.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.release.xcconfig"; sourceTree = "<group>"; };
+		4406AA2D2488D94F00BB9387 /* baby-pea.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "baby-pea.jpg"; sourceTree = "<group>"; };
 		443DFF052483D08D0091E685 /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
 		444A71AF247BA6C90084032B /* systemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = systemImageButton.swift; sourceTree = "<group>"; };
 		444A71B1247BF3560084032B /* celebrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celebrationVC.swift; sourceTree = "<group>"; };
@@ -239,6 +242,7 @@
 		444A71B9247BFED20084032B /* bubbleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bubbleLabel.swift; sourceTree = "<group>"; };
 		444A71BB247BFF190084032B /* myButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myButton.swift; sourceTree = "<group>"; };
 		444A71C6247C3D140084032B /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
+		446BC2E02484D0320096017B /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		446E0DAA24838B760038965F /* phrases.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phrases.tsv; sourceTree = "<group>"; };
 		446E0DAD2483A7860038965F /* 07891284.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 07891284.ttf; sourceTree = "<group>"; };
 		446FB841247A690E00C556AC /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
@@ -545,6 +549,7 @@
 				446FB869247A7BD700C556AC /* ProgressIndicatorHUDMessageView.swift */,
 				446FB86A247A7BD700C556AC /* RoundCornerButton.swift */,
 				446FB86B247A7BD700C556AC /* FeedPagePresenter.swift */,
+				446BC2E02484D0320096017B /* CacheManager.swift */,
 				446FB86C247A7BD700C556AC /* CircleImageView.swift */,
 			);
 			path = View;
@@ -710,6 +715,7 @@
 				446E0DAD2483A7860038965F /* 07891284.ttf */,
 				446E0DAA24838B760038965F /* phrases.tsv */,
 				449D4A2F247A5B920009FF3C /* .gitignore */,
+				4406AA2D2488D94F00BB9387 /* baby-pea.jpg */,
 				444A71B3247BF3AB0084032B /* little dude3.png */,
 				444A71B5247BF3B40084032B /* little dude7.png */,
 				444A71B7247BF3BA0084032B /* little dude6.png */,
@@ -932,6 +938,7 @@
 				446FB90A247A824E00C556AC /* images (3).jpeg in Resources */,
 				446FB973247A825900C556AC /* giphy-2.gif in Resources */,
 				446FB91C247A824E00C556AC /* images (5).png in Resources */,
+				4406AA2E2488D94F00BB9387 /* baby-pea.jpg in Resources */,
 				446FD00C247CF7A3003020F7 /* scratchPad in Resources */,
 				446FB983247A825A00C556AC /* v09044440000bqn0cl2asdpko6ccp790.MP4 in Resources */,
 				446FB920247A824E00C556AC /* images (19).jpeg in Resources */,
@@ -1234,6 +1241,7 @@
 				449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */,
 				446FB84D247A79D500C556AC /* FeedViewController.swift in Sources */,
 				444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */,
+				446BC2E12484D0320096017B /* CacheManager.swift in Sources */,
 				446FB861247A7BCC00C556AC /* Connection.swift in Sources */,
 				446FB863247A7BCC00C556AC /* HTTPRequest.swift in Sources */,
 				449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */,
