@@ -112,7 +112,10 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
                 
                if let imgData = try? Data.init(contentsOf: documentsURL.appendingPathComponent(String(feed.image ?? "")))
                {
-                gifView.image = UIImage.init(data: imgData )!
+                    gifView.image = UIImage.init(data: imgData )!
+                }
+               else{
+                    gifView.image = UIImage(named: String((feed.image?.split(separator: ".").first) ?? "") )
                 }
                 
                 self.contentOverlayView?.addSubview(gifView)
@@ -124,7 +127,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             gifView = UIImageView(frame: self.view.frame)
             gifView.contentMode = .scaleAspectFit
             // gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
-            gifView.image = UIImage.gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")).absoluteString)
+            gifView.image = UIImage.gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")).absoluteString) ?? UIImage.gifImageWithName(name: feed.gif!) ?? UIImage.gifImageWithName(name: String((feed.gif?.dropLast(4))!) )
             self.contentOverlayView?.addSubview(gifView)
             view.bringSubviewToFront(gifView)
             
@@ -257,10 +260,19 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         // MARK: I need to bifurcate here to handle the different types of content
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        var url: URL
         
         if let path = feed.path{
             
-             let url = documentsURL.appendingPathComponent( String(((path.name)!)) + "." + String(((path.format)!)))
+            if let location = Bundle.main.url(forResource: path.name, withExtension:path.format)
+            {
+                url = location
+            }
+            else {
+                            url = documentsURL.appendingPathComponent( String(((path.name)!)) + "." + String(((path.format)!)))
+             }
+            
+            // let url = documentsURL.appendingPathComponent( String(((path.name)!)) + "." + String(((path.format)!)))
             
 //            CacheManager.shared.getFileWith(stringUrl: "http://techslides.com/demos/sample-videos/small.mp4") { result in
 //
@@ -280,14 +292,14 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
 //            debugPrint("video not found")
 //            return
 //        }
-        
+//
 //        let input = feed.path
 //        guard let path = documentsURL.path(
 //
 //            Bundle.main.path(forResource: input?.name, ofType:input?.format) else {
 //            debugPrint("video not found")
 //            return
-//        }
+////        }
         
         
 //        player = AVPlayer(url: URL(fileURLWithPath: url))
