@@ -20,6 +20,7 @@ struct Feed: Decodable {
     let gif: String? 
     let sound: String?
     let image: String?
+    let originalFilename: String
     var liked = false
 }
 

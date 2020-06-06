@@ -27,6 +27,13 @@ class AddViewController: UIViewController {
         return button
     }()
     
+    lazy var instruction: myLabel = {
+        let label = myLabel()
+        label.text = "Press to record 10 seconds of Fud Fun for your Fud Fid!"
+        return label
+    }()
+    
+    
     lazy var thumbsUp: UIImageView = {
        let imageView = UIImageView()
        imageView.image = "👍".emojiImage()
@@ -84,7 +91,7 @@ class AddViewController: UIViewController {
     }
     
     func addRecordButton(){
-        
+        view.addSubview(instruction)
         view.addSubview(recordButton)
         
         NSLayoutConstraint.activate([
@@ -92,6 +99,13 @@ class AddViewController: UIViewController {
             recordButton.widthAnchor.constraint(equalToConstant: 400),
             recordButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             recordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            instruction.heightAnchor.constraint(equalToConstant: 100),
+            instruction.widthAnchor.constraint(equalToConstant: 400),
+            instruction.bottomAnchor.constraint(equalTo: recordButton.topAnchor, constant: 50),
+            instruction.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     

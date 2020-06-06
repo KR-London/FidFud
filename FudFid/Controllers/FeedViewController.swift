@@ -11,18 +11,6 @@ import UIKit
 import AVKit
 import AVFoundation
 
-let phrases = [ "Every bite is a chance to be curious."
-          ,"Every sniff is a chance to be curious."
-           ,"Every lick is a chance to be curious."
-           ,"Buffets: try before you commit."
-           ,"Buffets: take tiny tastes of different foods."
-            , "Every meal is a fresh start"
-          ,"Stay curious!"
-             ,"'Normal' eating is different for everyone.",
-              "Canned fruits and veg are just as healthy as fresh."
-]
-
-
 class FeedViewController: AVPlayerViewController, StoryboardScene {
     
     static var sceneStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -34,10 +22,9 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     var utterance = AVSpeechUtterance()
     var gifView = UIImageView()
     var soundtrack = AVAudioPlayer()
+    var didPause = Bool()
     
     let defaults = UserDefaults.standard
-
-    
 
     lazy var likeButton :        UIButton = {
             let button = UIButton()
@@ -169,11 +156,10 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        didPause = false
         kateExtractedFunc()
         
         profilePicture.image = UIImage(named: ["carrot.png", "cheese.jpg", "baby-pea.jpg"].randomElement()!)
-        
-      
         
         buttonStack.addArrangedSubview(profilePicture)
         buttonStack.addArrangedSubview(likeButton)
@@ -185,21 +171,26 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
                 feed.liked = true
             }
         }
-       // likeButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        ///buttonStack.alignment = .trailing
-       // buttonStack.translatesAutoresizingMaskIntoConstraints = false
+
         self.contentOverlayView?.addSubview(buttonStack)
         
         let frame = self.view.frame
         
         buttonStack.frame = CGRect(x: frame.maxX - 150, y: frame.maxY - 300, width: 150, height: 200)
-//        buttonStack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        buttonStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//
-//
-       /// buttonStack.frame = CGRect(x: 0, y: 0, width: 100, height: 300)
-        ///self.view.bringSubviewToFront(buttonStack)
-            
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        
+        didPause = !didPause
+        if didPause{
+            pause()
+        }
+        else{
+            play()
+        }
     }
     
     
@@ -285,6 +276,10 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
 //            }
             
         player = AVPlayer(url: url)
+            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem, queue: .main) { [weak self] _ in
+                self?.player?.seek(to: CMTime.zero)
+                self?.player?.play()
+            }
             
         }
 //        let input = feed.path
@@ -341,6 +336,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
                 liked = liked!.filter{ $0 != ref}
             }
             defaults.set( liked , forKey: "Liked")
+           // self.ref.child("users").child(user.uid).setValue(["username": username])
         }
         print(feed)
 }

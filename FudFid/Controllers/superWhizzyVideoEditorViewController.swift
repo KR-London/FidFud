@@ -26,6 +26,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
     var loadingAssetOne = false
     var playerViewController: AVPlayerViewController?
     var sentURL: URL?
+    var player = AVPlayer()
     
      private let editor = VideoEditor()
     
@@ -134,8 +135,8 @@ class superWhizzyVideoEditorViewController: UIViewController {
             print("not got a URL")
             return
         }
-        let player = AVPlayer(url:url)
-       
+
+       player = AVPlayer(url:url)
         playerViewController!.player = player
         player.play()
        // self.present(playerViewController!, animated: false, completion: nil)
@@ -143,6 +144,11 @@ class superWhizzyVideoEditorViewController: UIViewController {
        // playerLayer.frame = self.view.bounds
        // let VC = AVpla
        // self.view.layer.addSublayer(playerLayer)
+        
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main) { [weak self] _ in
+            self?.player.seek(to: CMTime.zero)
+            self?.player.play()
+        }
         
         loadAssets()
     }
