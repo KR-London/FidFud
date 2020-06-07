@@ -10,8 +10,31 @@ import Foundation
 import UIKit
 import AVKit
 import AVFoundation
+import FirebaseAuth
+import FirebaseFirestore
 
-class FeedViewController: AVPlayerViewController, StoryboardScene {
+class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    
+    let reasons = ["Not for me", "Wrong", "Upsetting", "Too loud", "Seems rude", "Boring", "Pushy"]
+    var reason = String()
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return reasons.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return reasons[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        reason = reasons[row]
+        self.view.endEditing(true)
+    }
+
+    
+    
     
     static var sceneStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var index: Int!
@@ -23,6 +46,8 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     var gifView = UIImageView()
     var soundtrack = AVAudioPlayer()
     var didPause = Bool()
+    
+    let userRef = Firestore.firestore().collection("users")
     
     let defaults = UserDefaults.standard
 
@@ -44,6 +69,25 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             //button.layer.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
             return button
         }()
+    
+    lazy var dislikeButton :        UIButton = {
+        let button = UIButton()
+        button.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        button.titleLabel!.text = "Dislike"
+        button.setImage(UIImage(systemName: "hand.raised.slash"), for: .normal)
+        
+        
+        
+        //button.currentBackgroundImage.as
+        button.tintColor = UIColor.green
+        button.layer.cornerRadius = 50
+        
+        button.addTarget(self, action: #selector(dislikeTapped(_:)), for: .touchUpInside)
+        /// button.layer.borderWidth = 5
+        //button.layer.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        return button
+    }()
 
     lazy var profilePicture : UIImageView = {
         let pic = UIImageView()
@@ -62,7 +106,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
     var buttonStack : UIStackView = {
         let stack = UIStackView()
         stack.widthAnchor.constraint(equalToConstant: 150)
-        stack.heightAnchor.constraint(equalToConstant: 200)
+        stack.heightAnchor.constraint(equalToConstant: 300)
         stack.axis = .vertical
         stack.alignment = .trailing
         stack.contentMode = .scaleAspectFit
@@ -87,6 +131,8 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        print(feed)
         
         if feed.gif == nil{
             if feed.image == nil {
@@ -163,6 +209,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         
         buttonStack.addArrangedSubview(profilePicture)
         buttonStack.addArrangedSubview(likeButton)
+        buttonStack.addArrangedSubview(dislikeButton)
         
         if let liked = defaults.array(forKey: "Liked") as? [String]
         {
@@ -176,7 +223,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
         
         let frame = self.view.frame
         
-        buttonStack.frame = CGRect(x: frame.maxX - 150, y: frame.maxY - 300, width: 150, height: 200)
+        buttonStack.frame = CGRect(x: frame.maxX - 150, y: frame.maxY - 400, width: 150, height: 300)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
@@ -338,7 +385,117 @@ class FeedViewController: AVPlayerViewController, StoryboardScene {
             defaults.set( liked , forKey: "Liked")
            // self.ref.child("users").child(user.uid).setValue(["username": username])
         }
+        //self.ref.child("testSave").setValue(feed.toAnyObject())
+        let dataToSave : [String: Any] = ["name": feed.originalFilename, "liked": feed.liked]
+        
+        let docRef = userRef.document(Auth.auth().currentUser?.email ?? "Anonymous" + String(Int.random(in: 1...1000))).collection("likes").document(feed.originalFilename)
+        
+        docRef.setData(dataToSave){
+            (error) in
+            if let error = error {
+                print("Crumbs!")
+                print( error.localizedDescription )
+            }
+            else{
+                print("Data has been saved")
+            }
+        }
         print(feed)
 }
+    
+    @objc func dislikeTapped(_ sender: UIButton) {
 
+        pause()
+        
+        let reasonPicker = UIPickerView()
+
+
+        
+       
+        
+        reasonPicker.dataSource = self
+        reasonPicker.delegate = self
+        
+      
+       
+   
+        
+        let alert = UIAlertController(title: "Don't Want This?", message: "Can you tell me why to help me do better in future? \n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        //alert.
+        alert.view.addSubview(reasonPicker)
+        reasonPicker.frame = CGRect(x: 0, y: 40, width: 270, height: 200)
+        
+        
+        let selectAction = UIAlertAction(title: "OK", style: .default, handler: saveDislike)
+        //{
+//            [weak self] action in
+//            self?.saveDislike()
+//
+//        }
+        //{ action -> Void in
+         ///   print(self.reason)
+
+//            DispatchQueue.main.async {
+//                self.saveDislike(reason: self.reason)
+//            }
+            // Create new Alert
+
+//            var dialogMessage = UIAlertController(title: "Thank you", message: "We have noted you don't like this, and it won't show up in future sessions. We will also personally review your feedback to try to do better for you in the future.", preferredStyle: .alert)
+//
+//            // Create OK button with action handler
+//            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+//                print("Ok button tapped")
+//            })
+//
+//            //Add OK button to a dialog message
+//            dialogMessage.addAction(ok)
+//            // Present Alert to
+//            self.present(dialogMessage, animated: true, completion: nil)
+ //     }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(selectAction.copy() as! UIAlertAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+        
+        
+
+        
+    }
+    
+    func saveDislike(_ input: UIAlertAction){
+        print("ME NO LIKE")
+        defaults.set( [feed.originalFilename] , forKey: "disliked")
+
+
+        let dataToSave : [String: Any] = ["name": feed.originalFilename, "reason": reason]
+
+        let docRef = userRef.document(Auth.auth().currentUser?.email ?? "Anonymous" + String(Int.random(in: 1...1000))).collection("dislikes").document(feed.originalFilename)
+
+        docRef.setData(dataToSave){
+            (error) in
+            if let error = error {
+                print("Crumbs!")
+                print( error.localizedDescription )
+            }
+            else{
+                print("Data has been saved")
+            }
+        }
+        
+        // Create new Alert
+        
+        var dialogMessage = UIAlertController(title: "Thank you", message: "We have noted you don't like this, and it won't show up in future sessions. We will also personally review your feedback to try to do better for you in the future.", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+        })
+        
+        //Add OK button to a dialog message
+        dialogMessage.addAction(ok)
+        // Present Alert to
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
 }

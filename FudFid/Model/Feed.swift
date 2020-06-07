@@ -7,9 +7,7 @@
 //
 
 import Foundation
-
-
-import Foundation
+import Firebase
 
 struct Feed: Decodable {
     
@@ -22,6 +20,15 @@ struct Feed: Decodable {
     let image: String?
     let originalFilename: String
     var liked = false
+    
+    func toAnyObject() -> Any {
+        return [
+            "name": originalFilename,
+            "liked": liked,
+        ]
+    }
+    
+
 }
 
 struct savedContent: Codable{
@@ -34,3 +41,4 @@ struct savedContent: Codable{
         format = String(components[1])
     }
 }
+    

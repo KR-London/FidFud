@@ -109,17 +109,34 @@ extension FeedPagePresenter: FeedFetchDelegate {
             return
         }
         
-        self.feeds.append(contentsOf: freshMeat(folderReference: "centralGifs", suffix: [".gif"]))
-        self.feeds.append(contentsOf: freshMeat(folderReference: "centralImages", suffix: [".jpg"]))
-        ////self.feeds.append(contentsOf: freshMeat(folderReference: "centralVideos", suffix: [".MOV", ".MP4"]))
-        self.feeds.append(contentsOf: freshMeat(folderReference: "centralGifs", suffix: [".gif"]))
-        self.feeds.append(contentsOf: freshMeat(folderReference: "centralImages", suffix: [".jpg"]))
-        self.feeds.append(contentsOf: encouragingPhrases())
+//        self.feeds.append(contentsOf: freshMeat(folderReference: "centralGifs", suffix: [".gif"]))
+//        self.feeds.append(contentsOf: freshMeat(folderReference: "centralImages", suffix: [".jpg"]))
+//        ////self.feeds.append(contentsOf: freshMeat(folderReference: "centralVideos", suffix: [".MOV", ".MP4"]))
+//        self.feeds.append(contentsOf: freshMeat(folderReference: "centralGifs", suffix: [".gif"]))
+//        self.feeds.append(contentsOf: freshMeat(folderReference: "centralImages", suffix: [".jpg"]))
+//        self.feeds.append(contentsOf: encouragingPhrases())
+        
+        self.feeds.append(contentsOf: initialiseHardCodedFeed())
         
         self.feeds.shuffle()
         
         let onboarding = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Swipe Left To Have Some Fun!", gif: nil, sound: nil, image: nil, originalFilename: "onboarding")
         self.feeds = [onboarding] + self.feeds
+        
+        let endSecreen = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Come back tomorrow for fresh Fud Fid!", gif: nil, sound: nil, image: nil, originalFilename: "endScreen")
+        self.feeds.append(endSecreen)
+        
+        if let disliked = UserDefaults.standard.array(forKey: "disliked") as? [String]
+        {
+            self.feeds = self.feeds.filter{ disliked.contains($0.originalFilename) == false }
+            
+            
+//            if liked.contains(((feed.gif ?? feed.text ?? feed.image ?? "")!) )
+//            {
+//                feed.liked = true
+//            }
+        }
+    
         
         for i in 0 ... self.feeds.count-1{
             self.feeds[i].id = i 
@@ -689,10 +706,10 @@ var listOfRemoteFiles = [String: [String]]()
             let soundsArray = try fileManager.contentsOfDirectory(atPath: docsPath!).filter({$0.hasSuffix(".mp3")})
             let imageArray = try fileManager.contentsOfDirectory(atPath: docsPath!).filter({$0.hasSuffix(".jpg") || $0.hasSuffix(".png")})
             
-            let onboarding = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Swipe Left To Have Some Fun!", gif: nil, sound: nil, image: nil, originalFilename: "Swipe left to have some fun")
-            list.append(onboarding)
+          //  let onboarding = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Swipe Left To Have Some Fun!", gif: nil, sound: nil, image: nil, originalFilename: "Swipe left to have some fun")
+         //   list.append(onboarding)
                
-        //    for i in 1...15{
+            for i in 1...30{
                 /// later include remote video and sti;; images
                 
                 
@@ -701,22 +718,22 @@ var listOfRemoteFiles = [String: [String]]()
                 switch type{
                     case "localVideo":
                         let content = docsArray.randomElement()!
-                        let vid = Feed(id: 0, url: nil, path: savedContent(filename: content), text: nil, gif: nil, sound: nil, image: nil, originalFilename: content)
+                        let vid = Feed(id: i, url: nil, path: savedContent(filename: content), text: nil, gif: nil, sound: nil, image: nil, originalFilename: content)
                         list.append(vid)
                     case "text":
                         let content = phrases!.randomElement()
-                        let vid = Feed(id: 0, url: nil, path: savedContent(filename: ["bac1.mp4", "bac2.mov","background3.mp4", "bac4.mp4", "bac3.mp4"].randomElement()!), text: content, gif: nil, sound: nil, image: nil, originalFilename: content!)
+                        let vid = Feed(id: i, url: nil, path: savedContent(filename: ["bac1.mp4", "bac2.mov","background3.mp4", "bac4.mp4", "bac3.mp4"].randomElement()!), text: content, gif: nil, sound: nil, image: nil, originalFilename: content!)
                         list.append(vid)
                     case "gif":
                         let content = gifArray.randomElement()!
-                        let vid = Feed(id: 0, url: nil, path: nil, text: nil, gif: content, sound: soundsArray.randomElement(), image: nil, originalFilename: content)
+                        let vid = Feed(id: i, url: nil, path: nil, text: nil, gif: content, sound: soundsArray.randomElement(), image: nil, originalFilename: content)
                         list.append(vid)
                     case "image":
                         let content = imageArray.randomElement()!
-                        let vid = Feed(id: 0, url: nil, path: nil, text: nil, gif: nil, sound: nil, image: content, originalFilename: content)
+                        let vid = Feed(id: i, url: nil, path: nil, text: nil, gif: nil, sound: nil, image: content, originalFilename: content)
                         list.append(vid)
                     default: break // add a placeholder here
-         //       }
+                }
 
             }
        //     print(list)
