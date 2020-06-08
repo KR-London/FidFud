@@ -18,7 +18,7 @@ class AddViewController: UIViewController {
         let button = UIButton()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 140, weight: .bold, scale: .large)
         let largeBoldVid = UIImage(systemName: "video.circle", withConfiguration: largeConfig)
-
+        
         button.setImage(largeBoldVid, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.contentMode = .scaleToFill
@@ -35,8 +35,8 @@ class AddViewController: UIViewController {
     
     
     lazy var thumbsUp: UIImageView = {
-       let imageView = UIImageView()
-       imageView.image = "👍".emojiImage()
+        let imageView = UIImageView()
+        imageView.image = "👍".emojiImage()
         //imageView.image = UIImage(named: "carrot.png")
         return imageView
     }()
@@ -45,11 +45,12 @@ class AddViewController: UIViewController {
         let sourceViewController = unwindSegue.source
         showThumbsUp()
     }
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        /// I pop up an encouragement to register 
         if Auth.auth().currentUser == nil{
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "signIn") as! signInViewController
@@ -59,8 +60,8 @@ class AddViewController: UIViewController {
         addRecordButton()
     }
     
+    /// This is called when you return back from uploading a video
     func showThumbsUp(){
-        
         view.addSubview(thumbsUp)
         thumbsUp.alpha = 1
         thumbsUp.translatesAutoresizingMaskIntoConstraints = false
@@ -81,13 +82,10 @@ class AddViewController: UIViewController {
             }){
                 (finished) in
                 UIView.animate(withDuration: 1.5, animations: {
-                 self.thumbsUp.alpha = 0
+                    self.thumbsUp.alpha = 0
                 })
             }
         }
-        
-      
-        
     }
     
     func addRecordButton(){
@@ -109,55 +107,45 @@ class AddViewController: UIViewController {
         ])
     }
     
-  @objc func record(){
-        print("recording")
+    @objc func record(){
         VideoHelper.startMediaBrowser(delegate: self, sourceType: .camera)
     }
     
     @objc func video(_ videoPath: String, didFinishSavingWithError error: Error?, contextInfo info: AnyObject) {
-      let title = (error == nil) ? "Success" : "Error"
-      let message = (error == nil) ? "Video was saved" : "Video failed to save"
-
-      let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let title = (error == nil) ? "Success" : "Error"
+        let message = (error == nil) ? "Video was saved" : "Video failed to save"
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
-      present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
+    //Go to the next screen where I will add sound and visual effects
     @objc func mySegue(_ url: URL){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "superWhizzyVideoEditor") as! superWhizzyVideoEditorViewController
         newViewController.sentURL = url
         self.present(newViewController, animated: true, completion: nil)
     }
-
 }
 
 extension AddViewController: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [ UIImagePickerController.InfoKey: Any]) {
-      dismiss(animated: true, completion: nil)
-      
-      guard
-        let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String,
-        mediaType == (kUTTypeMovie as String),
-        let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL,
-        UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path)
-        else {
-          return
-      }
-               // #selector(video(_:didFinishSavingWithError:contextInfo:)),
-      
-      // Handle a movie capture
-//
+        dismiss(animated: true, completion: nil)
         
+        guard let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String,
+            mediaType == (kUTTypeMovie as String),
+            let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL,
+            UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path)
+            else {
+                return
+        }
+
         UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, nil, nil)
         
         mySegue(url)
-        
-        /// save to firebase
-        
-        
     }
 }
 

@@ -120,7 +120,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
         
         self.feeds.shuffle()
         
-        let onboarding = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Swipe Left To Have Some Fun!", gif: nil, sound: nil, image: nil, originalFilename: "onboarding")
+        let onboarding = Feed(id: 0, url: nil, path: nil , text: "Swipe Left To Have Some Fun!", gif: nil, sound: nil, image: nil, originalFilename: "onboarding")
         self.feeds = [onboarding] + self.feeds
         
         let endSecreen = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Come back tomorrow for fresh Fud Fid!", gif: nil, sound: nil, image: nil, originalFilename: "endScreen")

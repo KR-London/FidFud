@@ -14,28 +14,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    
-    let reasons = ["Not for me", "Wrong", "Upsetting", "Too loud", "Seems rude", "Boring", "Pushy"]
-    var reason = String()
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        return reasons.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return reasons[row]
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        reason = reasons[row]
-        self.view.endEditing(true)
-    }
-
-    
-    
-    
+ 
     static var sceneStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var index: Int!
     var feed: Feed!
@@ -50,23 +29,36 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
     let userRef = Firestore.firestore().collection("users")
     
     let defaults = UserDefaults.standard
+    
+    //MARK: Picker view set up
+    let reasons = ["Not for me", "Wrong", "Upsetting", "Too loud", "Seems rude", "Boring", "Pushy"]
+    var reason = String()
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return reasons.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return reasons[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        reason = reasons[row]
+        self.view.endEditing(true)
+    }
 
+    //MARK: Lazy instantiation of elements
     lazy var likeButton :        UIButton = {
             let button = UIButton()
             button.heightAnchor.constraint(equalToConstant: 100).isActive = true
             button.widthAnchor.constraint(equalToConstant: 100).isActive = true
             button.titleLabel!.text = "Like"
-            ///button.setImage(UIImage(systemName: "heart"), for: .normal)
-        
-            
-            
-        //button.currentBackgroundImage.as
+
             button.tintColor = UIColor.green
             button.layer.cornerRadius = 50
             
             button.addTarget(self, action: #selector(likeTapped(_:)), for: .touchUpInside)
-           /// button.layer.borderWidth = 5
-            //button.layer.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
             return button
         }()
     
@@ -77,21 +69,15 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         button.titleLabel!.text = "Dislike"
         button.setImage(UIImage(systemName: "hand.raised.slash"), for: .normal)
         
-        
-        
-        //button.currentBackgroundImage.as
         button.tintColor = UIColor.green
         button.layer.cornerRadius = 50
         
         button.addTarget(self, action: #selector(dislikeTapped(_:)), for: .touchUpInside)
-        /// button.layer.borderWidth = 5
-        //button.layer.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         return button
     }()
 
     lazy var profilePicture : UIImageView = {
         let pic = UIImageView()
-        //pic.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         pic.heightAnchor.constraint(equalToConstant: 100).isActive = true
         pic.widthAnchor.constraint(equalToConstant: 100).isActive = true
         pic.layer.cornerRadius = 50
@@ -101,12 +87,11 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         pic.backgroundColor = .white
         return pic
     }()
+    
     var commentButton = UIButton()
     
     var buttonStack : UIStackView = {
         let stack = UIStackView()
-        stack.widthAnchor.constraint(equalToConstant: 150)
-        stack.heightAnchor.constraint(equalToConstant: 300)
         stack.axis = .vertical
         stack.alignment = .trailing
         stack.contentMode = .scaleAspectFit
@@ -119,20 +104,14 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         viewController.feed = feed
         viewController.index = index
         viewController.isPlaying = isPlaying
-        
-      //  let viewController = UIViewController()
         return viewController
     }
-    
-  
 
     fileprivate func kateExtractedFunc() {
         initializeFeed()
         
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        
-        print(feed)
         
         if feed.gif == nil{
             if feed.image == nil {
@@ -159,7 +138,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
             gifView.isHidden  = false
             gifView = UIImageView(frame: self.view.frame)
             gifView.contentMode = .scaleAspectFit
-            // gifView.image = UIImage.gifImageWithName(name: String(feed.gif!.dropLast(4)) ?? "")
+
             gifView.image = UIImage.gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")).absoluteString) ?? UIImage.gifImageWithName(name: feed.gif!) ?? UIImage.gifImageWithName(name: String((feed.gif?.dropLast(4))!) )
             self.contentOverlayView?.addSubview(gifView)
             view.bringSubviewToFront(gifView)
@@ -229,18 +208,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         view.addGestureRecognizer(tap)
     }
     
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        
-        didPause = !didPause
-        if didPause{
-            pause()
-        }
-        else{
-            play()
-        }
-    }
-    
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         player?.pause()
@@ -250,30 +217,31 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         player?.play()
         synthesizer.continueSpeaking()
-       print(feed.liked)
-             if feed.liked == true{
-                likeButton.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
-             }
-             else{
-                likeButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
-            }
+        
+        if feed.liked == true{
+            likeButton.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+        else{
+            likeButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+        }
         likeButton.tag = feed.id
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
 
+        // Reads out the label in a random Anglophone voice
         if let say = Label.text
         {
-           // if  isPlaying == true
-           // {
-                utterance = AVSpeechUtterance(string: say)
-            utterance.pitchMultiplier = [Float(1), Float(1.1), Float(1.4), Float(1.5) ].randomElement() as! Float
-            utterance.rate = [Float(0.5), Float(0.4),Float(0.6),Float(0.7)].randomElement() as! Float
+            utterance = AVSpeechUtterance(string: say)
+            utterance.pitchMultiplier = [Float(1), Float(1.1), Float(1.4), Float(1.5) ].randomElement()!
+            utterance.rate = [Float(0.5), Float(0.4),Float(0.6),Float(0.7)].randomElement()!
             let language = [AVSpeechSynthesisVoice(language: "en-AU"),AVSpeechSynthesisVoice(language: "en-GB"),AVSpeechSynthesisVoice(language: "en-IE"),AVSpeechSynthesisVoice(language: "en-US"),AVSpeechSynthesisVoice(language: "en-IN"), AVSpeechSynthesisVoice(language: "en-ZA")]
             utterance.voice =  language.randomElement()!!
-                synthesizer.speak(utterance)
+            synthesizer.speak(utterance)
         }
         
         if feed.sound != nil
@@ -281,8 +249,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
              soundtrack.play()
         }
     }
-    
-    
     
     func play() {
         player?.play()
@@ -294,62 +260,47 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
     
     
     fileprivate func initializeFeed() {
-        
-        // MARK: I need to bifurcate here to handle the different types of content
+
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         var url: URL
         
-        if let path = feed.path{
-            
+        if let path = feed.path
+        {
             if let location = Bundle.main.url(forResource: path.name, withExtension:path.format)
             {
                 url = location
             }
-            else {
-                            url = documentsURL.appendingPathComponent( String(((path.name)!)) + "." + String(((path.format)!)))
-             }
+            else
+            {
+                url = documentsURL.appendingPathComponent( String(((path.name)!)) + "." + String(((path.format)!)))
+            }
             
-            // let url = documentsURL.appendingPathComponent( String(((path.name)!)) + "." + String(((path.format)!)))
-            
-//            CacheManager.shared.getFileWith(stringUrl: "http://techslides.com/demos/sample-videos/small.mp4") { result in
-//
-//                switch result {
-//                    case .success(let url):
-//                        self.player = AVPlayer(url: url)
-//                    case .failure(let error):
-//                   print("Failed")
-//                }
-//            }
-            
-        player = AVPlayer(url: url)
+            player = AVPlayer(url: url)
             NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem, queue: .main) { [weak self] _ in
                 self?.player?.seek(to: CMTime.zero)
                 self?.player?.play()
             }
             
         }
-//        let input = feed.path
-//        guard let path = Bundle.main.path(forResource: input?.name, ofType:input?.format) else {
-//            debugPrint("video not found")
-//            return
-//        }
-//
-//        let input = feed.path
-//        guard let path = documentsURL.path(
-//
-//            Bundle.main.path(forResource: input?.name, ofType:input?.format) else {
-//            debugPrint("video not found")
-//            return
-////        }
-        
-        
-//        player = AVPlayer(url: URL(fileURLWithPath: url))
         isPlaying ? play() : nil
- 
     }
     
+    // Pauses video playback on tap
+    //FIXME: pause gifs and voice
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        
+        didPause = !didPause
+        if didPause{
+            pause()
+        }
+        else{
+            play()
+        }
+    }
     
+    // Notes a like
+    // toggles the value in user defaults, and changes appearance of button to match.
     @objc func likeTapped(_ sender: UIButton) {
         var liked = defaults.array(forKey: "Liked") as? [String]
         
@@ -367,7 +318,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
             else{
                 liked =  [ref]
             }
-         
+            
             defaults.set( liked , forKey: "Liked")
             
         }
@@ -383,9 +334,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
                 liked = liked!.filter{ $0 != ref}
             }
             defaults.set( liked , forKey: "Liked")
-           // self.ref.child("users").child(user.uid).setValue(["username": username])
         }
-        //self.ref.child("testSave").setValue(feed.toAnyObject())
         let dataToSave : [String: Any] = ["name": feed.originalFilename, "liked": feed.liked]
         
         let docRef = userRef.document(Auth.auth().currentUser?.email ?? "Anonymous" + String(Int.random(in: 1...1000))).collection("likes").document(feed.originalFilename)
@@ -400,67 +349,31 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
                 print("Data has been saved")
             }
         }
-        print(feed)
-}
+    }
     
+    
+    // Notes that the user doesn't like a certain post
+    // Gets some clarification why, and sends the data to Firestore
     @objc func dislikeTapped(_ sender: UIButton) {
-
+        
         pause()
         
         let reasonPicker = UIPickerView()
 
-
-        
-       
-        
         reasonPicker.dataSource = self
         reasonPicker.delegate = self
-        
-      
-       
-   
-        
+
         let alert = UIAlertController(title: "Don't Want This?", message: "Can you tell me why to help me do better in future? \n\n\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
-        //alert.
         alert.view.addSubview(reasonPicker)
         reasonPicker.frame = CGRect(x: 0, y: 40, width: 270, height: 200)
         
-        
         let selectAction = UIAlertAction(title: "OK", style: .default, handler: saveDislike)
-        //{
-//            [weak self] action in
-//            self?.saveDislike()
-//
-//        }
-        //{ action -> Void in
-         ///   print(self.reason)
-
-//            DispatchQueue.main.async {
-//                self.saveDislike(reason: self.reason)
-//            }
-            // Create new Alert
-
-//            var dialogMessage = UIAlertController(title: "Thank you", message: "We have noted you don't like this, and it won't show up in future sessions. We will also personally review your feedback to try to do better for you in the future.", preferredStyle: .alert)
-//
-//            // Create OK button with action handler
-//            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-//                print("Ok button tapped")
-//            })
-//
-//            //Add OK button to a dialog message
-//            dialogMessage.addAction(ok)
-//            // Present Alert to
-//            self.present(dialogMessage, animated: true, completion: nil)
- //     }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alert.addAction(selectAction.copy() as! UIAlertAction)
         alert.addAction(cancelAction)
         
         present(alert, animated: true)
-        
-        
-
         
     }
     

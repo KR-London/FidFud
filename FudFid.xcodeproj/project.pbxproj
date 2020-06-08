@@ -17,6 +17,7 @@
 		444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B9247BFED20084032B /* bubbleLabel.swift */; };
 		444A71BC247BFF190084032B /* myButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71BB247BFF190084032B /* myButton.swift */; };
 		444A71C7247C3D140084032B /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71C6247C3D140084032B /* testViewController.swift */; };
+		445A3255248E0C1700C849CA /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3254248E0C1700C849CA /* SnapshotHelper.swift */; };
 		445D531F248CD28800895AA3 /* 200w-16.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D531E248CD28800895AA3 /* 200w-16.gif */; };
 		445D5321248CD28E00895AA3 /* giphy-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D5320248CD28E00895AA3 /* giphy-3.gif */; };
 		445D5323248CD29B00895AA3 /* 200w-17.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D5322248CD29B00895AA3 /* 200w-17.gif */; };
@@ -255,6 +256,7 @@
 		444A71B9247BFED20084032B /* bubbleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bubbleLabel.swift; sourceTree = "<group>"; };
 		444A71BB247BFF190084032B /* myButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myButton.swift; sourceTree = "<group>"; };
 		444A71C6247C3D140084032B /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
+		445A3254248E0C1700C849CA /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		445D531E248CD28800895AA3 /* 200w-16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "200w-16.gif"; sourceTree = "<group>"; };
 		445D5320248CD28E00895AA3 /* giphy-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "giphy-3.gif"; sourceTree = "<group>"; };
 		445D5322248CD29B00895AA3 /* 200w-17.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "200w-17.gif"; sourceTree = "<group>"; };
@@ -824,6 +826,7 @@
 			isa = PBXGroup;
 			children = (
 				449D4A21247A5B840009FF3C /* FudFidUITests.swift */,
+				445A3254248E0C1700C849CA /* SnapshotHelper.swift */,
 				449D4A23247A5B840009FF3C /* Info.plist */,
 			);
 			path = FudFidUITests;
@@ -1314,6 +1317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				449D4A22247A5B840009FF3C /* FudFidUITests.swift in Sources */,
+				445A3255248E0C1700C849CA /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1479,7 +1483,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.saltformysquid.fudfid.FudFid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saltformysquid.fudfid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1499,7 +1503,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.saltformysquid.fudfid.FudFid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saltformysquid.fudfid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -12,11 +12,34 @@ class FudFidUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-
+        let app = XCUIApplication()
+        setupSnapshot(app)
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    }
+    
+    func walkthrough() throws{
+       let app = XCUIApplication()
+        app.children(matching: .window).element(boundBy: 4).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 2).tap()
+        snapshot("01")
+        let heartButton = app.buttons["heart"]
+        heartButton.swipeLeft()
+        heartButton.swipeLeft()
+        heartButton.swipeLeft()
+        snapshot("02")
+        heartButton.swipeLeft()
+        app.buttons["hand.raised.slash"].tap()
+        snapshot("03")
+        app.alerts["Don't Want This?"].scrollViews.otherElements.buttons["OK"].tap()
+        app.alerts["Thank you"].scrollViews.otherElements.buttons["OK"].tap()
+        
+        let tabBarsQuery = app.tabBars
+        tabBarsQuery.buttons["Add"].tap()
+        snapshot("04")
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.swipeDown()
+        tabBarsQuery.buttons["Feed "].tap()
     }
 
     override func tearDownWithError() throws {
@@ -41,3 +64,4 @@ class FudFidUITests: XCTestCase {
         }
     }
 }
+
