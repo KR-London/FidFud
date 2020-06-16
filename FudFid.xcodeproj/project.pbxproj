@@ -208,6 +208,7 @@
 		44760841248A2F3E00B90CB8 /* 626f3b5e6b75ce4e1fe9b25be1d37266.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 4476082F248A2F3400B90CB8 /* 626f3b5e6b75ce4e1fe9b25be1d37266.MOV */; };
 		44760843248A2F3E00B90CB8 /* v090448e0000bqlhdm6a9rhcnk4a1170.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = 44760831248A2F3B00B90CB8 /* v090448e0000bqlhdm6a9rhcnk4a1170.MP4 */; };
 		44760848248A2F3E00B90CB8 /* v09044fe0000bq7mmqr7mt2j1jnfu7ng.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = 44760836248A2F3D00B90CB8 /* v09044fe0000bq7mmqr7mt2j1jnfu7ng.MP4 */; };
+		4478E0EB249694DF006CF2BF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4478E0EA249694DF006CF2BF /* CloudKit.framework */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
 		449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FC247A5B830009FF3C /* SceneDelegate.swift */; };
 		449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A00247A5B830009FF3C /* AddViewController.swift */; };
@@ -441,6 +442,8 @@
 		4476082F248A2F3400B90CB8 /* 626f3b5e6b75ce4e1fe9b25be1d37266.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 626f3b5e6b75ce4e1fe9b25be1d37266.MOV; sourceTree = "<group>"; };
 		44760831248A2F3B00B90CB8 /* v090448e0000bqlhdm6a9rhcnk4a1170.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = v090448e0000bqlhdm6a9rhcnk4a1170.MP4; sourceTree = "<group>"; };
 		44760836248A2F3D00B90CB8 /* v09044fe0000bq7mmqr7mt2j1jnfu7ng.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = v09044fe0000bq7mmqr7mt2j1jnfu7ng.MP4; sourceTree = "<group>"; };
+		4478E0E9249694DB006CF2BF /* FudFid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FudFid.entitlements; sourceTree = "<group>"; };
+		4478E0EA249694DF006CF2BF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		449D49F7247A5B830009FF3C /* FudFid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudFid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449D49FA247A5B830009FF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449D49FC247A5B830009FF3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -471,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5987727FA0FD9CA69DB7306B /* Pods_FudFid.framework in Frameworks */,
+				4478E0EB249694DF006CF2BF /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +799,7 @@
 		449D49F9247A5B830009FF3C /* FudFid */ = {
 			isa = PBXGroup;
 			children = (
+				4478E0E9249694DB006CF2BF /* FudFid.entitlements */,
 				449D49FA247A5B830009FF3C /* AppDelegate.swift */,
 				449D49FC247A5B830009FF3C /* SceneDelegate.swift */,
 				446FB843247A691300C556AC /* Extensions */,
@@ -848,6 +853,7 @@
 		BB5ACDC357104D92E87DD012 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4478E0EA249694DF006CF2BF /* CloudKit.framework */,
 				6FF834E6E53A8EFC9A4BD0EB /* Pods_FudFid.framework */,
 				7EF97796D6DD5E9B864FDEA1 /* Pods_FudFid_FudFidUITests.framework */,
 				67F7E78566BCC2B4515D1F05 /* Pods_FudFidTests.framework */,
@@ -1475,6 +1481,7 @@
 			baseConfigurationReference = 5E7CD083562794E625CCB348 /* Pods-FudFid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FudFid/FudFid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E5MDC86ME;
 				INFOPLIST_FILE = FudFid/Info.plist;
@@ -1495,6 +1502,7 @@
 			baseConfigurationReference = 29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FudFid/FudFid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E5MDC86ME;
 				INFOPLIST_FILE = FudFid/Info.plist;
