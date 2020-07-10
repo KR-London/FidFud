@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="byw-uC-CZp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -438,12 +438,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ChU-Ed-Evg">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ChU-Ed-Evg" customClass="JellyGifImageView" customModule="JellyGif">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Et8-Z0-oM1">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Et8-Z0-oM1">
                                 <rect key="frame" x="38" y="697" width="339" height="146"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="Refresh"/>
@@ -454,9 +454,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Et8-Z0-oM1" firstAttribute="leading" secondItem="two-0B-Lv7" secondAttribute="leading" constant="38" id="3wu-Qc-UJe"/>
                             <constraint firstItem="ChU-Ed-Evg" firstAttribute="top" secondItem="two-0B-Lv7" secondAttribute="top" id="QvB-Uo-hSS"/>
                             <constraint firstItem="two-0B-Lv7" firstAttribute="bottom" secondItem="ChU-Ed-Evg" secondAttribute="bottom" id="SJU-NU-sRb"/>
+                            <constraint firstItem="Et8-Z0-oM1" firstAttribute="centerX" secondItem="ChU-Ed-Evg" secondAttribute="centerX" id="U1h-bh-dPl"/>
                             <constraint firstItem="ChU-Ed-Evg" firstAttribute="leading" secondItem="two-0B-Lv7" secondAttribute="leading" id="auY-cx-HwG"/>
+                            <constraint firstItem="two-0B-Lv7" firstAttribute="bottom" secondItem="Et8-Z0-oM1" secondAttribute="bottom" constant="19" id="gaU-14-TJt"/>
+                            <constraint firstItem="Et8-Z0-oM1" firstAttribute="top" secondItem="two-0B-Lv7" secondAttribute="top" constant="653" id="k1z-BR-thH"/>
                             <constraint firstItem="two-0B-Lv7" firstAttribute="trailing" secondItem="ChU-Ed-Evg" secondAttribute="trailing" id="vUU-qH-8Nk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="two-0B-Lv7"/>

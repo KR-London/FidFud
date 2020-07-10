@@ -16,7 +16,7 @@ target 'FudFid' do
   use_frameworks!
 
   # Pods for FudFid
-
+ pod 'JellyGif'
   target 'FudFidTests' do
     inherit! :search_paths
     # Pods for testing

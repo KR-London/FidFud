@@ -13,9 +13,15 @@ typealias IndexedFeed = (feed: Feed, index: Int)
 
 protocol FeedPageView: class, ProgressIndicatorHUDPresenter {
     func presentInitialFeed(_ feed: Feed)
+    func presentInitialFeed(_ gifs: Gif)
 }
 
 class FeedPageViewController: UIPageViewController, FeedPageView {
+    func presentInitialFeed(_ gifs: Gif) {
+      //  let viewController = FeedViewController.instantiate(gif: Gif, andIndex: 0, isPlaying: true) as! FeedViewController
+      ///  setViewControllers([viewController], direction: .forward, animated: false, completion: nil)
+    }
+    
     fileprivate var presenter: FeedPagePresenterProtocol!
     
     func presentInitialFeed(_ feed: Feed) {

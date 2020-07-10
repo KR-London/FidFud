@@ -14,6 +14,8 @@ import FirebaseUI
 import Foundation
 import FirebaseFirestore
 import Combine
+import CloudKit
+import JellyGif
 
 
 enum FirebaseCombineError: Error {
@@ -28,7 +30,7 @@ var destinationUrl = documentsUrl.appendingPathComponent("bart2.gif")
 
 class testViewController: UIViewController {
 
-    @IBOutlet weak var myImageView: UIImageView!
+    @IBOutlet weak var myImageView: JellyGifImageView!
     
     @IBAction func ShowmeBart(_ sender: UIButton) {
         print(destinationUrl)
@@ -39,27 +41,56 @@ class testViewController: UIViewController {
         
         super.viewDidLoad()
         
-        myImageView.image = UIImage.gifImageWithName(name: "200.gif")
+     //   myImageView.image = UIImage.gifImageWithName(name: "200.gif")
+        loadGifsFromCloud()
 
-        let storageReference = Storage.storage().reference().child("centralGifs/200w-10.gif")
-        DispatchQueue.main.async {
-            // Download to the local filesystem
-            let downloadTask = storageReference.write(toFile: destinationUrl!) { url, error in
-                if let error = error {
-                    // Uh-oh, an error occurred!
-                    print("Bart has left the building \(String(error.localizedDescription))")
-                } else {
-                    print("click to see Bart")
-                }
+    }
+    
+    func loadGifsFromCloud()-> [Feed]{
+        let pred = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Gifs", predicate:  pred)
+        
+        let operation = CKQueryOperation(query: query)
+        
+        var loadedFeed = [Feed]()
+        var whatIGot = [Gif]()
+        
+        operation.recordFetchedBlock = {
+            record in
+            let gif = Gif()
+            
+            gif.recordID = record.recordID
+            gif.category = record["category"]
+            
+            if let asset = record["gif"] as? CKAsset{
+                gif.gif = asset.fileURL
+                self.myImageView.startGif(with: .localPath(gif.gif))
             }
+            
+            whatIGot.append(gif)
+            
+            ///Feed(id: 0, url: record["gif"], path: savedContent(filename: prefix + ".MP4"), text: nil, gif: nil, sound: nil, image: nil, originalFilename: prefix + ".MP4")
         }
         
-        do{
-            try FileManager.default.removeItem(at: destinationUrl!)
+        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+            DispatchQueue.main.async {
+                if error == nil {
+                    print(whatIGot.first?.category)
+                } else {
+                    //                    let ac = UIAlertController(title: "Fetch failed", message: "There was a problem fetching the list of gifs; please try again: \(error!.localizedDescription)", preferredStyle: .alert)
+                    //                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                    //                    self.present(ac, animated: true)
+                    
+                    print("There was a problem fetching the list of gifs; please try again: \(error!.localizedDescription)")
+                }
+            }
+            
         }
-        catch{
-            print(error.localizedDescription)
-        }
+        
+        CKContainer.default().publicCloudDatabase.add(operation)
+        
+        
+        return loadedFeed
     }
 }
 //}

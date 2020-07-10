@@ -185,6 +185,7 @@
 		449D4A30247A5B920009FF3C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 449D4A2F247A5B920009FF3C /* .gitignore */; };
 		449D4A31247A5B920009FF3C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 449D4A2F247A5B920009FF3C /* .gitignore */; };
 		449D4A32247A5B920009FF3C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 449D4A2F247A5B920009FF3C /* .gitignore */; };
+		44EF654E24B8485100620068 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EF654D24B8485100620068 /* Gif.swift */; };
 		5987727FA0FD9CA69DB7306B /* Pods_FudFid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF834E6E53A8EFC9A4BD0EB /* Pods_FudFid.framework */; };
 		59DFC9B9CAD1043904183735 /* Pods_FudFid_FudFidUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF97796D6DD5E9B864FDEA1 /* Pods_FudFid_FudFidUITests.framework */; };
 		5C6C249DEC5557EA6E5B5CAF /* Pods_FudFidTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F7E78566BCC2B4515D1F05 /* Pods_FudFidTests.framework */; };
@@ -388,6 +389,7 @@
 		449D4A21247A5B840009FF3C /* FudFidUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FudFidUITests.swift; sourceTree = "<group>"; };
 		449D4A23247A5B840009FF3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		449D4A2F247A5B920009FF3C /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		44EF654D24B8485100620068 /* Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
 		5E7CD083562794E625CCB348 /* Pods-FudFid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.debug.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.debug.xcconfig"; sourceTree = "<group>"; };
 		67F7E78566BCC2B4515D1F05 /* Pods_FudFidTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FudFidTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF834E6E53A8EFC9A4BD0EB /* Pods_FudFid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FudFid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -511,7 +513,6 @@
 				446FB868247A7BD700C556AC /* ProgressIndicatorHUDView.swift */,
 				446FB869247A7BD700C556AC /* ProgressIndicatorHUDMessageView.swift */,
 				446FB86A247A7BD700C556AC /* RoundCornerButton.swift */,
-				446FB86B247A7BD700C556AC /* FeedPagePresenter.swift */,
 				446BC2E02484D0320096017B /* CacheManager.swift */,
 				446FB86C247A7BD700C556AC /* CircleImageView.swift */,
 			);
@@ -522,6 +523,8 @@
 			isa = PBXGroup;
 			children = (
 				446FB875247A7BF200C556AC /* Feed.swift */,
+				446FB86B247A7BD700C556AC /* FeedPagePresenter.swift */,
+				44EF654D24B8485100620068 /* Gif.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				444828FB249C99C200C82478 /* videoEffectsViewController.swift in Sources */,
 				449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */,
 				446FB842247A690E00C556AC /* VideoHelper.swift in Sources */,
+				44EF654E24B8485100620068 /* Gif.swift in Sources */,
 				446FB86F247A7BD700C556AC /* ProgressIndicatorHUDView.swift in Sources */,
 				446FB873247A7BD700C556AC /* CircleImageView.swift in Sources */,
 				446FB864247A7BCC00C556AC /* HTTPError.swift in Sources */,
