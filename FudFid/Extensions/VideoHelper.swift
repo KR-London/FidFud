@@ -33,7 +33,12 @@ import AVFoundation
 class VideoHelper {
   
   static func startMediaBrowser(delegate: UIViewController & UINavigationControllerDelegate & UIImagePickerControllerDelegate, sourceType: UIImagePickerController.SourceType) {
-    guard UIImagePickerController.isSourceTypeAvailable(sourceType) else { return }
+    guard UIImagePickerController.isSourceTypeAvailable(sourceType) else {
+        print("No camera here")
+        delegate.performSegue(withIdentifier: "showVideo", sender: self)
+     
+        
+        return }
     
     let mediaUI = UIImagePickerController()
     mediaUI.sourceType = sourceType

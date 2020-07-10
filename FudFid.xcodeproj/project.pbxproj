@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4406AA2E2488D94F00BB9387 /* baby-pea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4406AA2D2488D94F00BB9387 /* baby-pea.jpg */; };
 		443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DFF052483D08D0091E685 /* VideoEditor.swift */; };
+		444828FB249C99C200C82478 /* videoEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444828FA249C99C200C82478 /* videoEffectsViewController.swift */; };
 		444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* systemImageButton.swift */; };
 		444A71B2247BF3560084032B /* celebrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B1247BF3560084032B /* celebrationVC.swift */; };
 		444A71B4247BF3AB0084032B /* little dude3.png in Resources */ = {isa = PBXBuildFile; fileRef = 444A71B3247BF3AB0084032B /* little dude3.png */; };
@@ -209,6 +210,8 @@
 		44760843248A2F3E00B90CB8 /* v090448e0000bqlhdm6a9rhcnk4a1170.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = 44760831248A2F3B00B90CB8 /* v090448e0000bqlhdm6a9rhcnk4a1170.MP4 */; };
 		44760848248A2F3E00B90CB8 /* v09044fe0000bq7mmqr7mt2j1jnfu7ng.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = 44760836248A2F3D00B90CB8 /* v09044fe0000bq7mmqr7mt2j1jnfu7ng.MP4 */; };
 		4478E0EB249694DF006CF2BF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4478E0EA249694DF006CF2BF /* CloudKit.framework */; };
+		448050DC24B0E39200B74EE2 /* myAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */; };
+		448050DE24B0EBCA00B74EE2 /* cloudKitPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448050DD24B0EBCA00B74EE2 /* cloudKitPlay.swift */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
 		449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FC247A5B830009FF3C /* SceneDelegate.swift */; };
 		449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A00247A5B830009FF3C /* AddViewController.swift */; };
@@ -249,6 +252,7 @@
 		29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.release.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.release.xcconfig"; sourceTree = "<group>"; };
 		4406AA2D2488D94F00BB9387 /* baby-pea.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "baby-pea.jpg"; sourceTree = "<group>"; };
 		443DFF052483D08D0091E685 /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
+		444828FA249C99C200C82478 /* videoEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = videoEffectsViewController.swift; sourceTree = "<group>"; };
 		444A71AF247BA6C90084032B /* systemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = systemImageButton.swift; sourceTree = "<group>"; };
 		444A71B1247BF3560084032B /* celebrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celebrationVC.swift; sourceTree = "<group>"; };
 		444A71B3247BF3AB0084032B /* little dude3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little dude3.png"; sourceTree = "<group>"; };
@@ -444,6 +448,8 @@
 		44760836248A2F3D00B90CB8 /* v09044fe0000bq7mmqr7mt2j1jnfu7ng.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = v09044fe0000bq7mmqr7mt2j1jnfu7ng.MP4; sourceTree = "<group>"; };
 		4478E0E9249694DB006CF2BF /* FudFid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FudFid.entitlements; sourceTree = "<group>"; };
 		4478E0EA249694DF006CF2BF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAVPlayerViewController.swift; sourceTree = "<group>"; };
+		448050DD24B0EBCA00B74EE2 /* cloudKitPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cloudKitPlay.swift; sourceTree = "<group>"; };
 		449D49F7247A5B830009FF3C /* FudFid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudFid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449D49FA247A5B830009FF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449D49FC247A5B830009FF3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -544,6 +550,7 @@
 				446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */,
 				443DFF052483D08D0091E685 /* VideoEditor.swift */,
 				444A71B1247BF3560084032B /* celebrationVC.swift */,
+				444828FA249C99C200C82478 /* videoEffectsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -552,6 +559,8 @@
 			isa = PBXGroup;
 			children = (
 				449D4A02247A5B830009FF3C /* Main.storyboard */,
+				448050DD24B0EBCA00B74EE2 /* cloudKitPlay.swift */,
+				448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */,
 				444A71C6247C3D140084032B /* testViewController.swift */,
 				446FD00B247CF7A3003020F7 /* scratchPad */,
 				444A71BB247BFF190084032B /* myButton.swift */,
@@ -1286,6 +1295,7 @@
 				446FB860247A7BCC00C556AC /* Constant.swift in Sources */,
 				443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */,
 				446FB87B247A7E4400C556AC /* StoryboardScene.swift in Sources */,
+				444828FB249C99C200C82478 /* videoEffectsViewController.swift in Sources */,
 				449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */,
 				446FB842247A690E00C556AC /* VideoHelper.swift in Sources */,
 				446FB86F247A7BD700C556AC /* ProgressIndicatorHUDView.swift in Sources */,
@@ -1300,8 +1310,10 @@
 				446FB86D247A7BD700C556AC /* ProgressIndicatorHUDPresenter.swift in Sources */,
 				444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */,
 				449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */,
+				448050DC24B0E39200B74EE2 /* myAVPlayerViewController.swift in Sources */,
 				446FB84D247A79D500C556AC /* FeedViewController.swift in Sources */,
 				444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */,
+				448050DE24B0EBCA00B74EE2 /* cloudKitPlay.swift in Sources */,
 				446BC2E12484D0320096017B /* CacheManager.swift in Sources */,
 				446FB861247A7BCC00C556AC /* Connection.swift in Sources */,
 				446FB863247A7BCC00C556AC /* HTTPRequest.swift in Sources */,
@@ -1412,7 +1424,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1466,7 +1478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1483,9 +1495,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FudFid/FudFid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2E5MDC86ME;
 				INFOPLIST_FILE = FudFid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1504,9 +1517,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FudFid/FudFid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2E5MDC86ME;
 				INFOPLIST_FILE = FudFid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

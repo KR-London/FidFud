@@ -33,21 +33,33 @@ class superWhizzyVideoEditorViewController: UIViewController {
     
     lazy var addSoundButton: systemImageButton = {
         let button = systemImageButton()
-        button.setImage(UIImage(systemName: "tv.music.note"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.setImage(UIImage(systemName: "tv.music.note"), for: .normal)
+        } else {
+            button.setTitle("Music", for: .normal)
+        }
         button.addTarget(self, action: #selector(loadAudio), for: .touchUpInside)
         return button
     }()
     
     lazy var addMagicButton: systemImageButton = {
         let button = systemImageButton()
-        button.setImage(UIImage(systemName: "wand.and.stars"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.setImage(UIImage(systemName: "wand.and.stars"), for: .normal)
+        } else {
+            button.setTitle("Magic", for: .normal)
+        }
         button.addTarget(self, action: #selector(addMagic), for: .touchUpInside)
         return button
     }()
     
     lazy var finishedButton: systemImageButton = {
         let button = systemImageButton()
-        button.setImage(UIImage(systemName: "checkmark.seal"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.setImage(UIImage(systemName: "checkmark.seal"), for: .normal)
+        } else {
+             button.setTitle("Done", for: .normal)
+        }
         //button.alpha = 0.2
         button.addTarget(self, action: #selector(save), for: .touchUpInside)
         return button
@@ -64,7 +76,11 @@ class superWhizzyVideoEditorViewController: UIViewController {
     
     lazy var sharingChoiceUserFeedbackImage: UIImageView = {
         let feedback = UIImageView()
-        feedback.tintColor = .placeholderText
+        if #available(iOS 13.0, *) {
+            feedback.tintColor = .placeholderText
+        } else {
+            // Fallback on earlier versions
+        }
         feedback.alpha = 0.5
         feedback.image?.withAlignmentRectInsets(UIEdgeInsets(top: -20, left: -20, bottom: -20, right: -20))
         //  alignmentRectInsets = UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10)
@@ -109,7 +125,11 @@ class superWhizzyVideoEditorViewController: UIViewController {
             sharingChoiceUserFeedbackImage.isHidden = true
         }
         else{
-            sharingChoiceUserFeedbackImage.image = UIImage(systemName: "globe")
+            if #available(iOS 13.0, *) {
+                sharingChoiceUserFeedbackImage.image = UIImage(systemName: "globe")
+            } else {
+                // Fallback on earlier versions
+            }
         }
         
         
@@ -302,7 +322,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         //            }
         //            //uploadImage(imageData: data)
         //        }
-        do{ myVideoRef.putFile(from: url as! URL, metadata: uploadMetadata){
+        do{ myVideoRef.putFile(from: url, metadata: uploadMetadata){
             (uploadedImageMeta, error) in
             if error != nil{
                 print("Error happened \(String(describing: error?.localizedDescription))")
@@ -370,7 +390,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         let path = Bundle.main.path(forResource: "bensound-buddy.mp3", ofType: nil)
         let url = URL(fileURLWithPath: path!)
         do{
-            audioAsset = try AVAsset(url: url)
+            audioAsset = AVAsset(url: url)
             mergeAudio(audioAsset!)
         }catch{
             print("Couldn't load that file")
@@ -412,7 +432,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         overlayLayer.opacity = 0
         let outputLayer = CALayer()
         outputLayer.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        // outputLayer.addSublayer(backgroundLayer)
+     //    outputLayer.addSublayer(backgroundLayer)
         
         outputLayer.addSublayer(overlayLayer)
         outputLayer.addSublayer(videoLayer)
@@ -550,11 +570,17 @@ extension superWhizzyVideoEditorViewController: MPMediaPickerControllerDelegate 
     
     
     @objc func toggled(sender: UISegmentedControl){
-        if sender.selectedSegmentIndex == 0{
-            sharingChoiceUserFeedbackImage.image = UIImage(systemName: "globe")
+        if #available(iOS 13.0, *) {
+            if sender.selectedSegmentIndex == 0{
+                
+                sharingChoiceUserFeedbackImage.image = UIImage(systemName: "globe")
+            }
+            if sender.selectedSegmentIndex == 1 {
+                sharingChoiceUserFeedbackImage.image = UIImage(systemName: "eye.slash")
+            }
         }
-        if sender.selectedSegmentIndex == 1 {
-            sharingChoiceUserFeedbackImage.image = UIImage(systemName: "eye.slash")
+        else {
+            // Fallback on earlier versions
         }
     }
     

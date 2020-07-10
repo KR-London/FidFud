@@ -13,13 +13,24 @@ import FirebaseAuth
 import FirebaseStorage
 
 class AddViewController: UIViewController {
+    private let editor = VideoEditor()
+    var pickedURL: URL?
     
     lazy var recordButton: UIButton = {
         let button = UIButton()
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 140, weight: .bold, scale: .large)
-        let largeBoldVid = UIImage(systemName: "video.circle", withConfiguration: largeConfig)
+        if #available(iOS 13.0, *) {
+            let largeConfig = UIImage.SymbolConfiguration(pointSize: 140, weight: .bold, scale: .large)
+               let largeBoldVid = UIImage(systemName: "video.circle", withConfiguration: largeConfig)
+             button.setImage(largeBoldVid, for: .normal)
+        } else {
+            //FIXME: iOS12 alternative
+            button.setImage("🎥".emojiImage(), for: .normal)
+            button.imageView?.sizeThatFits(CGSize(width: 200,height: 200))
+            button.setTitle("Record 10sec video", for: .normal)
+        }
+     
         
-        button.setImage(largeBoldVid, for: .normal)
+       
         button.translatesAutoresizingMaskIntoConstraints = false
         button.contentMode = .scaleToFill
         //button.backgroundImage(for: .normal) = UIImage(systemName: "video.circle")
@@ -29,7 +40,10 @@ class AddViewController: UIViewController {
     
     lazy var instruction: myLabel = {
         let label = myLabel()
+        
+        //FIXME: text clips the outside
         label.text = "Press to record 10 seconds of Fud Fun for your Fud Fid!"
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -123,11 +137,42 @@ class AddViewController: UIViewController {
     //Go to the next screen where I will add sound and visual effects
     @objc func mySegue(_ url: URL){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "superWhizzyVideoEditor") as! superWhizzyVideoEditorViewController
-        newViewController.sentURL = url
-        self.present(newViewController, animated: true, completion: nil)
+       // let newViewController = storyBoard.instantiateViewController(withIdentifier: "superWhizzyVideoEditor") as! superWhizzyVideoEditorViewController
+        //let newViewController = storyBoard.instantiateViewController(withIdentifier: "videoEffectsViewController") as! videoEffectsViewController
+       // newViewController.videoURL = url
+       // self.present(newViewController, animated: true, completion: nil)
+        
+        self.editor.makeBirthdayCard(fromVideoAt: url, forName: "Cassie") { exportedURL in
+            self.showCompleted()
+            guard let exportedURL = exportedURL else {
+                return
+            }
+            self.pickedURL = exportedURL
+            self.performSegue(withIdentifier: "showVideo", sender: nil)
+        }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            let url = pickedURL,
+            let destination = segue.destination as? videoEffectsViewController
+            else {
+                return
+        }
+        
+        destination.videoURL = url
+            //?? URL(string: "https://images.all-free-download.com/footage_preview/mp4/apple_179.mp4")
+    }
+    
+    func showCompleted() {
+        //  activityIndicator.stopAnimating()
+        //  imageView.alpha = 1
+        //  pickButton.isEnabled = true
+        //    recordButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+    }
+
 }
+
 
 extension AddViewController: UIImagePickerControllerDelegate {
     

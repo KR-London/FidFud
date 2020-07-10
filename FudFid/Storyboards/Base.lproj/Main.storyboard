@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="byw-uC-CZp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -57,6 +58,29 @@
             </objects>
             <point key="canvasLocation" x="2964" y="-379"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="mrl-0p-Fsa">
+            <objects>
+                <viewController id="byw-uC-CZp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TPk-4G-t7e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Qd1-rt-tLp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mJl-Qz-dQb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4529" y="-731"/>
+        </scene>
+        <!--AV Player View Controller-->
+        <scene sceneID="UKf-gw-Hzk">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="hH5-KW-PYC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07B-tD-XcN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5294" y="-735"/>
+        </scene>
         <!--Add-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -68,6 +92,9 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Add" image="plus" catalog="system" id="cPa-gy-q4n"/>
+                    <connections>
+                        <segue destination="3rj-Rb-lGr" kind="show" identifier="showVideo" id="ewH-nC-IhX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -86,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="raX-Zq-spv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3400" y="287"/>
+            <point key="canvasLocation" x="6514" y="-55"/>
         </scene>
         <!--Celebration View Controller-->
         <scene sceneID="to6-tU-uz4">
@@ -144,6 +171,37 @@
                 <exit id="F3N-C4-lPx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4215.9420289855079" y="286.60714285714283"/>
+        </scene>
+        <!--Video Effects View Controller-->
+        <scene sceneID="zcd-9B-DtC">
+            <objects>
+                <viewController storyboardIdentifier="videoEffectsViewController" id="3rj-Rb-lGr" customClass="videoEffectsViewController" customModule="FudFid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yqn-9l-amO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o5m-zb-fB2">
+                                <rect key="frame" x="60" y="197" width="295" height="503"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="o5m-zb-fB2" firstAttribute="centerX" secondItem="yqn-9l-amO" secondAttribute="centerX" id="N6q-qP-zNc"/>
+                            <constraint firstItem="o5m-zb-fB2" firstAttribute="top" secondItem="G3Q-bX-EcZ" secondAttribute="top" constant="153" id="QUT-g2-VhD"/>
+                            <constraint firstItem="o5m-zb-fB2" firstAttribute="leading" secondItem="G3Q-bX-EcZ" secondAttribute="leading" constant="60" id="Yy8-v2-OG7"/>
+                            <constraint firstItem="o5m-zb-fB2" firstAttribute="centerY" secondItem="yqn-9l-amO" secondAttribute="centerY" id="nDL-L3-FxG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G3Q-bX-EcZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BV0-KF-mGR"/>
+                    <connections>
+                        <outlet property="videoView" destination="o5m-zb-fB2" id="NgE-i6-i8B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ABV-4o-Gzx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3442.0289855072465" y="286.60714285714283"/>
         </scene>
         <!--Me-->
         <scene sceneID="U5H-h4-v06">

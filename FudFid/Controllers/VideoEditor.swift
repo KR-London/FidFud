@@ -66,7 +66,12 @@ class VideoEditor {
         let overlayLayer = CALayer()
         overlayLayer.frame = CGRect(origin: .zero, size: videoSize)
         
-        backgroundLayer.backgroundColor = CGColor.init(srgbRed: 23, green: 23, blue: 23, alpha: 0.5)
+        if #available(iOS 13.0, *) {
+            backgroundLayer.backgroundColor = CGColor.init(srgbRed: 23, green: 23, blue: 23, alpha: 0.5)
+        } else {
+            //FIXME: No iOS12 background colour specified
+            ///backgroundLayer.backgroundColor = .
+        }
         videoLayer.frame = CGRect(
             x: 20,
             y: 20,

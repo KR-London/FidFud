@@ -67,7 +67,11 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         button.heightAnchor.constraint(equalToConstant: 100).isActive = true
         button.widthAnchor.constraint(equalToConstant: 100).isActive = true
         button.titleLabel!.text = "Dislike"
-        button.setImage(UIImage(systemName: "hand.raised.slash"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.setImage(UIImage(systemName: "hand.raised.slash"), for: .normal)
+        } else {
+            button.setTitle("X", for: .normal)
+        }
         
         button.tintColor = UIColor.green
         button.layer.cornerRadius = 50
@@ -212,7 +216,12 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         super.viewWillDisappear(true)
         player?.pause()
         synthesizer.pauseSpeaking(at: AVSpeechBoundary.word)
-        soundtrack.stop()
+        if #available(iOS 13.0, *) {
+            soundtrack.stop()
+        }
+        else {
+            // Fallback on earlier versions
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -220,14 +229,20 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         
         player?.play()
         synthesizer.continueSpeaking()
-        
-        if feed.liked == true{
-            likeButton.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+ 
+        if #available(iOS 13.0, *) {
+            if feed.liked == true{
+                
+                likeButton.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+                
+            }
+            else{
+                likeButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+            }
+            likeButton.tag = feed.id
+        } else {
+            // Fallback on earlier versions
         }
-        else{
-            likeButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
-        }
-        likeButton.tag = feed.id
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -304,36 +319,40 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
     @objc func likeTapped(_ sender: UIButton) {
         var liked = defaults.array(forKey: "Liked") as? [String]
         
-        if sender.backgroundImage(for: .normal) == UIImage(systemName: "heart")
-        {
-            sender.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
-            sender.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-            feed.liked = true
-            
-            let ref = feed.gif ?? feed.image ?? feed.text ??  ""
-            
-            if let _ = liked {
-                liked = liked! + [ref]
+        if #available(iOS 13.0, *) {
+            if sender.backgroundImage(for: .normal) == UIImage(systemName: "heart")
+            {
+                sender.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+                sender.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+                feed.liked = true
+                
+                let ref = feed.gif ?? feed.image ?? feed.text ??  ""
+                
+                if let _ = liked {
+                    liked = liked! + [ref]
+                }
+                else{
+                    liked =  [ref]
+                }
+                
+                defaults.set( liked , forKey: "Liked")
+                
             }
-            else{
-                liked =  [ref]
+            else
+            {
+                sender.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+                sender.tintColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+                feed.liked = false
+                
+                let ref = feed.gif ?? feed.image ?? feed.text ??  ""
+                
+                if let _ = liked {
+                    liked = liked!.filter{ $0 != ref}
+                }
+                defaults.set( liked , forKey: "Liked")
             }
-            
-            defaults.set( liked , forKey: "Liked")
-            
-        }
-        else
-        {
-            sender.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
-            sender.tintColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
-            feed.liked = false
-            
-            let ref = feed.gif ?? feed.image ?? feed.text ??  ""
-            
-            if let _ = liked {
-                liked = liked!.filter{ $0 != ref}
-            }
-            defaults.set( liked , forKey: "Liked")
+        } else {
+            //FIXME: How to handle likes in iOS12
         }
         let dataToSave : [String: Any] = ["name": feed.originalFilename, "liked": feed.liked]
         

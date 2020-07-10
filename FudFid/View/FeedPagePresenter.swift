@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 import ProgressHUD
 import FirebaseStorage
+//import JellyGif
 
 var maxID = 15
 var allGifs = [StorageReference]()
@@ -229,6 +230,10 @@ extension FeedPagePresenter: FeedFetchDelegate {
     
     func freshMeat(folderReference: String, suffix: [String]) -> [Feed]{
         
+        //TODO:  point to icloud
+        
+        
+        
         var list = [Feed]()
         var listOfFiles = [URL]()
         let storageReference = Storage.storage().reference()
@@ -239,7 +244,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         starsRef.getData(maxSize: 1 * 1024 * 1024 * 1024) { data, error in
             if let error = error {
-                // Uh-oh, an error occurred!
+                print("Getting Master Fluffy List data FAILED \(error.localizedDescription)")
             } else {
                 // Data for "images/island.jpg" is returned
                 let image = UIImage(data: data!)
@@ -263,7 +268,7 @@ var listOfRemoteFiles = [String: [String]]()
                 listOfRemoteFiles[dictKey] = elements[i].components(separatedBy: ",")
 }
 
-        var listOfFilesWithThisFormat = listOfRemoteFiles[folderReference]
+        let listOfFilesWithThisFormat = listOfRemoteFiles[folderReference]
         var saveSuffix = String()
 
         let fileManager = FileManager.default
@@ -285,7 +290,7 @@ var listOfRemoteFiles = [String: [String]]()
             print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
         }
 
-        var listOfFilenames = listOfFiles.map{$0.absoluteString}.filter{suffix.contains(String($0.suffix(4)))}.map{$0.dropLast(4)}
+        let listOfFilenames = listOfFiles.map{$0.absoluteString}.filter{suffix.contains(String($0.suffix(4)))}.map{$0.dropLast(4)}
         
                 for i in 1 ... 10{
                     let iStoredFiles = listOfFilenames.filter{String($0.last!) == String(i)}.map{$0.dropLast()}.map{$0.last!}
@@ -330,7 +335,7 @@ var listOfRemoteFiles = [String: [String]]()
                         
                         let localSavePath2 = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
                         
-                        let storageReference2 = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! as! String)
+                        let storageReference2 = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! )
                         
                         DispatchQueue.main.async {
                             // Download to the local filesystem
@@ -348,7 +353,7 @@ var listOfRemoteFiles = [String: [String]]()
                             print("1 file found - going to reference it to feed and download another cache")
                             let localSavePath = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
                             
-                            let storageReference = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! as! String)
+                            let storageReference = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! )
                             DispatchQueue.main.async {
                                 // Download to the local filesystem
                                 let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
@@ -368,7 +373,7 @@ var listOfRemoteFiles = [String: [String]]()
                             print("2 file found - going to reference it to feed and download another cache")
                             let localSavePath = documentsURL.appendingPathComponent("2" + String(i) + saveSuffix)
                             
-                            var location = (listOfFilesWithThisFormat?.randomElement())! as! String
+                            var location = (listOfFilesWithThisFormat?.randomElement())!
                             
                             if location.split(separator: ".").last == "jpg"{
                                 location = location.dropLast(3) + "jpeg"
@@ -401,7 +406,7 @@ var listOfRemoteFiles = [String: [String]]()
                             print("2 file found - going to reference it to feed and download another cache")
                             let localSavePath = documentsURL.appendingPathComponent("0" + String(i) + saveSuffix)
                             
-                            var location = (listOfFilesWithThisFormat?.randomElement())! as! String
+                            var location = (listOfFilesWithThisFormat?.randomElement())!
                             
                             if location.split(separator: ".").last == "jpg"{
                                 location = location.dropLast(3) + "jpeg"
@@ -434,7 +439,7 @@ var listOfRemoteFiles = [String: [String]]()
                             print("2 file found - going to reference it to feed and download another cache")
                             let localSavePath = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
                             
-                            var location = (listOfFilesWithThisFormat?.randomElement())! as! String
+                            var location = (listOfFilesWithThisFormat?.randomElement())!
                             
                             if location.split(separator: ".").last == "jpg"{
                                 location = location.dropLast(3) + "jpeg"
@@ -574,7 +579,7 @@ var listOfRemoteFiles = [String: [String]]()
         //FeedPagePresenter.initialiseFirebaseFeed()
 
         
-        var list = [Feed]()
+        let list = [Feed]()
         
 //        let storageReference = Storage.storage().reference()
 //

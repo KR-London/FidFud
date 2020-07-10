@@ -19,16 +19,35 @@ class systemImageButton: UIButton {
             super.init(frame: .zero)
             
             tintColor = .black
-            imageView?.preferredSymbolConfiguration = UIImage.SymbolConfiguration(weight: .black).applying(UIImage.SymbolConfiguration(scale: .large))
+            
+          
+            if #available(iOS 13.0, *) {
+                imageView?.preferredSymbolConfiguration = UIImage.SymbolConfiguration(weight: .black).applying(UIImage.SymbolConfiguration(scale: .large))
+            } else {
+                //FIXME: iOS12 button format
+            }
+            
+            
             contentMode = .scaleAspectFill
             // set other operations after super.init, if required
-            layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+            
+            if #available(iOS 13.0, *) {
+                layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+            } else {
+                 //FIXME: iOS12 button format
+               // layer.borderColor = UIColor.cl
+            }
             
             layer.cornerRadius = 5.0
            // black
             layer.borderWidth = 1.0
             
-            layer.shadowColor = CGColor(srgbRed: 0, green: 1, blue: 0, alpha: 1)
+            if #available(iOS 13.0, *) {
+                layer.shadowColor = CGColor(srgbRed: 0, green: 1, blue: 0, alpha: 1)
+            } else {
+                 //FIXME: iOS12 button format
+                // Fallback on earlier versions
+            }
           
            // backgroundColor = .lightGray
             titleLabel?.adjustsFontSizeToFitWidth = true
