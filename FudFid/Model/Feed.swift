@@ -15,7 +15,7 @@ struct Feed: Decodable {
     let url: URL?
     let path: savedContent?
     let text: String?
-    let gif: String? 
+    let gif: URL?
     let sound: String?
     let image: String?
     let originalFilename: String

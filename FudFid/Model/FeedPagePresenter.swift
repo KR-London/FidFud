@@ -43,6 +43,7 @@ class FeedPagePresenter: FeedPagePresenterProtocol {
     fileprivate var feeds: [Feed] = []
     fileprivate var gifs: [Gif] = []
     fileprivate var currentFeedIndex = 0
+    var whatIGot = [Gif]()
     
     var docsPathSound = Bundle.main.path(forResource: "bac1", ofType: ".mp4")?.dropLast(8)
     let fileManager = FileManager.default
@@ -119,49 +120,55 @@ extension FeedPagePresenter: FeedFetchDelegate {
         //        self.feeds.append(contentsOf: encouragingPhrases())
         
         //self.feeds.append(contentsOf: initialiseHardCodedFeed())
+       // self.feeds.append(contentsOf: loadGifsFromCloud())
         
-       // self.feeds.shuffle()
+        var list = [Feed]()
+        saveFromCloudToLocal(folderReference: "centralGifs", list: &list)
+        self.feeds.append(contentsOf: list)
+        self.feeds.shuffle()
         
         
-        self.gifs.append(contentsOf: loadGifsFromCloud())
+      //  self.gifs.append(contentsOf: loadGifsFromCloud())
         
-       // let onboarding = Feed(id: 0, url: nil, path: nil , text: "Swipe Left To Have Some Fun!", gif: nil, sound: nil, image: nil, originalFilename: "onboarding")
-       // self.feeds = [onboarding] + self.feeds
+        let onboarding = Feed(id: 0, url: nil, path: nil , text: "Swipe Right To Have Some Fun!", gif: nil, sound: nil, image: nil, originalFilename: "onboarding")
+        self.feeds = [onboarding] + self.feeds
         
-      //  let endSecreen = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Come back tomorrow for fresh Fud Fid!", gif: nil, sound: nil, image: nil, originalFilename: "endScreen")
-     //   self.feeds.append(endSecreen)
+        let endSecreen = Feed(id: 0, url: nil, path: savedContent(filename: "onboardingBackground.mov") , text: "Come back tomorrow for fresh Fud Fid!", gif: nil, sound: nil, image: nil, originalFilename: "endScreen")
+        self.feeds.append(endSecreen)
         
+        
+        ///FIXME: Liked
 //        if let disliked = UserDefaults.standard.array(forKey: "disliked") as? [String]
 //        {
 //            self.feeds = self.feeds.filter{ disliked.contains($0.originalFilename) == false }
-//            
-//            
+//
+//
 //            //            if liked.contains(((feed.gif ?? feed.text ?? feed.image ?? "")!) )
 //            //            {
 //            //                feed.liked = true
 //            //            }
 //        }
-//        
         
-//        for i in 0 ... self.feeds.count-1{
-//            self.feeds[i].id = i
-//        }
         
-        if self.gifs.count > 0 {
-            for i in 0 ... self.gifs.count-1{
-                self.gifs[i].id = i
-            }
+        for i in 0 ... self.feeds.count-1{
+            self.feeds[i].id = i
         }
 //
-//        guard let initialFeed = self.feeds.first else {
-//            view.showMessage("No Availavle Video Feeds")
-//            return
+//        if self.gifs.count > 0 {
+//            for i in 0 ... self.gifs.count-1{
+//                self.gifs[i].id = i
+//            }
 //        }
-        
-        guard let initialFeed = self.gifs.first else {
-            view.showMessage("No Available Gif Feeds")
+//
+        guard let initialFeed = self.feeds.first else {
+            view.showMessage("No Availavle Video Feeds")
             return
         }
+        
+//        guard let initialFeed = self.gifs.first else {
+//            view.showMessage("No Available Gif Feeds")
+//            return
+//        }
         view.presentInitialFeed(initialFeed)
     }
     
@@ -213,8 +220,8 @@ extension FeedPagePresenter: FeedFetchDelegate {
                     self.feeds.append(vid)
                 case "gif":
                     let content = gifArray.randomElement()!
-                    let vid = Feed(id: feeds.count, url: nil, path: nil, text: nil, gif: content, sound: soundsArray.randomElement(), image: nil, originalFilename: content)
-                    self.feeds.append(vid)
+                    //let vid = Feed(id: feeds.count, url: nil, path: nil, text: nil, gif: URL(content), sound: soundsArray.randomElement(), image: nil, originalFilename: content)
+                  //  self.feeds.append(vid)
                 case "image":
                     let content = imageArray.randomElement()
                     let vid = Feed(id: feeds.count, url: nil, path: nil, text: nil, gif: nil, sound: nil, image: content, originalFilename: content!)
@@ -227,35 +234,53 @@ extension FeedPagePresenter: FeedFetchDelegate {
         }
     }
     
-    func loadGifsFromCloud()-> [Gif]{
+    func loadGifsFromCloud(filename: String)-> Void{
         let pred = NSPredicate(value: true)
-        let query = CKQuery(recordType: "Establishment", predicate:  pred)
+        let query = CKQuery(recordType: "Gifs", predicate:  pred)
+        
+    //    let fileManager = FileManager.default
+    //    let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+     //   let localSavePath = documentsURL.appendingPathComponent("testing.gif")
         
         let operation = CKQueryOperation(query: query)
-        
         var loadedFeed = [Feed]()
-        var whatIGot = [Gif]()
+        
+        /// check what files I already have saved
+       
         
         operation.recordFetchedBlock = {
             record in
             let gif = Gif()
+
             
-            gif.id = 0
+            gif.id = 1
             gif.recordID = record.recordID
             gif.category = record["category"]
             
             if let asset = record["gif"] as? CKAsset{
                 gif.gif = asset.fileURL
+                
+                if let imageData = NSData(contentsOf: gif.gif)
+                {
+                    
+                    /// save in the next highest indexed position compared to what is there
+                    let filename = self.getDocumentsDirectory().appendingPathComponent(filename)
+                    try? imageData.write(to: filename)
+                    
+                    /// if I have three saved now delete one 
+                    
+                    let image = UIImage(data: imageData as Data)
+                    print(image)
+                }
             }
             
-            whatIGot.append(gif)
-           // let feed = Feed(id: 0, url: gif.gif, path: gif.gif, text: nil, gif: nil, sound: nil, image: nil, originalFilename: nil)
+            self.whatIGot.append(gif)
         }
         
         operation.queryCompletionBlock = { [unowned self] (cursor, error) in
             DispatchQueue.main.async {
                 if error == nil {
-                    print(whatIGot.first?.category)
+                    print(self.whatIGot.first?.category)
                 } else {
                     //                    let ac = UIAlertController(title: "Fetch failed", message: "There was a problem fetching the list of gifs; please try again: \(error!.localizedDescription)", preferredStyle: .alert)
                     //                    ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -264,14 +289,10 @@ extension FeedPagePresenter: FeedFetchDelegate {
                     print("There was a problem fetching the list of gifs; please try again: \(error!.localizedDescription)")
                 }
             }
-            
         }
-        
         CKContainer.default().publicCloudDatabase.add(operation)
-        
-        
-        
-        return whatIGot
+
+      //  return loadedFeed
     }
     /// update this func
     func updateFeed( index : Int, increasing : Bool) -> [Feed]{
@@ -282,6 +303,8 @@ extension FeedPagePresenter: FeedFetchDelegate {
         
         return feeds
     }
+    
+    
     
     func freshMeat(folderReference: String, suffix: [String]) -> [Feed]{
         
@@ -329,7 +352,6 @@ extension FeedPagePresenter: FeedFetchDelegate {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let imageDownloadURLReference = storageReference.child(folderReference)
-        
         switch folderReference{
             case "centralGifs":  saveSuffix =  ".gif"
             case "centralImages": saveSuffix =  ".jpg"
@@ -544,7 +566,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
         switch folderReference{
             case "centralGifs":
                 let soundsArray = try? fileManager.contentsOfDirectory(atPath: String(docsPathSound!)).filter({$0.hasSuffix(".mp3")})
-                return Feed(id: 0, url: nil, path: nil, text: nil, gif: prefix + ".gif", sound: soundsArray?.randomElement(), image: nil, originalFilename: prefix + ".gif")
+                return Feed(id: 0, url: nil, path: nil, text: nil, gif: URL(string: prefix + ".gif"), sound: soundsArray?.randomElement(), image: nil, originalFilename: prefix + ".gif")
             case "centralImages": return Feed(id: 0, url: nil, path: nil, text: nil, gif: nil, sound: nil, image: prefix + ".jpg", originalFilename: prefix + ".jpeg")
             case "centralVideos": return Feed(id: 0, url: nil, path: savedContent(filename: prefix + ".MP4"), text: nil, gif: nil, sound: nil, image: nil, originalFilename: prefix + ".MP4")
             default: return Feed(id: 0, url: nil, path: nil, text: nil, gif: nil, sound: nil, image: nil, originalFilename: "This is an empty post no one should ever see")
@@ -567,7 +589,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
                     let gifArray = try fileManager.contentsOfDirectory(atPath: docsPath!).filter({$0.hasSuffix(".gif")})
                     let soundsArray = try fileManager.contentsOfDirectory(atPath: docsPath!).filter({$0.hasSuffix(".mp3")})
                     let content = gifArray.randomElement()!
-                    return Feed(id: 0, url: nil, path: nil, text: nil, gif: content, sound: soundsArray.randomElement(), image: nil, originalFilename: content)
+                    return Feed(id: 0, url: nil, path: nil, text: nil, gif: URL(fileURLWithPath: content), sound: soundsArray.randomElement(), image: nil, originalFilename: content)
                 case ".jpg", ".png":
                     let imageArray = try fileManager.contentsOfDirectory(atPath: docsPath!).filter({$0.hasSuffix(".jpg") || $0.hasSuffix(".png")})
                     let content = imageArray.randomElement()
@@ -636,7 +658,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
                         list.append(vid)
                     case "gif":
                         let content = gifArray.randomElement()!
-                        let vid = Feed(id: i, url: nil, path: nil, text: nil, gif: content, sound: soundsArray.randomElement(), image: nil, originalFilename: content)
+                        let vid = Feed(id: i, url: nil, path: nil, text: nil, gif: URL(fileURLWithPath: content), sound: soundsArray.randomElement(), image: nil, originalFilename: content)
                         list.append(vid)
                     case "image":
                         let content = imageArray.randomElement()!
@@ -654,6 +676,96 @@ extension FeedPagePresenter: FeedFetchDelegate {
         
         return list
     }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print(paths[0])
+        return paths[0]
+    }
+    
+    
+    
+    func saveFromCloudToLocal(folderReference: String, list: inout [Feed]) -> [Feed]{
+        
+        var listOfFiles = [URL]()
+        
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        //let imageDownloadURLReference = storageReference.child(folderReference)
+        let saveSuffix =  ".gif"
+        let suffix =  ".gif"
+        
+        do {
+            listOfFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            // process files
+        } catch {
+            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
+        }
+        
+        let listOfFilenames = listOfFiles.map{$0.absoluteString}.filter{suffix.contains(String($0.suffix(4)))}.map{$0.dropLast(4)}
+
+            var i = 0
+            
+            let pred = NSPredicate(value: true)
+            let query = CKQuery(recordType: "Gifs", predicate:  pred)
+            
+            let operation = CKQueryOperation(query: query)
+          //  var loadedFeed = [Feed]()
+            
+            operation.recordFetchedBlock = {
+                record in
+                let gif = Gif()
+                
+                
+                gif.id = i
+                gif.recordID = record.recordID
+                gif.category = record["category"]
+                
+                if let asset = record["gif"] as? CKAsset{
+                    gif.gif = asset.fileURL
+                    
+                    if let imageData = NSData(contentsOf: gif.gif)
+                    {
+                        
+                        /// save in the next highest indexed position compared to what is there
+                        //let filename = self.getDocumentsDirectory().appendingPathComponent("spongebob.gif")
+                        let filename = documentsURL.appendingPathComponent("0" + String(i) + saveSuffix)
+                        try? imageData.write(to: filename)
+                        
+                        
+                        /// if I have three saved now delete one
+                        i = i+1
+                        let image = UIImage(data: imageData as Data)
+                        print(image)
+                    }
+                }
+                
+                self.whatIGot.append(gif)
+            }
+            
+            operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+                DispatchQueue.main.async {
+                    if error == nil {
+                        print(self.whatIGot.first?.category)
+                    } else {
+                        //                    let ac = UIAlertController(title: "Fetch failed", message: "There was a problem fetching the list of gifs; please try again: \(error!.localizedDescription)", preferredStyle: .alert)
+                        //                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                        //                    self.present(ac, animated: true)
+                        
+                        print("There was a problem fetching the list of gifs; please try again: \(error!.localizedDescription)")
+                    }
+                }
+            }
+            CKContainer.default().publicCloudDatabase.add(operation)
+        
+//        for j in 0 .. i {
+//            list.append(self.AddToFeed(folderReference: "centralGifs", prefix: String(j)))
+//        }
+ 
+        return list
+    }
+    
+    
 }
 
 

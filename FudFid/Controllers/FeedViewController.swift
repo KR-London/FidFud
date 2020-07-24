@@ -12,6 +12,7 @@ import AVKit
 import AVFoundation
 import FirebaseAuth
 import FirebaseFirestore
+import JellyGif
 
 class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewDataSource, UIPickerViewDelegate {
  
@@ -22,7 +23,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
     var Label = UILabel()
     let synthesizer = AVSpeechSynthesizer()
     var utterance = AVSpeechUtterance()
-    var gifView = UIImageView()
+    var gifView = JellyGifImageView()
     var soundtrack = AVAudioPlayer()
     var didPause = Bool()
     
@@ -123,7 +124,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
             }
             else{
                 gifView.isHidden  = false
-                gifView = UIImageView(frame: self.view.frame)
+                gifView = JellyGifImageView(frame: self.view.frame)
                 gifView.contentMode = .scaleAspectFit
                 
                if let imgData = try? Data.init(contentsOf: documentsURL.appendingPathComponent(String(feed.image ?? "")))
@@ -140,10 +141,11 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         }
         else{
             gifView.isHidden  = false
-            gifView = UIImageView(frame: self.view.frame)
+            gifView = JellyGifImageView(frame: self.view.frame)
             gifView.contentMode = .scaleAspectFit
 
-            gifView.image = UIImage.gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")).absoluteString) ?? UIImage.gifImageWithName(name: feed.gif!) ?? UIImage.gifImageWithName(name: String((feed.gif?.dropLast(4))!) )
+           // gifView.image = UIImage.gifImageWithURL(gifUrl: documentsURL.appendingPathComponent(String(feed.gif ?? "")).absoluteString) ?? UIImage.gifImageWithName(name: feed.gif!) ?? UIImage.gifImageWithName(name: String((feed.gif?.dropLast(4))!) )
+            gifView.startGif(with: .localPath(feed.gif!))
             self.contentOverlayView?.addSubview(gifView)
             view.bringSubviewToFront(gifView)
             
@@ -196,7 +198,9 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         
         if let liked = defaults.array(forKey: "Liked") as? [String]
         {
-            if liked.contains(((feed.gif ?? feed.text ?? feed.image ?? "")!) )
+            
+            //FIXME: feed.gif ??  to persisist likes
+            if liked.contains(((feed.text ?? feed.image ?? "")!) )
             {
                 feed.liked = true
             }
@@ -325,8 +329,8 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
                 sender.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
                 sender.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
                 feed.liked = true
-                
-                let ref = feed.gif ?? feed.image ?? feed.text ??  ""
+                ///FIXME: Likes not persisiting(feed.gif as String)
+                let ref =  feed.image ?? feed.text ??  ""
                 
                 if let _ = liked {
                     liked = liked! + [ref]
@@ -344,7 +348,8 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
                 sender.tintColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
                 feed.liked = false
                 
-                let ref = feed.gif ?? feed.image ?? feed.text ??  ""
+                //FIXME: feed.gif ?? to persisist likes 
+                let ref = feed.image ?? feed.text ??  ""
                 
                 if let _ = liked {
                     liked = liked!.filter{ $0 != ref}
