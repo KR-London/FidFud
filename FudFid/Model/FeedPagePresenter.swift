@@ -122,8 +122,8 @@ extension FeedPagePresenter: FeedFetchDelegate {
         //self.feeds.append(contentsOf: initialiseHardCodedFeed())
        // self.feeds.append(contentsOf: loadGifsFromCloud())
         
-        var list = [Feed]()
-        saveFromCloudToLocal(folderReference: "centralGifs", list: &list)
+        var list = loadFeeed()
+
         self.feeds.append(contentsOf: list)
         self.feeds.shuffle()
         
@@ -234,9 +234,10 @@ extension FeedPagePresenter: FeedFetchDelegate {
         }
     }
     
-    func loadGifsFromCloud(filename: String)-> Void{
+    func loadGifsFromCloud(filenames: [String])-> Void{
         let pred = NSPredicate(value: true)
         let query = CKQuery(recordType: "Gifs", predicate:  pred)
+        let userDefaults = UserDefaults.standard
         
     //    let fileManager = FileManager.default
     //    let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -246,33 +247,50 @@ extension FeedPagePresenter: FeedFetchDelegate {
         var loadedFeed = [Feed]()
         
         /// check what files I already have saved
-       
+       var i = 0
         
         operation.recordFetchedBlock = {
             record in
             let gif = Gif()
-
             
-            gif.id = 1
-            gif.recordID = record.recordID
-            gif.category = record["category"]
-            
-            if let asset = record["gif"] as? CKAsset{
-                gif.gif = asset.fileURL
+            if i < filenames.count - 1
+            {
+                gif.id = 1
+                gif.recordID = record.recordID
+                gif.category = record["category"]
                 
-                if let imageData = NSData(contentsOf: gif.gif)
-                {
+                if let asset = record["gif"] as? CKAsset{
+                    gif.gif = asset.fileURL
                     
-                    /// save in the next highest indexed position compared to what is there
-                    let filename = self.getDocumentsDirectory().appendingPathComponent(filename)
-                    try? imageData.write(to: filename)
-                    
-                    /// if I have three saved now delete one 
-                    
-                    let image = UIImage(data: imageData as Data)
-                    print(image)
+                    if let imageData = NSData(contentsOf: gif.gif)
+                    {
+                        
+                        /// save in the next highest indexed position compared to what is there
+                        let absFilename = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filenames[i])
+                        try? imageData.write(to: absFilename)
+                        
+                        var strings: [String:String] = userDefaults.object(forKey: "alreadyLoaded") as? [String:String] ?? [:]
+                        
+                        
+                        // Add Key-Value Pair to Dictionary
+                        strings[String(record.recordID.recordName)] = filenames[i]
+                        
+                        //   Write/Set Dictionary
+                        userDefaults.set(strings, forKey: "alreadyLoaded")
+                        
+                        /// if I have three saved now delete one
+                        
+                        let image = UIImage(data: imageData as Data)
+                        print(image)
+                    }
                 }
+                i = i+1
             }
+            else
+            {
+                return
+            }
+            //
             
             self.whatIGot.append(gif)
         }
@@ -305,261 +323,435 @@ extension FeedPagePresenter: FeedFetchDelegate {
     }
     
     
-    
-    func freshMeat(folderReference: String, suffix: [String]) -> [Feed]{
-        
-        //TODO:  point to icloud
-        
-        
-        
+//
+//    func freshMeat(folderReference: String, suffix: [String]) -> [Feed]{
+//
+//        //TODO:  point to icloud
+//
+//
+//
+//        var list = [Feed]()
+//        var listOfFiles = [URL]()
+//      let storageReference = Storage.storage().reference()
+//
+//        // Create a reference to the file you want to download
+//        let starsRef = storageReference.child("/masterFluffyList")
+//        print(starsRef)
+//        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+//        starsRef.getData(maxSize: 1 * 1024 * 1024 * 1024) { data, error in
+//            if let error = error {
+//                print("Getting Master Fluffy List data FAILED \(error.localizedDescription)")
+//            } else {
+//                // Data for "images/island.jpg" is returned
+//                let image = UIImage(data: data!)
+//            }
+//        }
+//
+//        var listOfRemoteFiles = [String: [String]]()
+//        let stringy = try? String(contentsOfFile: Bundle.main.path(forResource: "masterFluffyList", ofType: ".txt")!)
+//
+//        let elements = stringy?.components(separatedBy: "$") ?? ["200-5.gif","92182160-633E-49F5-991E-6F754070A6E7.jpg" ,"IMG_1316.MOV"]
+//        for i in 0 ... elements.count - 1 {
+//
+//            var dictKey = ""
+//            switch i{
+//                case 0: dictKey = "centralGifs"
+//                case 1: dictKey = "centralImages"
+//                case 2: dictKey = "centralVideos"
+//                default: dictKey = "central"
+//            }
+//
+//            listOfRemoteFiles[dictKey] = elements[i].components(separatedBy: ",")
+//        }
+//
+//        let listOfFilesWithThisFormat = listOfRemoteFiles[folderReference]
+//        var saveSuffix = String()
+//
+//        let fileManager = FileManager.default
+//        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let imageDownloadURLReference = storageReference.child(folderReference)
+//        switch folderReference{
+//            case "centralGifs":  saveSuffix =  ".gif"
+//            case "centralImages": saveSuffix =  ".jpg"
+//            case "centralVideos": saveSuffix =  ".MP4"
+//            default: saveSuffix = "FAIL"
+//        }
+//
+//
+//        do {
+//            listOfFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+//            // process files
+//        } catch {
+//            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
+//        }
+//
+//        let listOfFilenames = listOfFiles.map{$0.absoluteString}.filter{suffix.contains(String($0.suffix(4)))}.map{$0.dropLast(4)}
+//
+//        for i in 1 ... 10{
+//            let iStoredFiles = listOfFilenames.filter{String($0.last!) == String(i)}.map{$0.dropLast()}.map{$0.last!}
+//            print(i)
+//            print("iStoredFiles")
+//            print(iStoredFiles)
+//            print(suffix)
+//
+//            switch iStoredFiles{
+//                case [] :
+//
+//                    list.append( loadFeedItemFromBundle(suffix: suffix.first ?? "") )
+//                    let localSavePath = documentsURL.appendingPathComponent("0" + String(i) + saveSuffix)
+//
+//                    var originalFilename = listOfFilesWithThisFormat?.randomElement()!
+//
+//                    if originalFilename?.suffix(4) == ".jpg"{
+//                        originalFilename = String((originalFilename?.dropLast(4))!)
+//                        originalFilename = originalFilename! + ".jpeg"
+//                    }
+//
+//
+//                    let storageReference = imageDownloadURLReference.child( originalFilename! )
+//
+//                    DispatchQueue.main.async {
+//                        // Download to the local filesystem
+//                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
+//                            if let error = error {
+//                                // Uh-oh, an error occurred!
+//                                print("Bart has left the building \(String(error.localizedDescription))")
+//
+//
+//
+//
+//                            } else {
+//                                print("click to see Bart" + String(folderReference))
+//                                //  list.append(self.AddToFeed(folderReference: folderReference, prefix:  "0" + String(i)))
+//                            }
+//                        }
+//                    }
+//
+//
+//                    let localSavePath2 = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
+//
+//                    let storageReference2 = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! )
+//
+//                    DispatchQueue.main.async {
+//                        // Download to the local filesystem
+//                        let downloadTask = storageReference2.write(toFile: localSavePath2) { url, error in
+//                            if let error = error {
+//                                // Uh-oh, an error occurred!
+//                                print("Lisa has left the building \(String(error.localizedDescription))")
+//                            } else {
+//                                print("click to see Lisa" + String(folderReference))
+//                            }
+//                        }
+//                }
+//
+//                case ["0"]:
+//                    print("1 file found - going to reference it to feed and download another cache")
+//                    let localSavePath = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
+//
+//                    let storageReference = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! )
+//                    DispatchQueue.main.async {
+//                        // Download to the local filesystem
+//                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
+//                            if let error = error {
+//                                // Uh-oh, an error occurred!
+//                                print("Lisa has left the building \(String(error.localizedDescription))")
+//                            } else {
+//                                print("click to see Lisa" + String(folderReference))
+//                            }
+//                        }
+//                    }
+//
+//                    list.append(AddToFeed(folderReference: folderReference, prefix:  "0" + String(i)))
+//
+//
+//                case  ["0", "1"], ["1", "0"]:
+//                    print("2 file found - going to reference it to feed and download another cache")
+//                    let localSavePath = documentsURL.appendingPathComponent("2" + String(i) + saveSuffix)
+//
+//                    var location = (listOfFilesWithThisFormat?.randomElement())!
+//
+//                    if location.split(separator: ".").last == "jpg"{
+//                        location = location.dropLast(3) + "jpeg"
+//                    }
+//
+//                    let storageReference = imageDownloadURLReference.child(location)
+//
+//                    DispatchQueue.main.async {
+//                        // Download to the local filesystem
+//                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
+//                            if let error = error {
+//                                // Uh-oh, an error occurred!
+//                                print("Lisa has left the building \(String(error.localizedDescription))")
+//                            } else {
+//                                print("click to see Lisa" + String(folderReference))
+//                            }
+//                        }
+//                    }
+//                    list.append(AddToFeed(folderReference: folderReference, prefix:  "1" + String(i)))
+//
+//                    /// delete 0
+//                    do{
+//                        try fileManager.removeItem(at: documentsURL.appendingPathComponent("0" + String(i) + saveSuffix))
+//                    }
+//                    catch{
+//                        print(error.localizedDescription)
+//                }
+//
+//                case  ["2", "1"], ["1", "2"]:
+//                    print("2 file found - going to reference it to feed and download another cache")
+//                    let localSavePath = documentsURL.appendingPathComponent("0" + String(i) + saveSuffix)
+//
+//                    var location = (listOfFilesWithThisFormat?.randomElement())!
+//
+//                    if location.split(separator: ".").last == "jpg"{
+//                        location = location.dropLast(3) + "jpeg"
+//                    }
+//
+//                    let storageReference = imageDownloadURLReference.child(location)
+//
+//                    DispatchQueue.main.async {
+//                        // Download to the local filesystem
+//                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
+//                            if let error = error {
+//                                // Uh-oh, an error occurred!
+//                                print("Lisa has left the building \(String(error.localizedDescription))")
+//                            } else {
+//                                print("click to see Lisa" + String(folderReference))
+//                            }
+//                        }
+//                    }
+//                    list.append(AddToFeed(folderReference: folderReference, prefix:  "2" + String(i)))
+//
+//                    /// delete 0
+//                    do{
+//                        try fileManager.removeItem(at: documentsURL.appendingPathComponent("1" + String(i) + saveSuffix))
+//                    }
+//                    catch{
+//                        print(error.localizedDescription)
+//                }
+//
+//                case  ["0", "2"], ["2", "0"]:
+//                    print("2 file found - going to reference it to feed and download another cache")
+//                    let localSavePath = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
+//
+//                    var location = (listOfFilesWithThisFormat?.randomElement())!
+//
+//                    if location.split(separator: ".").last == "jpg"{
+//                        location = location.dropLast(3) + "jpeg"
+//                    }
+//
+//                    let storageReference = imageDownloadURLReference.child(location)
+//
+//                    DispatchQueue.main.async {
+//                        // Download to the local filesystem
+//                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
+//                            if let error = error {
+//                                // Uh-oh, an error occurred!
+//                                print("Lisa has left the building \(String(error.localizedDescription))")
+//                            } else {
+//                                print("click to see Lisa" + String(folderReference))
+//                            }
+//                        }
+//                    }
+//                    list.append(AddToFeed(folderReference: folderReference, prefix:  "0" + String(i)))
+//
+//                    /// delete 0
+//                    do{
+//                        try fileManager.removeItem(at: documentsURL.appendingPathComponent("2" + String(i) + saveSuffix))
+//                    }
+//                    catch{
+//                        print(error.localizedDescription)
+//                }
+//
+//                case ["0", "1", "2"], ["1", "0", "2"] , ["1", "2", "0"] , ["0", "2", "1"] , ["2", "1", "0"] , ["2", "0", "1"]:
+//                    list.append(AddToFeed(folderReference: folderReference, prefix:  "1" + String(i)))
+//
+//                    /// delete 0
+//                    do{
+//                        try fileManager.removeItem(at: documentsURL.appendingPathComponent("2" + String(i) + saveSuffix))
+//                    }
+//                    catch{
+//                        print(error.localizedDescription)
+//                }
+//
+//                default: print("Confused.com")
+//            }
+//        }
+//        return list
+//    }
+//
+   func loadFeeed() -> [Feed]{
         var list = [Feed]()
         var listOfFiles = [URL]()
-        let storageReference = Storage.storage().reference()
+        let userDefaults = UserDefaults.standard
         
-        // Create a reference to the file you want to download
-        let starsRef = storageReference.child("/masterFluffyList")
-        print(starsRef)
-        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-        starsRef.getData(maxSize: 1 * 1024 * 1024 * 1024) { data, error in
-            if let error = error {
-                print("Getting Master Fluffy List data FAILED \(error.localizedDescription)")
-            } else {
-                // Data for "images/island.jpg" is returned
-                let image = UIImage(data: data!)
-            }
-        }
-        
-        var listOfRemoteFiles = [String: [String]]()
-        let stringy = try? String(contentsOfFile: Bundle.main.path(forResource: "masterFluffyList", ofType: ".txt")!)
-        
-        let elements = stringy?.components(separatedBy: "$") ?? ["200-5.gif","92182160-633E-49F5-991E-6F754070A6E7.jpg" ,"IMG_1316.MOV"]
-        for i in 0 ... elements.count - 1 {
-            
-            var dictKey = ""
-            switch i{
-                case 0: dictKey = "centralGifs"
-                case 1: dictKey = "centralImages"
-                case 2: dictKey = "centralVideos"
-                default: dictKey = "central"
-            }
-            
-            listOfRemoteFiles[dictKey] = elements[i].components(separatedBy: ",")
-        }
-        
-        let listOfFilesWithThisFormat = listOfRemoteFiles[folderReference]
-        var saveSuffix = String()
+        /// this is a dictionary stored in user defaults that has a list of the files on file, and the id they came with
+    let alreadyLoaded = userDefaults.object(forKey: "alreadyLoaded") as? [ String : String]
         
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let imageDownloadURLReference = storageReference.child(folderReference)
-        switch folderReference{
-            case "centralGifs":  saveSuffix =  ".gif"
-            case "centralImages": saveSuffix =  ".jpg"
-            case "centralVideos": saveSuffix =  ".MP4"
-            default: saveSuffix = "FAIL"
-        }
-        
-        
-        do {
-            listOfFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
-            // process files
-        } catch {
-            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
-        }
-        
-        let listOfFilenames = listOfFiles.map{$0.absoluteString}.filter{suffix.contains(String($0.suffix(4)))}.map{$0.dropLast(4)}
-        
-        for i in 1 ... 10{
-            let iStoredFiles = listOfFilenames.filter{String($0.last!) == String(i)}.map{$0.dropLast()}.map{$0.last!}
-            print(i)
-            print("iStoredFiles")
-            print(iStoredFiles)
-            print(suffix)
+print(documentsURL)
+    /// first I want to check the list that I have made
+    var iStoredFiles = alreadyLoaded?.compactMap{ $0.value as String}  ?? ["     "]
+    iStoredFiles = iStoredFiles.compactMap{ String($0.dropLast(4) )}
+    var filenamesToLoad = [String]()
+
+
+    
+    //.filter{String($0.last!) == String(i)}.map{$0.dropLast()}.map{$0.last!}
+    ///listOfFilenames.filter{String($0.last!) == String(i)}.map{$0.dropLast()}.map{$0.last!
+    print("iStoredFiles")
+    print(iStoredFiles)
+        for i in 0 ... 9{
             
-            switch iStoredFiles{
-                case [] :
-                    
-                    list.append( loadFeedItemFromBundle(suffix: suffix.first ?? "") )
-                    let localSavePath = documentsURL.appendingPathComponent("0" + String(i) + saveSuffix)
-                    
-                    var originalFilename = listOfFilesWithThisFormat?.randomElement()!
-                    
-                    if originalFilename?.suffix(4) == ".jpg"{
-                        originalFilename = String((originalFilename?.dropLast(4))!)
-                        originalFilename = originalFilename! + ".jpeg"
-                    }
-                    
-                    
-                    let storageReference = imageDownloadURLReference.child( originalFilename! )
-                    
-                    DispatchQueue.main.async {
-                        // Download to the local filesystem
-                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
-                            if let error = error {
-                                // Uh-oh, an error occurred!
-                                print("Bart has left the building \(String(error.localizedDescription))")
-                                
-                                
-                                
-                                
-                            } else {
-                                print("click to see Bart" + String(folderReference))
-                                //  list.append(self.AddToFeed(folderReference: folderReference, prefix:  "0" + String(i)))
-                            }
+            /// filter iStored files for that one, and then drop the last diging
+            let iFiles = iStoredFiles.filter({ String($0.last!) == String(i) }).compactMap{ $0.dropLast()}
+
+               
+            switch (iFiles.compactMap{ String($0.last!) })
+                {
+                    // if I find one file, i want to download the next one
+                    case ["0"]:
+                        let filename = "1" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("0" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+                        
+                    case ["1"]:
+                        let filename = "2" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("1" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+
+                    case ["2"]:
+                        let filename = "0" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("2" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+                        
+                    // if I find two files, i want to download the next one & delete one
+                    case ["0", "1"], ["1", "0"] :
+                        let filename = "2" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                        
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("1" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+                        
+                        do{
+                            try fileManager.removeItem(at: documentsURL.appendingPathComponent("0" + String(i) + ".gif"))
+                            print(userDefaults)
+                            var dict = userDefaults.object(forKey: "alreadyLoaded") as? [ String: String]
+                            dict?.removeValue(forKey: "0" + String(i) + ".gif")
+                            userDefaults.set(dict, forKey: "alreadyLoaded")
+                            print("deleting  file name 0" + String(i))
                         }
-                    }
-                    
-                    
-                    let localSavePath2 = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
-                    
-                    let storageReference2 = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! )
-                    
-                    DispatchQueue.main.async {
-                        // Download to the local filesystem
-                        let downloadTask = storageReference2.write(toFile: localSavePath2) { url, error in
-                            if let error = error {
-                                // Uh-oh, an error occurred!
-                                print("Lisa has left the building \(String(error.localizedDescription))")
-                            } else {
-                                print("click to see Lisa" + String(folderReference))
-                            }
+                        catch{
+                            print(error.localizedDescription)
                         }
+                
+                    case ["2", "1"], ["1", "2"] :
+                        let filename = "0" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                        
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("2" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+                        
+                        do{
+                            try fileManager.removeItem(at: documentsURL.appendingPathComponent("1" + String(i) + ".gif"))
+                            
+                            print("deleting  file name 1" + String(i))
+                        }
+                        catch{
+                            print(error.localizedDescription)
                 }
                 
-                case ["0"]:
-                    print("1 file found - going to reference it to feed and download another cache")
-                    let localSavePath = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
-                    
-                    let storageReference = imageDownloadURLReference.child((listOfFilesWithThisFormat?.randomElement())! )
-                    DispatchQueue.main.async {
-                        // Download to the local filesystem
-                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
-                            if let error = error {
-                                // Uh-oh, an error occurred!
-                                print("Lisa has left the building \(String(error.localizedDescription))")
-                            } else {
-                                print("click to see Lisa" + String(folderReference))
-                            }
+                    case ["0", "2"], ["2", "0"] :
+                        let filename = "1" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                        
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("0" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+
+                        do{
+                            try fileManager.removeItem(at: documentsURL.appendingPathComponent("2" + String(i) + ".gif"))
+                            print("deleting  file name 2" + String(i))
                         }
-                    }
-                    
-                    list.append(AddToFeed(folderReference: folderReference, prefix:  "0" + String(i)))
-                
-                
-                case  ["0", "1"], ["1", "0"]:
-                    print("2 file found - going to reference it to feed and download another cache")
-                    let localSavePath = documentsURL.appendingPathComponent("2" + String(i) + saveSuffix)
-                    
-                    var location = (listOfFilesWithThisFormat?.randomElement())!
-                    
-                    if location.split(separator: ".").last == "jpg"{
-                        location = location.dropLast(3) + "jpeg"
-                    }
-                    
-                    let storageReference = imageDownloadURLReference.child(location)
-                    
-                    DispatchQueue.main.async {
-                        // Download to the local filesystem
-                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
-                            if let error = error {
-                                // Uh-oh, an error occurred!
-                                print("Lisa has left the building \(String(error.localizedDescription))")
-                            } else {
-                                print("click to see Lisa" + String(folderReference))
-                            }
+                        catch{
+                            print(error.localizedDescription)
+                }
+                    case ["0", "1"], ["1", "0"] :
+                        let filename = "2" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                        
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("1" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+
+                        do{
+                            try fileManager.removeItem(at: documentsURL.appendingPathComponent("0" + String(i) + ".gif"))
+                            print("deleting  file name 0" + String(i))
                         }
-                    }
-                    list.append(AddToFeed(folderReference: folderReference, prefix:  "1" + String(i)))
-                    
-                    /// delete 0
-                    do{
-                        try fileManager.removeItem(at: documentsURL.appendingPathComponent("0" + String(i) + saveSuffix))
-                    }
-                    catch{
-                        print(error.localizedDescription)
+                        catch{
+                            print(error.localizedDescription)
+                }
+                    case ["2", "1"], ["1", "2"] :
+                        let filename = "0" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                        
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("2" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+
+                        do{
+                            try fileManager.removeItem(at: documentsURL.appendingPathComponent("1" + String(i) + ".gif"))
+                            print("deleting  file name 1" + String(i))
+                        }
+                        catch{
+                            print(error.localizedDescription)
+                }
+                    case ["0", "2"], ["2", "0"] :
+                        let filename = "1" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                        
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("0" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+
+                        do{
+                            try fileManager.removeItem(at: documentsURL.appendingPathComponent("2" + String(i) + ".gif"))
+                            print("deleting  file name 2" + String(i))
+                        }
+                        catch{
+                            print(error.localizedDescription)
+                }
+                    case  [] :
+                        let filename = "0" + String(i) + ".gif"
+                        print("loading" + filename)
+                        filenamesToLoad.append(filename)
+                        
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("0" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+                        
+                        print("No files found. " )
+                      //  print("loading file name 1" + String(i))
+                    case ["0", "1", "2"], ["0", "2", "1"], [ "1", "2","0"], [ "2", "1","0"], [ "2", "0","1"] , [ "1", "0","2"]  :
+                        
+                        list.append(Feed(id: i+1, url: nil, path: nil, text: nil, gif: documentsURL.appendingPathComponent("1" + String(i) + ".gif"), sound: nil, image: nil, originalFilename: " "))
+                        
+                        do{
+                            try fileManager.removeItem(at: documentsURL.appendingPathComponent("0" + String(i) + ".gif"))
+                            print("deleting  file name 0" + String(i))
+                        }
+                        catch{
+                            print(error.localizedDescription)
                 }
                 
-                case  ["2", "1"], ["1", "2"]:
-                    print("2 file found - going to reference it to feed and download another cache")
-                    let localSavePath = documentsURL.appendingPathComponent("0" + String(i) + saveSuffix)
-                    
-                    var location = (listOfFilesWithThisFormat?.randomElement())!
-                    
-                    if location.split(separator: ".").last == "jpg"{
-                        location = location.dropLast(3) + "jpeg"
-                    }
-                    
-                    let storageReference = imageDownloadURLReference.child(location)
-                    
-                    DispatchQueue.main.async {
-                        // Download to the local filesystem
-                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
-                            if let error = error {
-                                // Uh-oh, an error occurred!
-                                print("Lisa has left the building \(String(error.localizedDescription))")
-                            } else {
-                                print("click to see Lisa" + String(folderReference))
-                            }
-                        }
-                    }
-                    list.append(AddToFeed(folderReference: folderReference, prefix:  "2" + String(i)))
-                    
-                    /// delete 0
-                    do{
-                        try fileManager.removeItem(at: documentsURL.appendingPathComponent("1" + String(i) + saveSuffix))
-                    }
-                    catch{
-                        print(error.localizedDescription)
-                }
-                
-                case  ["0", "2"], ["2", "0"]:
-                    print("2 file found - going to reference it to feed and download another cache")
-                    let localSavePath = documentsURL.appendingPathComponent("1" + String(i) + saveSuffix)
-                    
-                    var location = (listOfFilesWithThisFormat?.randomElement())!
-                    
-                    if location.split(separator: ".").last == "jpg"{
-                        location = location.dropLast(3) + "jpeg"
-                    }
-                    
-                    let storageReference = imageDownloadURLReference.child(location)
-                    
-                    DispatchQueue.main.async {
-                        // Download to the local filesystem
-                        let downloadTask = storageReference.write(toFile: localSavePath) { url, error in
-                            if let error = error {
-                                // Uh-oh, an error occurred!
-                                print("Lisa has left the building \(String(error.localizedDescription))")
-                            } else {
-                                print("click to see Lisa" + String(folderReference))
-                            }
-                        }
-                    }
-                    list.append(AddToFeed(folderReference: folderReference, prefix:  "0" + String(i)))
-                    
-                    /// delete 0
-                    do{
-                        try fileManager.removeItem(at: documentsURL.appendingPathComponent("2" + String(i) + saveSuffix))
-                    }
-                    catch{
-                        print(error.localizedDescription)
-                }
-                
-                case ["0", "1", "2"], ["1", "0", "2"] , ["1", "2", "0"] , ["0", "2", "1"] , ["2", "1", "0"] , ["2", "0", "1"]:
-                    list.append(AddToFeed(folderReference: folderReference, prefix:  "1" + String(i)))
-                    
-                    /// delete 0
-                    do{
-                        try fileManager.removeItem(at: documentsURL.appendingPathComponent("2" + String(i) + saveSuffix))
-                    }
-                    catch{
-                        print(error.localizedDescription)
-                }
-                
-                default: print("Confused.com")
+                    default:
+                        print("Pattern not matched")
             }
-        }
-        return list
+        
+    }
+     loadGifsFromCloud(filenames: filenamesToLoad)
+            return list
     }
     
     func AddToFeed( folderReference: String, prefix: String ) -> Feed{
