@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AJA-ws-h99">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Onboarding1 View Controller-->
+        <scene sceneID="Eit-No-Nxd">
+            <objects>
+                <viewController storyboardIdentifier="p1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AJA-ws-h99" customClass="Onboarding1ViewController" customModule="FudFid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gfh-w3-LsY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="1hx-gf-Ci0"/>
+                    </view>
+                    <connections>
+                        <segue destination="fWC-8M-HHf" kind="show" identifier="o1-o2" id="jze-H5-19X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Hr-hs-YaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="78.260869565217391" y="95.758928571428569"/>
+        </scene>
+        <!--Onboarding2 View Controller-->
+        <scene sceneID="A2C-FF-NbD">
+            <objects>
+                <viewController storyboardIdentifier="p2" id="fWC-8M-HHf" customClass="Onboarding2ViewController" customModule="FudFid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mc8-TD-efR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="PBd-wi-V1E"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dRT-2L-Ec7"/>
+                    <connections>
+                        <segue destination="OWd-qa-x8L" kind="presentation" identifier="o2-o3" id="fGa-bE-4py"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wXK-VX-sWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="755" y="88"/>
+        </scene>
+        <!--Onboarding3 View Controller-->
+        <scene sceneID="l44-a5-JKp">
+            <objects>
+                <viewController storyboardIdentifier="p3" id="OWd-qa-x8L" customClass="Onboarding3ViewController" customModule="FudFid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SC4-9F-9KN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="a9L-Rz-9A2"/>
+                    </view>
+                    <connections>
+                        <segue destination="jJc-8D-udt" kind="presentation" identifier="laughing" id="A1L-5V-RBj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="urW-y6-QcV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1464" y="97"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="DB5-uv-2Rz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="jJc-8D-udt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rhk-8C-q07" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2153" y="-200"/>
+        </scene>
+    </scenes>
+</document>

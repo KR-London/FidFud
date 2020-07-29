@@ -35,6 +35,9 @@
 		445D533D248CD45A00895AA3 /* giphy-15.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D5330248CD45900895AA3 /* giphy-15.gif */; };
 		445D533E248CD45A00895AA3 /* giphy-8.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D5331248CD45A00895AA3 /* giphy-8.gif */; };
 		445D533F248CD45A00895AA3 /* giphy-16.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D5332248CD45A00895AA3 /* giphy-16.gif */; };
+		4461DFD424D15CCB008DF4A5 /* Onboarding1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461DFD324D15CCB008DF4A5 /* Onboarding1ViewController.swift */; };
+		4461DFD724D15D4C008DF4A5 /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461DFD624D15D4C008DF4A5 /* Onboarding2ViewController.swift */; };
+		4461DFD924D15E49008DF4A5 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4461DFD824D15E49008DF4A5 /* Onboarding.storyboard */; };
 		446BC2E12484D0320096017B /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446BC2E02484D0320096017B /* CacheManager.swift */; };
 		446E0DAB24838B770038965F /* phrases.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAA24838B760038965F /* phrases.tsv */; };
 		446E0DAE2483AC010038965F /* 07891284.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAD2483A7860038965F /* 07891284.ttf */; };
@@ -233,6 +236,9 @@
 		445D5330248CD45900895AA3 /* giphy-15.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "giphy-15.gif"; sourceTree = "<group>"; };
 		445D5331248CD45A00895AA3 /* giphy-8.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "giphy-8.gif"; sourceTree = "<group>"; };
 		445D5332248CD45A00895AA3 /* giphy-16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "giphy-16.gif"; sourceTree = "<group>"; };
+		4461DFD324D15CCB008DF4A5 /* Onboarding1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ViewController.swift; sourceTree = "<group>"; };
+		4461DFD624D15D4C008DF4A5 /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
+		4461DFD824D15E49008DF4A5 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		446BC2E02484D0320096017B /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		446E0DAA24838B760038965F /* phrases.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phrases.tsv; sourceTree = "<group>"; };
 		446E0DAD2483A7860038965F /* 07891284.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 07891284.ttf; sourceTree = "<group>"; };
@@ -415,6 +421,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4461DFD524D15D2E008DF4A5 /* Onboarding  */ = {
+			isa = PBXGroup;
+			children = (
+				4461DFD324D15CCB008DF4A5 /* Onboarding1ViewController.swift */,
+				4461DFD624D15D4C008DF4A5 /* Onboarding2ViewController.swift */,
+				4461DFD824D15E49008DF4A5 /* Onboarding.storyboard */,
+			);
+			path = "Onboarding ";
+			sourceTree = "<group>";
+		};
 		446E0DAC24838C010038965F /* Soundtracks */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +649,7 @@
 				446FB95A247A825700C556AC /* Gifs */,
 				44EF654B24B830EB00620068 /* Backgrounds */,
 				446E0DAC24838C010038965F /* Soundtracks */,
+				4461DFD524D15D2E008DF4A5 /* Onboarding  */,
 				446FB88C247A824D00C556AC /* images */,
 				449D49F9247A5B830009FF3C /* FudFid */,
 				449D4A15247A5B840009FF3C /* FudFidTests */,
@@ -871,6 +888,7 @@
 				445D5337248CD45A00895AA3 /* giphy-6.gif in Resources */,
 				446FB920247A824E00C556AC /* images (19).jpeg in Resources */,
 				444A71B8247BF3BB0084032B /* little dude6.png in Resources */,
+				4461DFD924D15E49008DF4A5 /* Onboarding.storyboard in Resources */,
 				446FB916247A824E00C556AC /* images (43).jpeg in Resources */,
 				446FB8F2247A824E00C556AC /* images (29).jpeg in Resources */,
 				446FB8E5247A824E00C556AC /* bac4.mp4 in Resources */,
@@ -1129,6 +1147,7 @@
 				443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */,
 				446FB87B247A7E4400C556AC /* StoryboardScene.swift in Sources */,
 				444828FB249C99C200C82478 /* videoEffectsViewController.swift in Sources */,
+				4461DFD724D15D4C008DF4A5 /* Onboarding2ViewController.swift in Sources */,
 				449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */,
 				446FB842247A690E00C556AC /* VideoHelper.swift in Sources */,
 				44EF654E24B8485100620068 /* Gif.swift in Sources */,
@@ -1137,6 +1156,7 @@
 				446FB864247A7BCC00C556AC /* HTTPError.swift in Sources */,
 				444A71B2247BF3560084032B /* celebrationVC.swift in Sources */,
 				446FB876247A7BF200C556AC /* Feed.swift in Sources */,
+				4461DFD424D15CCB008DF4A5 /* Onboarding1ViewController.swift in Sources */,
 				446FB871247A7BD700C556AC /* RoundCornerButton.swift in Sources */,
 				446FB872247A7BD700C556AC /* FeedPagePresenter.swift in Sources */,
 				446FB870247A7BD700C556AC /* ProgressIndicatorHUDMessageView.swift in Sources */,

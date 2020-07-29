@@ -13,12 +13,81 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        let launchedBefore = false
+        //let newTutorial = false
+        
+        if launchedBefore{
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "testNav" )
+//            self.window?.rootViewController = initialViewController
+//
+//            //   let nextViewController = storyboard.instantiateViewController(withIdentifier: "newDataInputViewController" )
+//            //self.window?.rootViewController!.push(nextViewController, animated: true, completion: nil)
+//            self.window?.makeKeyAndVisible()
+            
+            
+            guard let windowScene = (scene as? UIWindowScene) else { return }
+            
+            
+            self.window = UIWindow(windowScene: windowScene)
+            //self.window =  UIWindow(frame: UIScreen.main.bounds)
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let rootVC = storyboard.instantiateViewController(identifier: "testNav") as? UITabBarController else {
+                print("ViewController not found")
+                return
+            }
+            let rootNC = UINavigationController(rootViewController: rootVC)
+            self.window?.rootViewController = rootNC
+            self.window?.makeKeyAndVisible()
+        }
+            //        else
+            //        {
+            //            if newTutorial{
+            //                self.window = UIWindow(frame: UIScreen.main.bounds)
+            //
+            //                let storyboard = UIStoryboard(name: "ExtraTutorial", bundle: nil)
+            //
+            //                let initialViewController = storyboard.instantiateViewController(withIdentifier: "p1" )
+            //                self.window?.rootViewController = initialViewController
+            //            }
+        else{
+            // UserDefaults.standard.set(true, forKey: "launchedBefore")
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//
+//            let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+//
+//            //let initialViewController = storyboard.instantiateViewController(withIdentifier: "o1" )
+//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "p1" )
+//
+//            self.window?.rootViewController = initialViewController
+//            self.window?.makeKeyAndVisible()
+            
+            guard let windowScene = (scene as? UIWindowScene) else { return }
+            
+            
+            self.window = UIWindow(windowScene: windowScene)
+            //self.window =  UIWindow(frame: UIScreen.main.bounds)
+            
+            let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+            guard let rootVC = storyboard.instantiateViewController(identifier: "p1") as? Onboarding1ViewController else {
+                print("ViewController not found")
+                return
+            }
+            let rootNC = UINavigationController(rootViewController: rootVC)
+            self.window?.rootViewController = rootNC
+            self.window?.makeKeyAndVisible()
+        }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
