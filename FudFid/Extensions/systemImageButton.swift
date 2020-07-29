@@ -8,11 +8,13 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class systemImageButton: UIButton {
 
        // var myValue: Int
 
-        required init(value: Int = 0) {
+    @available(iOS 13.0, *)
+    required init(value: Int = 0) {
             // set myValue before super.init is called
           //  self.myValue = value
 

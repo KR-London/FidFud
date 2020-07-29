@@ -16,10 +16,16 @@ class AddViewController: UIViewController {
     
     lazy var recordButton: UIButton = {
         let button = UIButton()
+        
+       if #available(iOS 13.0, *) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 140, weight: .bold, scale: .large)
         let largeBoldVid = UIImage(systemName: "video.circle", withConfiguration: largeConfig)
+          button.setImage(largeBoldVid, for: .normal)
+       } else {
+        // Fallback on earlier versions
+        }
         
-        button.setImage(largeBoldVid, for: .normal)
+      
         button.translatesAutoresizingMaskIntoConstraints = false
         button.contentMode = .scaleToFill
         //button.backgroundImage(for: .normal) = UIImage(systemName: "video.circle")

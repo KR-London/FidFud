@@ -10,15 +10,62 @@ import UIKit
 import CoreData
 import Firebase
 
+@available(iOS 13.0, *)
+@available(iOS 13.0, *)
+@available(iOS 13.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+      var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        
             FirebaseApp.configure()
+        
+//        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+//        /// for testing
+//       // doIPlaceANewDatestamp()
+//        //let launchedBefore = false
+//        let newTutorial = false
+//
+//        if launchedBefore{
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "tabBar" )
+//            self.window?.rootViewController = initialViewController
+//
+//            //   let nextViewController = storyboard.instantiateViewController(withIdentifier: "newDataInputViewController" )
+//            //self.window?.rootViewController!.push(nextViewController, animated: true, completion: nil)
+//            self.window?.makeKeyAndVisible()
+//
+//        }
+//        else
+//        {
+//            if newTutorial{
+//                self.window = UIWindow(frame: UIScreen.main.bounds)
+//                
+//                let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+//                
+//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "p1" )
+//                self.window?.rootViewController = initialViewController
+//            }
+//            else{
+//                // UserDefaults.standard.set(true, forKey: "launchedBefore")
+//                self.window = UIWindow(frame: UIScreen.main.bounds)
+//
+//                let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+//
+//                //let initialViewController = storyboard.instantiateViewController(withIdentifier: "o1" )
+//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "p1" )
+//
+//                self.window?.rootViewController = initialViewController
+//                self.window?.makeKeyAndVisible()
+//            }
+            
+ //       }
 
             return true
     }
@@ -39,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
+    @available(iOS 13.0, *)
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
         /*
          The persistent container for the application. This implementation

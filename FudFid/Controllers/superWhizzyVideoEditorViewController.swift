@@ -31,6 +31,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
     private let editor = VideoEditor()
     
     
+    @available(iOS 13.0, *)
     lazy var addSoundButton: systemImageButton = {
         let button = systemImageButton()
         button.setImage(UIImage(systemName: "tv.music.note"), for: .normal)
@@ -38,15 +39,28 @@ class superWhizzyVideoEditorViewController: UIViewController {
         return button
     }()
     
+    @available(iOS 13.0, *)
     lazy var addMagicButton: systemImageButton = {
-        let button = systemImageButton()
-        button.setImage(UIImage(systemName: "wand.and.stars"), for: .normal)
-        button.addTarget(self, action: #selector(addMagic), for: .touchUpInside)
-        return button
+ //       if #available(iOS 13.0, *) {
+            let button = systemImageButton()
+            button.setImage(UIImage(systemName: "wand.and.stars"), for: .normal)
+            button.addTarget(self, action: #selector(addMagic), for: .touchUpInside)
+            return button
+//        } else {
+//            let button = UIButton()
+//            button.setTitle("Magic", for: .normal)
+//            button.addTarget(self, action: #selector(addMagic), for: .touchUpInside)
+//            return button
+ //       }
+
     }()
     
     lazy var finishedButton: systemImageButton = {
-        let button = systemImageButton()
+ //       if #available(iOS 13.0, *) {
+            let button = systemImageButton()
+//        } else {
+//            // Fallback on earlier versions
+//        }
         button.setImage(UIImage(systemName: "checkmark.seal"), for: .normal)
         //button.alpha = 0.2
         button.addTarget(self, action: #selector(save), for: .touchUpInside)
