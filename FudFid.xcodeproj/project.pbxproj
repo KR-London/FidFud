@@ -17,7 +17,6 @@
 		444A71B8247BF3BB0084032B /* little dude6.png in Resources */ = {isa = PBXBuildFile; fileRef = 444A71B7247BF3BA0084032B /* little dude6.png */; };
 		444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B9247BFED20084032B /* bubbleLabel.swift */; };
 		444A71BC247BFF190084032B /* myButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71BB247BFF190084032B /* myButton.swift */; };
-		444A71C7247C3D140084032B /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71C6247C3D140084032B /* testViewController.swift */; };
 		445A3255248E0C1700C849CA /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3254248E0C1700C849CA /* SnapshotHelper.swift */; };
 		445D531F248CD28800895AA3 /* 200w-16.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D531E248CD28800895AA3 /* 200w-16.gif */; };
 		445D5321248CD28E00895AA3 /* giphy-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D5320248CD28E00895AA3 /* giphy-3.gif */; };
@@ -42,9 +41,6 @@
 		446E0DAF2483AC020038965F /* 07891284.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAD2483A7860038965F /* 07891284.ttf */; };
 		446E0DB02483AC030038965F /* 07891284.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAD2483A7860038965F /* 07891284.ttf */; };
 		446FB842247A690E00C556AC /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FB841247A690E00C556AC /* VideoHelper.swift */; };
-		446FB845247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
-		446FB846247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
-		446FB847247A699200C556AC /* allMySecrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB844247A699200C556AC /* allMySecrets.plist */; };
 		446FB849247A74C500C556AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB848247A74C500C556AC /* GoogleService-Info.plist */; };
 		446FB84A247A74C500C556AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB848247A74C500C556AC /* GoogleService-Info.plist */; };
 		446FB84B247A74C500C556AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 446FB848247A74C500C556AC /* GoogleService-Info.plist */; };
@@ -168,11 +164,8 @@
 		446FBAC1247AD7B200C556AC /* signInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC0247AD7B200C556AC /* signInViewController.swift */; };
 		446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC2247AD7DB00C556AC /* signUpViewController.swift */; };
 		446FBAC5247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */; };
-		446FC27F2480E14900F82E93 /* masterFluffyList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 446FC27E2480E14900F82E93 /* masterFluffyList.txt */; };
-		446FD00C247CF7A3003020F7 /* scratchPad in Resources */ = {isa = PBXBuildFile; fileRef = 446FD00B247CF7A3003020F7 /* scratchPad */; };
 		4478E0EB249694DF006CF2BF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4478E0EA249694DF006CF2BF /* CloudKit.framework */; };
 		448050DC24B0E39200B74EE2 /* myAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */; };
-		448050DE24B0EBCA00B74EE2 /* cloudKitPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448050DD24B0EBCA00B74EE2 /* cloudKitPlay.swift */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
 		449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FC247A5B830009FF3C /* SceneDelegate.swift */; };
 		449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A00247A5B830009FF3C /* AddViewController.swift */; };
@@ -222,7 +215,6 @@
 		444A71B7247BF3BA0084032B /* little dude6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "little dude6.png"; path = "../little dude6.png"; sourceTree = "<group>"; };
 		444A71B9247BFED20084032B /* bubbleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bubbleLabel.swift; sourceTree = "<group>"; };
 		444A71BB247BFF190084032B /* myButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myButton.swift; sourceTree = "<group>"; };
-		444A71C6247C3D140084032B /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		445A3254248E0C1700C849CA /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		445D531E248CD28800895AA3 /* 200w-16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "200w-16.gif"; sourceTree = "<group>"; };
 		445D5320248CD28E00895AA3 /* giphy-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "giphy-3.gif"; sourceTree = "<group>"; };
@@ -245,7 +237,6 @@
 		446E0DAA24838B760038965F /* phrases.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phrases.tsv; sourceTree = "<group>"; };
 		446E0DAD2483A7860038965F /* 07891284.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 07891284.ttf; sourceTree = "<group>"; };
 		446FB841247A690E00C556AC /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
-		446FB844247A699200C556AC /* allMySecrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = allMySecrets.plist; sourceTree = "<group>"; };
 		446FB848247A74C500C556AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		446FB84C247A79D500C556AC /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		446FB84E247A79DF00C556AC /* FeedPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
@@ -367,12 +358,9 @@
 		446FBAC0247AD7B200C556AC /* signInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
 		446FBAC2247AD7DB00C556AC /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
 		446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = superWhizzyVideoEditorViewController.swift; sourceTree = "<group>"; };
-		446FC27E2480E14900F82E93 /* masterFluffyList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = masterFluffyList.txt; sourceTree = "<group>"; };
-		446FD00B247CF7A3003020F7 /* scratchPad */ = {isa = PBXFileReference; lastKnownFileType = text; path = scratchPad; sourceTree = "<group>"; };
 		4478E0E9249694DB006CF2BF /* FudFid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FudFid.entitlements; sourceTree = "<group>"; };
 		4478E0EA249694DF006CF2BF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAVPlayerViewController.swift; sourceTree = "<group>"; };
-		448050DD24B0EBCA00B74EE2 /* cloudKitPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cloudKitPlay.swift; sourceTree = "<group>"; };
 		449D49F7247A5B830009FF3C /* FudFid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudFid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449D49FA247A5B830009FF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449D49FC247A5B830009FF3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -474,6 +462,7 @@
 				446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */,
 				443DFF052483D08D0091E685 /* VideoEditor.swift */,
 				444A71B1247BF3560084032B /* celebrationVC.swift */,
+				448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */,
 				444828FA249C99C200C82478 /* videoEffectsViewController.swift */,
 			);
 			path = Controllers;
@@ -483,10 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				449D4A02247A5B830009FF3C /* Main.storyboard */,
-				448050DD24B0EBCA00B74EE2 /* cloudKitPlay.swift */,
-				448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */,
-				444A71C6247C3D140084032B /* testViewController.swift */,
-				446FD00B247CF7A3003020F7 /* scratchPad */,
 				444A71BB247BFF190084032B /* myButton.swift */,
 				449D4A0A247A5B840009FF3C /* LaunchScreen.storyboard */,
 			);
@@ -643,9 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				449D4A2F247A5B920009FF3C /* .gitignore */,
-				446FC27E2480E14900F82E93 /* masterFluffyList.txt */,
 				446E0DAD2483A7860038965F /* 07891284.ttf */,
-				446E0DAA24838B760038965F /* phrases.tsv */,
 				44EF654C24B8310F00620068 /* Characters */,
 				446FB95A247A825700C556AC /* Gifs */,
 				44EF654B24B830EB00620068 /* Backgrounds */,
@@ -686,7 +669,6 @@
 				449D4A08247A5B840009FF3C /* Assets.xcassets */,
 				449D4A0D247A5B840009FF3C /* Info.plist */,
 				446FB848247A74C500C556AC /* GoogleService-Info.plist */,
-				446FB844247A699200C556AC /* allMySecrets.plist */,
 				449D4A05247A5B830009FF3C /* FudFid.xcdatamodeld */,
 			);
 			path = FudFid;
@@ -714,6 +696,7 @@
 		44EF654B24B830EB00620068 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				446E0DAA24838B760038965F /* phrases.tsv */,
 				446FB884247A824700C556AC /* Snowflakes - 1477.mp4 */,
 				446FB958247A825600C556AC /* onboardingBackground.mov */,
 				446FB969247A825800C556AC /* background3.mp4 */,
@@ -880,14 +863,12 @@
 				446FB8DF247A824E00C556AC /* bensound-happyrock.mp3 in Resources */,
 				446FB990247A825A00C556AC /* 200w-7.gif in Resources */,
 				446FB90F247A824E00C556AC /* images (6).png in Resources */,
-				446FC27F2480E14900F82E93 /* masterFluffyList.txt in Resources */,
 				446FB900247A824E00C556AC /* images (34).jpeg in Resources */,
 				446FB91F247A824E00C556AC /* images (24).jpeg in Resources */,
 				446FB90A247A824E00C556AC /* images (3).jpeg in Resources */,
 				446FB91C247A824E00C556AC /* images (5).png in Resources */,
 				4406AA2E2488D94F00BB9387 /* baby-pea.jpg in Resources */,
 				445D5337248CD45A00895AA3 /* giphy-6.gif in Resources */,
-				446FD00C247CF7A3003020F7 /* scratchPad in Resources */,
 				446FB920247A824E00C556AC /* images (19).jpeg in Resources */,
 				444A71B8247BF3BB0084032B /* little dude6.png in Resources */,
 				446FB916247A824E00C556AC /* images (43).jpeg in Resources */,
@@ -917,7 +898,6 @@
 				445D533B248CD45A00895AA3 /* giphy-13.gif in Resources */,
 				446FB96D247A825900C556AC /* vid5.MOV in Resources */,
 				446FB98D247A825A00C556AC /* 200w-5.gif in Resources */,
-				446FB845247A699200C556AC /* allMySecrets.plist in Resources */,
 				446FB985247A825A00C556AC /* bensound-sweet.mp3 in Resources */,
 				446FB931247A824E00C556AC /* download (10).jpeg in Resources */,
 				446FB92D247A824E00C556AC /* download (14).jpeg in Resources */,
@@ -1010,7 +990,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				446FB846247A699200C556AC /* allMySecrets.plist in Resources */,
 				449D4A31247A5B920009FF3C /* .gitignore in Resources */,
 				446FB84A247A74C500C556AC /* GoogleService-Info.plist in Resources */,
 				446E0DAF2483AC020038965F /* 07891284.ttf in Resources */,
@@ -1021,7 +1000,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				446FB847247A699200C556AC /* allMySecrets.plist in Resources */,
 				449D4A32247A5B920009FF3C /* .gitignore in Resources */,
 				446FB84B247A74C500C556AC /* GoogleService-Info.plist in Resources */,
 				446E0DB02483AC030038965F /* 07891284.ttf in Resources */,
@@ -1160,7 +1138,6 @@
 				444A71B2247BF3560084032B /* celebrationVC.swift in Sources */,
 				446FB876247A7BF200C556AC /* Feed.swift in Sources */,
 				446FB871247A7BD700C556AC /* RoundCornerButton.swift in Sources */,
-				444A71C7247C3D140084032B /* testViewController.swift in Sources */,
 				446FB872247A7BD700C556AC /* FeedPagePresenter.swift in Sources */,
 				446FB870247A7BD700C556AC /* ProgressIndicatorHUDMessageView.swift in Sources */,
 				446FB86D247A7BD700C556AC /* ProgressIndicatorHUDPresenter.swift in Sources */,
@@ -1169,7 +1146,6 @@
 				448050DC24B0E39200B74EE2 /* myAVPlayerViewController.swift in Sources */,
 				446FB84D247A79D500C556AC /* FeedViewController.swift in Sources */,
 				444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */,
-				448050DE24B0EBCA00B74EE2 /* cloudKitPlay.swift in Sources */,
 				446BC2E12484D0320096017B /* CacheManager.swift in Sources */,
 				446FB861247A7BCC00C556AC /* Connection.swift in Sources */,
 				446FB863247A7BCC00C556AC /* HTTPRequest.swift in Sources */,

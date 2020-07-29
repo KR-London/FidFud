@@ -10,6 +10,10 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+
+// FIXME: I want to change this to sign in with apple
+// but I would need to work out how to balance the child : parent legal side - since sign in with apple doens;t let me take two contact details 
+
 class signUpViewController: UIViewController {
     
     
@@ -47,9 +51,7 @@ class signUpViewController: UIViewController {
                 print("Success")
                 var databaseReference: DatabaseReference!
                 databaseReference = Database.database().reference()
-                
-               // let userDetails: [String:String?] = ["userEmail": userEmail, "supporterEmail": self.supporterEmailAddress.text]
-                
+
                 let userSupporter: String? = self.supporterEmailAddress.text
                 
                 databaseReference.child("users").child(user.user.uid).setValue(["userEmail": userEmail])
@@ -70,20 +72,8 @@ class signUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     public func showMessage(messageToDisplay : String){
         let alertController = UIAlertController(title: "Ooops!", message: messageToDisplay, preferredStyle: .alert)
         

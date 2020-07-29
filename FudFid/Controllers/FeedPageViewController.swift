@@ -1,16 +1,10 @@
-//
-//  FeedPageViewController.swift
-//  StreamLabsAssignment
-//
-//  Created by Jude on 16/02/2019.
-//  Copyright © 2019 streamlabs. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
 typealias IndexedFeed = (feed: Feed, index: Int)
 
+
+// I've overloaded this finciton to get it working with just gifs, but I eventually want to make it able to handle more general input types.
 protocol FeedPageView: class, ProgressIndicatorHUDPresenter {
     func presentInitialFeed(_ feed: Feed)
     func presentInitialFeed(_ gifs: Gif)
@@ -18,8 +12,6 @@ protocol FeedPageView: class, ProgressIndicatorHUDPresenter {
 
 class FeedPageViewController: UIPageViewController, FeedPageView {
     func presentInitialFeed(_ gifs: Gif) {
-      //  let viewController = FeedViewController.instantiate(gif: Gif, andIndex: 0, isPlaying: true) as! FeedViewController
-      ///  setViewControllers([viewController], direction: .forward, animated: false, completion: nil)
     }
     
     fileprivate var presenter: FeedPagePresenterProtocol!
