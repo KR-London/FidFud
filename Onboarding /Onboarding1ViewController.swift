@@ -5,48 +5,47 @@
 //  Created by Kate Roberts on 29/07/2020.
 //  Copyright © 2020 SaLT for my Squid. All rights reserved.
 //
-
-//
-//  Onboarding1ViewController.swift
-//  HappierFoods
-//
-//  Created by Kate Roberts on 13/07/2019.
-//  Copyright © 2019 Kate Roberts. All rights reserved.
-//
 import UIKit
 
 class Onboarding1ViewController: UIViewController {
     
     lazy var happy: UIImageView = {
+        
         let contentView = UIImageView()
         contentView.image = UIImage(named: "little dude1.png")
+        
         return contentView
     }()
     
     lazy var block1: UIImageView = {
+        
         let contentView = UIImageView()
         contentView.image = UIImage(named: "1.png")
+        
         return contentView
     }()
     
     lazy var block2: UIImageView = {
+        
         let contentView = UIImageView()
         contentView.image = UIImage(named: "1 2.png")
+        
         return contentView
     }()
     
     lazy var block3: UIImageView = {
+        
         let contentView = UIImageView()
         contentView.image = UIImage(named: "11.png")
+        
         return contentView
     }()
     
     lazy var moveOnButton: myButton = {
+        
         let button = myButton()
         button.setTitle("I'll give it a go!'", for: .normal)
-        //        button.backgroundColor = UIColor(red: 186/255, green: 242/255, blue: 206/255, alpha: 1)
-        //
-        //        button.titleLabel!.font = UIFont(name: "TwCenMT-CondensedExtraBold", size: 24 )
+
         return button
     }()
     
@@ -55,7 +54,7 @@ class Onboarding1ViewController: UIViewController {
         let margins = view.layoutMarginsGuide
         
         view.backgroundColor = UIColor(red: 224, green: 250, blue: 233, alpha: 1)
-       // self.navigationBar.isHidden = true
+        //view.head
         
         view.addSubview(block1)
         block1.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +117,6 @@ class Onboarding1ViewController: UIViewController {
         ratio = ratio/545
         let contentSize = self.view.frame.width*ratio
         let spacer = ( self.view.frame.height - contentSize )/5
-        print("spacer 1 = ", spacer)
         
         NSLayoutConstraint.activate(
             [
@@ -168,8 +166,6 @@ class Onboarding1ViewController: UIViewController {
     
     
     @objc func goOn(sender: UIButton!) {
-        // performSegue(withIdentifier: "o1-o2", sender: self)
         performSegue(withIdentifier: "o1-o2", sender: self)
-        
     }
 }

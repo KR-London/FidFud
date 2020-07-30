@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                
 //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //                
-//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "testNav" )
+//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController" )
 //                self.window?.rootViewController = initialViewController
 //                
 //                //   let nextViewController = storyboard.instantiateViewController(withIdentifier: "newDataInputViewController" )

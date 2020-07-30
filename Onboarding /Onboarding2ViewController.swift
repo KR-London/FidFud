@@ -7,7 +7,9 @@
 //
 import UIKit
 
-class Onboarding2ViewController: UINavigationController {
+
+/// This VC funnels the user to the tab of the main app that is likely to appeal to them the most.
+class Onboarding2ViewController: UIViewController {
     
     lazy var happy: UIImageView = {
         let contentView = UIImageView()
@@ -15,45 +17,41 @@ class Onboarding2ViewController: UINavigationController {
         return contentView
     }()
     
-    
     lazy var block1: UIImageView = {
         let contentView = UIImageView()
-        contentView.image = UIImage(named: "9.png")
+        contentView.image = UIImage(named: "9 2.png")
         return contentView
     }()
     
     lazy var block2: myButton = {
+        
         let button = myButton()
-        // button.backgroundColor = UIColor(red: 186/255, green: 242/255, blue: 206/255, alpha: 1)
-        // button.tintColor = UIColor().HexToColor(hexString: "#210203", alpha: 1.0)
         button.setTitle("Laughing!", for: .normal)
-        // button.titleLabel!.font = UIFont(name: "TwCenMT-CondensedExtraBold", size: 24 )
+        button.addTarget(self, action: #selector(laughing), for: .touchUpInside)
         
         return button
     }()
     
     lazy var block3: myButton = {
+        
         let button = myButton()
-        // button.backgroundColor = UIColor(red: 186/255, green: 242/255, blue: 206/255, alpha: 1)
-        // button.tintColor = UIColor().HexToColor(hexString: "#210203", alpha: 1.0)
         button.setTitle("Creating!", for: .normal)
-        // button.titleLabel!.font = UIFont(name: "TwCenMT-CondensedExtraBold", size: 24 )
+        button.addTarget(self, action: #selector(creating), for: .touchUpInside)
         
         return button
     }()
     
     lazy var moveOnButton: myButton = {
+        
         let button = myButton()
-        // button.backgroundColor = UIColor(red: 186/255, green: 242/255, blue: 206/255, alpha: 1)
-        // button.tintColor = UIColor().HexToColor(hexString: "#210203", alpha: 1.0)
         button.setTitle("Winning!", for: .normal)
-        // button.titleLabel!.font = UIFont(name: "TwCenMT-CondensedExtraBold", size: 24 )
+        button.addTarget(self, action: #selector(winning), for: .touchUpInside)
         
         return button
     }()
     
     override func viewDidLoad() {
-        self.navigationBar.isHidden = true
+       // self.navigationBar.isHidden = true
         let margins = view.layoutMarginsGuide
         view.backgroundColor = UIColor(red: 224, green: 250, blue: 233, alpha: 1)
         
@@ -179,8 +177,31 @@ class Onboarding2ViewController: UINavigationController {
     }
     
     
+    @objc func laughing(sender: UIButton!) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = storyboard.instantiateViewController(withIdentifier: "mainTabBarController" ) as! UITabBarController
+        vc.modalPresentationStyle = .fullScreen
+        vc.selectedIndex = 0
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func creating(sender: UIButton!) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = storyboard.instantiateViewController(withIdentifier: "mainTabBarController" ) as! UITabBarController
+        vc.modalPresentationStyle = .fullScreen
+        vc.selectedIndex = 1
+        present(vc, animated: true, completion: nil)
+    }
+    
     @objc func winning(sender: UIButton!) {
-        performSegue(withIdentifier: "winning", sender: self)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = storyboard.instantiateViewController(withIdentifier: "mainTabBarController" ) as! UITabBarController
+        vc.modalPresentationStyle = .fullScreen
+        vc.selectedIndex = 2
+        present(vc, animated: true, completion: nil)
     }
     
 }

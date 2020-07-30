@@ -19,30 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
+         //let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         let launchedBefore = false
         //let newTutorial = false
         
         if launchedBefore{
-//            self.window = UIWindow(frame: UIScreen.main.bounds)
-//
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//
-//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "testNav" )
-//            self.window?.rootViewController = initialViewController
-//
-//            //   let nextViewController = storyboard.instantiateViewController(withIdentifier: "newDataInputViewController" )
-//            //self.window?.rootViewController!.push(nextViewController, animated: true, completion: nil)
-//            self.window?.makeKeyAndVisible()
-            
-            
+
             guard let windowScene = (scene as? UIWindowScene) else { return }
             
-            
             self.window = UIWindow(windowScene: windowScene)
-            //self.window =  UIWindow(frame: UIScreen.main.bounds)
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let rootVC = storyboard.instantiateViewController(identifier: "testNav") as? UITabBarController else {
+            guard let rootVC = storyboard.instantiateViewController(identifier: "mainTabBarController") as? UITabBarController else {
                 print("ViewController not found")
                 return
             }
@@ -62,16 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             //            }
         else{
             // UserDefaults.standard.set(true, forKey: "launchedBefore")
-//            self.window = UIWindow(frame: UIScreen.main.bounds)
-//
-//            let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
-//
-//            //let initialViewController = storyboard.instantiateViewController(withIdentifier: "o1" )
-//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "p1" )
-//
-//            self.window?.rootViewController = initialViewController
-//            self.window?.makeKeyAndVisible()
-            
+
             guard let windowScene = (scene as? UIWindowScene) else { return }
             
             
@@ -83,8 +62,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print("ViewController not found")
                 return
             }
-            let rootNC = UINavigationController(rootViewController: rootVC)
-            self.window?.rootViewController = rootNC
+          //  let rootNC = UINavigationController(rootViewController: rootVC)
+            self.window?.rootViewController = rootVC
             self.window?.makeKeyAndVisible()
         }
 

@@ -70,6 +70,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         button.layer.cornerRadius = 50
         
         button.addTarget(self, action: #selector(dislikeTapped(_:)), for: .touchUpInside)
+
         return button
     }()
 
