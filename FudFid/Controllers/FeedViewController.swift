@@ -43,20 +43,24 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
 
     //MARK: Lazy instantiation of elements
     lazy var likeButton :        UIButton = {
+        
             let button = UIButton()
+        
             button.heightAnchor.constraint(equalToConstant: 100).isActive = true
             button.widthAnchor.constraint(equalToConstant: 100).isActive = true
             button.titleLabel!.text = "Like"
-
             button.tintColor = UIColor.green
             button.layer.cornerRadius = 50
             
             button.addTarget(self, action: #selector(likeTapped(_:)), for: .touchUpInside)
+        
             return button
         }()
     
     lazy var dislikeButton :        UIButton = {
+        
         let button = UIButton()
+        
         button.heightAnchor.constraint(equalToConstant: 100).isActive = true
         button.widthAnchor.constraint(equalToConstant: 100).isActive = true
         button.titleLabel!.text = "Dislike"
@@ -65,7 +69,6 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         } else {
             button.setTitle("X", for: .normal)
         }
-        
         button.tintColor = UIColor.green
         button.layer.cornerRadius = 50
         
@@ -75,7 +78,9 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
     }()
 
     lazy var profilePicture : UIImageView = {
+        
         let pic = UIImageView()
+        
         pic.heightAnchor.constraint(equalToConstant: 100).isActive = true
         pic.widthAnchor.constraint(equalToConstant: 100).isActive = true
         pic.layer.cornerRadius = 50
@@ -83,25 +88,32 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         pic.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         pic.layer.borderWidth = 2
         pic.backgroundColor = .white
+        
         return pic
     }()
     
     var commentButton = UIButton()
     
     var buttonStack : UIStackView = {
+        
         let stack = UIStackView()
+        
         stack.axis = .vertical
         stack.alignment = .trailing
         stack.contentMode = .scaleAspectFit
         stack.distribution = .fillProportionally
+        
         return stack
     }()
     
     static func instantiate(feed: Feed, andIndex index: Int, isPlaying: Bool = false) -> UIViewController {
+        
         let viewController = FeedViewController.instantiate()
+        
         viewController.feed = feed
         viewController.index = index
         viewController.isPlaying = isPlaying
+        
         return viewController
     }
 

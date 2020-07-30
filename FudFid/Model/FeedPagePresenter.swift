@@ -125,6 +125,8 @@ extension FeedPagePresenter: FeedFetchDelegate {
         }
         
         self.feeds.append(contentsOf: list)
+       // self.feeds.append(contentsOf: loadLocalImagesFeed())
+        self.feeds.append(contentsOf: encouragingPhrases())
         self.feeds.shuffle()
         
         
@@ -577,6 +579,33 @@ extension FeedPagePresenter: FeedFetchDelegate {
         }
         catch{
             print("Local video loading failed")
+        }
+        
+        return list
+    }
+    
+    func loadLocalImagesFeed() -> [Feed]{
+        
+        var docsPath = Bundle.main.path(forResource: "cheese", ofType: ".jpg")
+        docsPath = String((docsPath?.dropLast(10))!)
+        let fileManager = FileManager.default
+        
+        var list = [Feed]()
+        do {
+
+            let imageArray = try fileManager.contentsOfDirectory(atPath: docsPath!).filter({$0.hasSuffix(".jpeg")})
+           print(imageArray)
+            
+            for i in 1...10{
+                
+                        let content = imageArray.randomElement()!
+                        print(content)
+                        let vid = Feed(id: i, url: nil, path: nil, text: nil, gif: nil, sound: nil, image: content, originalFilename: content)
+                        list.append(vid)
+            }
+        }
+        catch{
+            print(error.localizedDescription)
         }
         
         return list
