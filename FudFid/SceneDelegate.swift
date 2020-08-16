@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
          //let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        let launchedBefore = false
+        let launchedBefore = true
         //let newTutorial = false
         
         if launchedBefore{

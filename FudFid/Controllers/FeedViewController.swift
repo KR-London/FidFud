@@ -195,7 +195,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         didPause = false
         kateExtractedFunc()
         
-        profilePicture.image = UIImage(named: ["carrot.png", "cheese.jpg", "baby-pea.jpg"].randomElement()!)
+        profilePicture.image = UIImage(named: ["carrot.png", "cheese.jpg"].randomElement()!)
         
         buttonStack.addArrangedSubview(profilePicture)
         buttonStack.addArrangedSubview(likeButton)
