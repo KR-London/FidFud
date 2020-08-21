@@ -23,6 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let launchedBefore = true
         //let newTutorial = false
         
+        UserDefaults.standard.set(false, forKey: "firebase")
+        
         if launchedBefore{
 
             guard let windowScene = (scene as? UIWindowScene) else { return }

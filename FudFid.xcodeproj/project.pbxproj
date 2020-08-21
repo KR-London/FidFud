@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DFF052483D08D0091E685 /* VideoEditor.swift */; };
-		444828FB249C99C200C82478 /* videoEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444828FA249C99C200C82478 /* videoEffectsViewController.swift */; };
-		444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* systemImageButton.swift */; };
+		444828FB249C99C200C82478 /* VideoEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444828FA249C99C200C82478 /* VideoEffectsViewController.swift */; };
+		444A71B0247BA6C90084032B /* SystemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* SystemImageButton.swift */; };
 		444A71B2247BF3560084032B /* celebrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B1247BF3560084032B /* celebrationVC.swift */; };
 		444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B9247BFED20084032B /* bubbleLabel.swift */; };
-		444A71BC247BFF190084032B /* myButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71BB247BFF190084032B /* myButton.swift */; };
 		445A3255248E0C1700C849CA /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A3254248E0C1700C849CA /* SnapshotHelper.swift */; };
 		445D531F248CD28800895AA3 /* 200w-16.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D531E248CD28800895AA3 /* 200w-16.gif */; };
 		445D5321248CD28E00895AA3 /* giphy-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 445D5320248CD28E00895AA3 /* giphy-3.gif */; };
@@ -160,11 +159,11 @@
 		446FB998247A825A00C556AC /* background3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 446FB969247A825800C556AC /* background3.mp4 */; };
 		446FB999247A825A00C556AC /* bac3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 446FB96A247A825900C556AC /* bac3.mp4 */; };
 		446FB99A247A825A00C556AC /* Bokeh - 5196.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 446FB96B247A825900C556AC /* Bokeh - 5196.mp4 */; };
-		446FBAC1247AD7B200C556AC /* signInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC0247AD7B200C556AC /* signInViewController.swift */; };
+		446FBAC1247AD7B200C556AC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC0247AD7B200C556AC /* SignInViewController.swift */; };
 		446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC2247AD7DB00C556AC /* signUpViewController.swift */; };
-		446FBAC5247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */; };
+		446FBAC5247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC4247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift */; };
 		4478E0EB249694DF006CF2BF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4478E0EA249694DF006CF2BF /* CloudKit.framework */; };
-		448050DC24B0E39200B74EE2 /* myAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */; };
+		448050DC24B0E39200B74EE2 /* MyAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448050DB24B0E39200B74EE2 /* MyAVPlayerViewController.swift */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
 		449D49FD247A5B830009FF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FC247A5B830009FF3C /* SceneDelegate.swift */; };
 		449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4A00247A5B830009FF3C /* AddViewController.swift */; };
@@ -205,11 +204,10 @@
 		0BF364B0F9CDCCA3EA74AE5E /* Pods-FudFid-FudFidUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid-FudFidUITests.release.xcconfig"; path = "Target Support Files/Pods-FudFid-FudFidUITests/Pods-FudFid-FudFidUITests.release.xcconfig"; sourceTree = "<group>"; };
 		29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.release.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.release.xcconfig"; sourceTree = "<group>"; };
 		443DFF052483D08D0091E685 /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
-		444828FA249C99C200C82478 /* videoEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = videoEffectsViewController.swift; sourceTree = "<group>"; };
-		444A71AF247BA6C90084032B /* systemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = systemImageButton.swift; sourceTree = "<group>"; };
+		444828FA249C99C200C82478 /* VideoEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEffectsViewController.swift; sourceTree = "<group>"; };
+		444A71AF247BA6C90084032B /* SystemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImageButton.swift; sourceTree = "<group>"; };
 		444A71B1247BF3560084032B /* celebrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celebrationVC.swift; sourceTree = "<group>"; };
 		444A71B9247BFED20084032B /* bubbleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bubbleLabel.swift; sourceTree = "<group>"; };
-		444A71BB247BFF190084032B /* myButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myButton.swift; sourceTree = "<group>"; };
 		445A3254248E0C1700C849CA /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		445D531E248CD28800895AA3 /* 200w-16.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "200w-16.gif"; sourceTree = "<group>"; };
 		445D5320248CD28E00895AA3 /* giphy-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "giphy-3.gif"; sourceTree = "<group>"; };
@@ -353,12 +351,12 @@
 		446FB969247A825800C556AC /* background3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = background3.mp4; path = ../background3.mp4; sourceTree = "<group>"; };
 		446FB96A247A825900C556AC /* bac3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = bac3.mp4; path = ../bac3.mp4; sourceTree = "<group>"; };
 		446FB96B247A825900C556AC /* Bokeh - 5196.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bokeh - 5196.mp4"; path = "../Bokeh - 5196.mp4"; sourceTree = "<group>"; };
-		446FBAC0247AD7B200C556AC /* signInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
+		446FBAC0247AD7B200C556AC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		446FBAC2247AD7DB00C556AC /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
-		446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = superWhizzyVideoEditorViewController.swift; sourceTree = "<group>"; };
+		446FBAC4247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperWhizzyVideoEditorViewController.swift; sourceTree = "<group>"; };
 		4478E0E9249694DB006CF2BF /* FudFid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FudFid.entitlements; sourceTree = "<group>"; };
 		4478E0EA249694DF006CF2BF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAVPlayerViewController.swift; sourceTree = "<group>"; };
+		448050DB24B0E39200B74EE2 /* MyAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAVPlayerViewController.swift; sourceTree = "<group>"; };
 		449D49F7247A5B830009FF3C /* FudFid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudFid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449D49FA247A5B830009FF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449D49FC247A5B830009FF3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -413,14 +411,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4461DFD524D15D2E008DF4A5 /* Onboarding  */ = {
+		4461DFD524D15D2E008DF4A5 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
 				4461DFD324D15CCB008DF4A5 /* Onboarding1ViewController.swift */,
 				4461DFD624D15D4C008DF4A5 /* Onboarding2ViewController.swift */,
 				4461DFD824D15E49008DF4A5 /* Onboarding.storyboard */,
 			);
-			path = "Onboarding ";
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		446E0DAC24838C010038965F /* Soundtracks */ = {
@@ -452,7 +450,7 @@
 			children = (
 				446FB856247A7AAA00C556AC /* UIViewController+Extension.swift */,
 				446FB87A247A7E4400C556AC /* StoryboardScene.swift */,
-				444A71AF247BA6C90084032B /* systemImageButton.swift */,
+				444A71AF247BA6C90084032B /* SystemImageButton.swift */,
 				446FB841247A690E00C556AC /* VideoHelper.swift */,
 				444A71B9247BFED20084032B /* bubbleLabel.swift */,
 			);
@@ -466,12 +464,12 @@
 				446FB84C247A79D500C556AC /* FeedViewController.swift */,
 				449D4A00247A5B830009FF3C /* AddViewController.swift */,
 				446FBAC2247AD7DB00C556AC /* signUpViewController.swift */,
-				446FBAC0247AD7B200C556AC /* signInViewController.swift */,
-				446FBAC4247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift */,
+				446FBAC0247AD7B200C556AC /* SignInViewController.swift */,
+				446FBAC4247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift */,
 				443DFF052483D08D0091E685 /* VideoEditor.swift */,
 				444A71B1247BF3560084032B /* celebrationVC.swift */,
-				448050DB24B0E39200B74EE2 /* myAVPlayerViewController.swift */,
-				444828FA249C99C200C82478 /* videoEffectsViewController.swift */,
+				448050DB24B0E39200B74EE2 /* MyAVPlayerViewController.swift */,
+				444828FA249C99C200C82478 /* VideoEffectsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -480,7 +478,6 @@
 			isa = PBXGroup;
 			children = (
 				449D4A02247A5B830009FF3C /* Main.storyboard */,
-				444A71BB247BFF190084032B /* myButton.swift */,
 				449D4A0A247A5B840009FF3C /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -641,7 +638,7 @@
 				446FB95A247A825700C556AC /* Gifs */,
 				44EF654B24B830EB00620068 /* Backgrounds */,
 				446E0DAC24838C010038965F /* Soundtracks */,
-				4461DFD524D15D2E008DF4A5 /* Onboarding  */,
+				4461DFD524D15D2E008DF4A5 /* Onboarding */,
 				446FB88C247A824D00C556AC /* images */,
 				449D49F9247A5B830009FF3C /* FudFid */,
 				449D4A15247A5B840009FF3C /* FudFidTests */,
@@ -1122,15 +1119,14 @@
 				446FB862247A7BCC00C556AC /* InteractionUtil.swift in Sources */,
 				446FB879247A7C3C00C556AC /* FeedFetchService.swift in Sources */,
 				449D4A07247A5B830009FF3C /* FudFid.xcdatamodeld in Sources */,
-				446FBAC5247AF17B00C556AC /* superWhizzyVideoEditorViewController.swift in Sources */,
-				446FBAC1247AD7B200C556AC /* signInViewController.swift in Sources */,
+				446FBAC5247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift in Sources */,
+				446FBAC1247AD7B200C556AC /* SignInViewController.swift in Sources */,
 				446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */,
-				444A71BC247BFF190084032B /* myButton.swift in Sources */,
 				446FB86E247A7BD700C556AC /* ProfileItemCollectionViewCell.swift in Sources */,
 				446FB860247A7BCC00C556AC /* Constant.swift in Sources */,
 				443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */,
 				446FB87B247A7E4400C556AC /* StoryboardScene.swift in Sources */,
-				444828FB249C99C200C82478 /* videoEffectsViewController.swift in Sources */,
+				444828FB249C99C200C82478 /* VideoEffectsViewController.swift in Sources */,
 				4461DFD724D15D4C008DF4A5 /* Onboarding2ViewController.swift in Sources */,
 				449D4A01247A5B830009FF3C /* AddViewController.swift in Sources */,
 				446FB842247A690E00C556AC /* VideoHelper.swift in Sources */,
@@ -1145,9 +1141,9 @@
 				446FB872247A7BD700C556AC /* FeedPagePresenter.swift in Sources */,
 				446FB870247A7BD700C556AC /* ProgressIndicatorHUDMessageView.swift in Sources */,
 				446FB86D247A7BD700C556AC /* ProgressIndicatorHUDPresenter.swift in Sources */,
-				444A71B0247BA6C90084032B /* systemImageButton.swift in Sources */,
+				444A71B0247BA6C90084032B /* SystemImageButton.swift in Sources */,
 				449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */,
-				448050DC24B0E39200B74EE2 /* myAVPlayerViewController.swift in Sources */,
+				448050DC24B0E39200B74EE2 /* MyAVPlayerViewController.swift in Sources */,
 				446FB84D247A79D500C556AC /* FeedViewController.swift in Sources */,
 				444A71BA247BFED20084032B /* bubbleLabel.swift in Sources */,
 				446BC2E12484D0320096017B /* CacheManager.swift in Sources */,

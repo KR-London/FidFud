@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import Photos
 
-class videoEffectsViewController: UIViewController {
+class VideoEffectsViewController: UIViewController {
 
     //var videoURL: URL!
     var videoURL =    URL(string: "https://images.all-free-download.com/footage_preview/mp4/apple_179.mp4")!

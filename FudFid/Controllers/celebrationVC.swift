@@ -8,7 +8,7 @@
 
 import UIKit
 
-class celebrationViewController: UIViewController {
+class CelebrationViewController: UIViewController {
         
         lazy var b1: myButton = {
             let button = myButton()

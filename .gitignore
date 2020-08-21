@@ -4,12 +4,12 @@
 
 ## User settings
 xcuserdata/
-*.plist
-*.MOV
-*.MP4
-*.MP3
-*.JPG
-*.PNG
+# *.plist
+# *.MOV
+# *.MP4
+# *.MP3
+# *.JPG
+# *.PNG
 
 !info.plist
 

@@ -19,7 +19,8 @@ import AVKit
 //let path = Bundle.main.path(forResource: "bac2.mov", ofType: nil)
 //let url = URL(fileURLWithPath: path!)
 
-class superWhizzyVideoEditorViewController: UIViewController {
+class SuperWhizzyVideoEditorViewController: UIViewController {
+    
     var firstAsset : AVAsset?
     var secondAsset: AVAsset?
     var audioAsset: AVAsset?
@@ -31,8 +32,8 @@ class superWhizzyVideoEditorViewController: UIViewController {
     private let editor = VideoEditor()
     
     
-    lazy var addSoundButton: systemImageButton = {
-        let button = systemImageButton()
+    lazy var addSoundButton: SystemImageButton = {
+        let button = SystemImageButton()
         if #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: "tv.music.note"), for: .normal)
         } else {
@@ -42,8 +43,8 @@ class superWhizzyVideoEditorViewController: UIViewController {
         return button
     }()
     
-    lazy var addMagicButton: systemImageButton = {
-        let button = systemImageButton()
+    lazy var addMagicButton: SystemImageButton = {
+        let button = SystemImageButton()
         if #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: "wand.and.stars"), for: .normal)
         } else {
@@ -53,8 +54,8 @@ class superWhizzyVideoEditorViewController: UIViewController {
         return button
     }()
     
-    lazy var finishedButton: systemImageButton = {
-        let button = systemImageButton()
+    lazy var finishedButton: SystemImageButton = {
+        let button = SystemImageButton()
         if #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: "checkmark.seal"), for: .normal)
         } else {
@@ -292,7 +293,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
     }
     
     func sendVideoToFirebase(url: URL){
-        
+        if UserDefaults.standard.bool(forKey: "firebase"){
         // Create a root reference
         let storageRef = Storage.storage().reference()
         
@@ -354,7 +355,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
         
         // While the file names are the same, the references point to different files
         //  mountainsRef.name == mountainImagesRef.name
-        
+        }
     }
     
     
@@ -519,7 +520,7 @@ class superWhizzyVideoEditorViewController: UIViewController {
     }
 }
 
-extension superWhizzyVideoEditorViewController: UIImagePickerControllerDelegate {
+extension SuperWhizzyVideoEditorViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         dismiss(animated: true, completion: nil)
         
@@ -541,11 +542,11 @@ extension superWhizzyVideoEditorViewController: UIImagePickerControllerDelegate 
     
 }
 
-extension superWhizzyVideoEditorViewController: UINavigationControllerDelegate {
+extension SuperWhizzyVideoEditorViewController: UINavigationControllerDelegate {
     
 }
 
-extension superWhizzyVideoEditorViewController: MPMediaPickerControllerDelegate {
+extension SuperWhizzyVideoEditorViewController: MPMediaPickerControllerDelegate {
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         

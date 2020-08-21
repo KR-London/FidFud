@@ -12,7 +12,7 @@ import AVKit
 import CloudKit
 
 
-class myAVPlayerViewController: AVPlayerViewController {
+class MyAVPlayerViewController: AVPlayerViewController {
     
     // MARK: - iCloud Info
     let container = CKContainer.default()

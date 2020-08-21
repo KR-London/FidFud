@@ -8,7 +8,7 @@
 
 import UIKit
 
-class systemImageButton: UIButton {
+class SystemImageButton: UIButton {
 
        // var myValue: Int
 

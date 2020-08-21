@@ -2,8 +2,7 @@ import Foundation
 import UIKit
 import AVKit
 import AVFoundation
-import FirebaseAuth
-import FirebaseFirestore
+import Firebase
 import JellyGif
 
 class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -19,7 +18,8 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
     var soundtrack = AVAudioPlayer()
     var didPause = Bool()
     
-    let userRef = Firestore.firestore().collection("users")
+    
+  //  let userRef = Firestore.firestore().collection("users")
     
     let defaults = UserDefaults.standard
     
@@ -364,20 +364,22 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         } else {
             //FIXME: How to handle likes in iOS12
         }
-        let dataToSave : [String: Any] = ["name": feed.originalFilename, "liked": feed.liked]
         
-        let docRef = userRef.document(Auth.auth().currentUser?.email ?? "Anonymous" + String(Int.random(in: 1...1000))).collection("likes").document(feed.originalFilename)
-        
-        docRef.setData(dataToSave){
-            (error) in
-            if let error = error {
-                print("Crumbs!")
-                print( error.localizedDescription )
-            }
-            else{
-                print("Data has been saved")
-            }
-        }
+        //TODO: How to persist likes
+//        let dataToSave : [String: Any] = ["name": feed.originalFilename, "liked": feed.liked]
+//        
+//        let docRef = userRef.document(Auth.auth().currentUser?.email ?? "Anonymous" + String(Int.random(in: 1...1000))).collection("likes").document(feed.originalFilename)
+//        
+//        docRef.setData(dataToSave){
+//            (error) in
+//            if let error = error {
+//                print("Crumbs!")
+//                print( error.localizedDescription )
+//            }
+//            else{
+//                print("Data has been saved")
+//            }
+//        }
     }
     
     
@@ -410,21 +412,22 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         print("ME NO LIKE")
         defaults.set( [feed.originalFilename] , forKey: "disliked")
 
+        //TODO: Likes
 
-        let dataToSave : [String: Any] = ["name": feed.originalFilename, "reason": reason]
+      //  let dataToSave : [String: Any] = ["name": feed.originalFilename, "reason": reason]
 
-        let docRef = userRef.document(Auth.auth().currentUser?.email ?? "Anonymous" + String(Int.random(in: 1...1000))).collection("dislikes").document(feed.originalFilename)
+     //   let docRef = userRef.document(Auth.auth().currentUser?.email ?? "Anonymous" + String(Int.random(in: 1...1000))).collection("dislikes").document(feed.originalFilename)
 
-        docRef.setData(dataToSave){
-            (error) in
-            if let error = error {
-                print("Crumbs!")
-                print( error.localizedDescription )
-            }
-            else{
-                print("Data has been saved")
-            }
-        }
+//        docRef.setData(dataToSave){
+//            (error) in
+//            if let error = error {
+//                print("Crumbs!")
+//                print( error.localizedDescription )
+//            }
+//            else{
+//                print("Data has been saved")
+//            }
+//        }
         
         // Create new Alert
         

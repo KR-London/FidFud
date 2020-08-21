@@ -64,11 +64,13 @@ class AddViewController: UIViewController {
         
         super.viewDidLoad()
         
-        /// I pop up an encouragement to register 
-        if Auth.auth().currentUser == nil{
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "signIn") as! signInViewController
-            self.present(newViewController, animated: true, completion: nil)
+        if UserDefaults.standard.bool(forKey: "firebase"){
+            /// I pop up an encouragement to register 
+            if Auth.auth().currentUser == nil{
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "signIn") as! SignInViewController
+                self.present(newViewController, animated: true, completion: nil)
+            }
         }
         
         addRecordButton()
@@ -155,7 +157,7 @@ class AddViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             let url = pickedURL,
-            let destination = segue.destination as? videoEffectsViewController
+            let destination = segue.destination as? VideoEffectsViewController
             else {
                 return
         }

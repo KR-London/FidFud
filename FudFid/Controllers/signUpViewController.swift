@@ -14,7 +14,7 @@ import FirebaseDatabase
 // FIXME: I want to change this to sign in with apple
 // but I would need to work out how to balance the child : parent legal side - since sign in with apple doens;t let me take two contact details 
 
-class signUpViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
     
     @IBOutlet weak var emailAddress: UITextField!
