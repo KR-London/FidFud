@@ -270,7 +270,7 @@ class FeedViewController: AVPlayerViewController, StoryboardScene, UIPickerViewD
         
         if feed.sound != nil
         {
-             soundtrack.play()
+            // soundtrack.play()
         }
     }
     
