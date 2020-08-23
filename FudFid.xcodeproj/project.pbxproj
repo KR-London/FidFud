@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DFF052483D08D0091E685 /* VideoEditor.swift */; };
+		443DFF062483D08D0091E685 /* VideoEditorOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DFF052483D08D0091E685 /* VideoEditorOld.swift */; };
 		444828FB249C99C200C82478 /* VideoEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444828FA249C99C200C82478 /* VideoEffectsViewController.swift */; };
 		444A71B0247BA6C90084032B /* SystemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* SystemImageButton.swift */; };
 		444A71B2247BF3560084032B /* celebrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B1247BF3560084032B /* celebrationVC.swift */; };
@@ -36,6 +36,8 @@
 		4461DFD724D15D4C008DF4A5 /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461DFD624D15D4C008DF4A5 /* Onboarding2ViewController.swift */; };
 		4461DFD924D15E49008DF4A5 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4461DFD824D15E49008DF4A5 /* Onboarding.storyboard */; };
 		446BC2E12484D0320096017B /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446BC2E02484D0320096017B /* CacheManager.swift */; };
+		446D85A124F2364B003A27A7 /* VideoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446D85A024F2364B003A27A7 /* VideoEditViewController.swift */; };
+		446D85A324F2369F003A27A7 /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446D85A224F2369F003A27A7 /* VideoEditor.swift */; };
 		446E0DAB24838B770038965F /* phrases.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAA24838B760038965F /* phrases.tsv */; };
 		446E0DAE2483AC010038965F /* 07891284.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAD2483A7860038965F /* 07891284.ttf */; };
 		446E0DAF2483AC020038965F /* 07891284.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 446E0DAD2483A7860038965F /* 07891284.ttf */; };
@@ -203,7 +205,7 @@
 		077E87947A489E55DF30209E /* Pods-FudFidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFidTests.release.xcconfig"; path = "Target Support Files/Pods-FudFidTests/Pods-FudFidTests.release.xcconfig"; sourceTree = "<group>"; };
 		0BF364B0F9CDCCA3EA74AE5E /* Pods-FudFid-FudFidUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid-FudFidUITests.release.xcconfig"; path = "Target Support Files/Pods-FudFid-FudFidUITests/Pods-FudFid-FudFidUITests.release.xcconfig"; sourceTree = "<group>"; };
 		29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.release.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.release.xcconfig"; sourceTree = "<group>"; };
-		443DFF052483D08D0091E685 /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
+		443DFF052483D08D0091E685 /* VideoEditorOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorOld.swift; sourceTree = "<group>"; };
 		444828FA249C99C200C82478 /* VideoEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEffectsViewController.swift; sourceTree = "<group>"; };
 		444A71AF247BA6C90084032B /* SystemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImageButton.swift; sourceTree = "<group>"; };
 		444A71B1247BF3560084032B /* celebrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celebrationVC.swift; sourceTree = "<group>"; };
@@ -232,6 +234,8 @@
 		4461DFD624D15D4C008DF4A5 /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 		4461DFD824D15E49008DF4A5 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		446BC2E02484D0320096017B /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		446D85A024F2364B003A27A7 /* VideoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditViewController.swift; sourceTree = "<group>"; };
+		446D85A224F2369F003A27A7 /* VideoEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
 		446E0DAA24838B760038965F /* phrases.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phrases.tsv; sourceTree = "<group>"; };
 		446E0DAD2483A7860038965F /* 07891284.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 07891284.ttf; sourceTree = "<group>"; };
 		446FB841247A690E00C556AC /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
@@ -466,10 +470,11 @@
 				446FBAC2247AD7DB00C556AC /* signUpViewController.swift */,
 				446FBAC0247AD7B200C556AC /* SignInViewController.swift */,
 				446FBAC4247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift */,
-				443DFF052483D08D0091E685 /* VideoEditor.swift */,
+				443DFF052483D08D0091E685 /* VideoEditorOld.swift */,
 				444A71B1247BF3560084032B /* celebrationVC.swift */,
 				448050DB24B0E39200B74EE2 /* MyAVPlayerViewController.swift */,
 				444828FA249C99C200C82478 /* VideoEffectsViewController.swift */,
+				446D85A024F2364B003A27A7 /* VideoEditViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -522,6 +527,7 @@
 		446FB877247A7C3C00C556AC /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				446D85A224F2369F003A27A7 /* VideoEditor.swift */,
 				446FB878247A7C3C00C556AC /* FeedFetchService.swift */,
 			);
 			path = Service;
@@ -1123,8 +1129,9 @@
 				446FBAC1247AD7B200C556AC /* SignInViewController.swift in Sources */,
 				446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */,
 				446FB86E247A7BD700C556AC /* ProfileItemCollectionViewCell.swift in Sources */,
+				446D85A124F2364B003A27A7 /* VideoEditViewController.swift in Sources */,
 				446FB860247A7BCC00C556AC /* Constant.swift in Sources */,
-				443DFF062483D08D0091E685 /* VideoEditor.swift in Sources */,
+				443DFF062483D08D0091E685 /* VideoEditorOld.swift in Sources */,
 				446FB87B247A7E4400C556AC /* StoryboardScene.swift in Sources */,
 				444828FB249C99C200C82478 /* VideoEffectsViewController.swift in Sources */,
 				4461DFD724D15D4C008DF4A5 /* Onboarding2ViewController.swift in Sources */,
@@ -1132,6 +1139,7 @@
 				446FB842247A690E00C556AC /* VideoHelper.swift in Sources */,
 				44EF654E24B8485100620068 /* Gif.swift in Sources */,
 				446FB86F247A7BD700C556AC /* ProgressIndicatorHUDView.swift in Sources */,
+				446D85A324F2369F003A27A7 /* VideoEditor.swift in Sources */,
 				446FB873247A7BD700C556AC /* CircleImageView.swift in Sources */,
 				446FB864247A7BCC00C556AC /* HTTPError.swift in Sources */,
 				444A71B2247BF3560084032B /* celebrationVC.swift in Sources */,

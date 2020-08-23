@@ -370,9 +370,14 @@ PODS:
   - nanopb/encode (1.30905.0)
   - ProgressHUD (2.70)
   - PromisesObjC (1.2.8)
+  - PryntTrimmerView (4.0.0)
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
+  - SteviaLayout (4.7.3)
+  - YPImagePicker (4.3.1):
+    - PryntTrimmerView (~> 4.0.0)
+    - SteviaLayout (~> 4.7.3)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -385,6 +390,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JellyGif
   - ProgressHUD
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
@@ -417,7 +423,10 @@ SPEC REPOS:
     - nanopb
     - ProgressHUD
     - PromisesObjC
+    - PryntTrimmerView
     - SDWebImage
+    - SteviaLayout
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -449,8 +458,11 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   ProgressHUD: e603e8b8622c47d8818b9fb38b3cfe9d3e7ca421
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  PryntTrimmerView: 67e67573ffd4c073f1308effa66aefd0cfa667a0
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
+  YPImagePicker: 08bbb809ed62bf4149fc015c97249eb4b9463ff9
 
-PODFILE CHECKSUM: 2d94900d0414309f85e652af8506e70ae7ea9fc2
+PODFILE CHECKSUM: fc44de78a7f156288125681286cd81ee432abbc1
 
 COCOAPODS: 1.9.1

@@ -12,7 +12,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class VideoEditor {
+class VideoEditorOld {
     func makeBirthdayCard(fromVideoAt videoURL: URL, forName name: String, onComplete: @escaping (URL?) -> Void) {
         print(videoURL)
         let asset = AVURLAsset(url: videoURL)
