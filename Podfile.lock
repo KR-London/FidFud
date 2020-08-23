@@ -390,7 +390,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JellyGif
   - ProgressHUD
-  - YPImagePicker
+  - YPImagePicker (from `https://github.com/Daniel1of1/YPImagePicker`, branch `storyboard-support`)
 
 SPEC REPOS:
   trunk:
@@ -426,7 +426,16 @@ SPEC REPOS:
     - PryntTrimmerView
     - SDWebImage
     - SteviaLayout
-    - YPImagePicker
+
+EXTERNAL SOURCES:
+  YPImagePicker:
+    :branch: storyboard-support
+    :git: https://github.com/Daniel1of1/YPImagePicker
+
+CHECKOUT OPTIONS:
+  YPImagePicker:
+    :commit: 9f4c6047d70342a896d5154dc3cdaab3246133f1
+    :git: https://github.com/Daniel1of1/YPImagePicker
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -463,6 +472,6 @@ SPEC CHECKSUMS:
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   YPImagePicker: 08bbb809ed62bf4149fc015c97249eb4b9463ff9
 
-PODFILE CHECKSUM: fc44de78a7f156288125681286cd81ee432abbc1
+PODFILE CHECKSUM: 14185c4a58e6aa640358be76fc86743506d79aa1
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
