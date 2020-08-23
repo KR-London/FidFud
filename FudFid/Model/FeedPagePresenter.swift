@@ -222,8 +222,8 @@ extension FeedPagePresenter: FeedFetchDelegate {
                     self.feeds.append(vid)
                 case "gif":
                     let content = gifArray.randomElement()!
-                //let vid = Feed(id: feeds.count, url: nil, path: nil, text: nil, gif: URL(content), sound: soundsArray.randomElement(), image: nil, originalFilename: content)
-                //  self.feeds.append(vid)
+                    let vid = Feed(id: feeds.count, url: nil, path: nil, text: nil, gif: URL(string: content), sound: soundsArray.randomElement(), image: nil, originalFilename: content)
+                    self.feeds.append(vid)
                 case "image":
                     let content = imageArray.randomElement()
                     let vid = Feed(id: feeds.count, url: nil, path: nil, text: nil, gif: nil, sound: nil, image: content, originalFilename: content!)
@@ -269,7 +269,6 @@ extension FeedPagePresenter: FeedFetchDelegate {
                         
                         var strings: [String:String] = userDefaults.object(forKey: "alreadyLoaded") as? [String:String] ?? [:]
                         
-                        
                         // Add Key-Value Pair to Dictionary
                         strings[String(record.recordID.recordName)] = filenames[i]
                         
@@ -277,9 +276,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
                         userDefaults.set(strings, forKey: "alreadyLoaded")
                         
                         /// if I have three saved now delete one
-                        
                         let image = UIImage(data: imageData as Data)
-                        print(image)
                     }
                 }
                 i = i+1
@@ -318,7 +315,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
     
     func loadFeeed() -> [Feed]{
         var list = [Feed]()
-        var listOfFiles = [URL]()
+       // var listOfFiles = [URL]()
         let userDefaults = UserDefaults.standard
         
         /// this is a dictionary stored in user defaults that has a list of the files on file, and the id they came with
@@ -634,7 +631,7 @@ extension FeedPagePresenter: FeedFetchDelegate {
             print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
         }
         
-        let listOfFilenames = listOfFiles.map{$0.absoluteString}.filter{suffix.contains(String($0.suffix(4)))}.map{$0.dropLast(4)}
+       // let listOfFilenames = listOfFiles.map{$0.absoluteString}.filter{suffix.contains(String($0.suffix(4)))}.map{$0.dropLast(4)}
         
         var i = 0
         
@@ -665,7 +662,6 @@ extension FeedPagePresenter: FeedFetchDelegate {
                     /// if I have three saved now delete one
                     i = i+1
                     let image = UIImage(data: imageData as Data)
-                    print(image)
                 }
             }
             

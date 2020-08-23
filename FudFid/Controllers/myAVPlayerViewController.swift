@@ -34,7 +34,7 @@ class MyAVPlayerViewController: AVPlayerViewController {
     private func establishments(forQuery query: CKQuery) {
         publicDB.perform(query, inZoneWith: CKRecordZone.default().zoneID){
             [weak self] results, error in
-            guard let self = self else {return}
+           // guard let self = self else {return}
             if let error = error {
                 DispatchQueue.main.async{
                    // completion(error)

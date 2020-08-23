@@ -52,7 +52,8 @@ class SignUpViewController: UIViewController {
                 var databaseReference: DatabaseReference!
                 databaseReference = Database.database().reference()
 
-                let userSupporter: String? = self.supporterEmailAddress.text
+                //TODO: Add a field for parent email address
+                //let userSupporter: String? = self.supporterEmailAddress.text
                 
                 databaseReference.child("users").child(user.user.uid).setValue(["userEmail": userEmail])
                 databaseReference.child("users").child(user.user.uid).setValue(["userSupporter": self.supporterEmailAddress.text ?? ""])
@@ -65,7 +66,7 @@ class SignUpViewController: UIViewController {
     @IBAction func abandon(_ sender: UIButton) {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "addContent") as! AddViewController
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "addContent") as! AddViewControllerNew
         self.present(newViewController, animated: true, completion: nil)
     }
     

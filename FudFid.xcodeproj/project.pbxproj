@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		443DFF062483D08D0091E685 /* VideoEditorOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DFF052483D08D0091E685 /* VideoEditorOld.swift */; };
 		444828FB249C99C200C82478 /* VideoEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444828FA249C99C200C82478 /* VideoEffectsViewController.swift */; };
 		444A71B0247BA6C90084032B /* SystemImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71AF247BA6C90084032B /* SystemImageButton.swift */; };
 		444A71B2247BF3560084032B /* celebrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A71B1247BF3560084032B /* celebrationVC.swift */; };
@@ -163,7 +162,6 @@
 		446FB99A247A825A00C556AC /* Bokeh - 5196.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 446FB96B247A825900C556AC /* Bokeh - 5196.mp4 */; };
 		446FBAC1247AD7B200C556AC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC0247AD7B200C556AC /* SignInViewController.swift */; };
 		446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC2247AD7DB00C556AC /* signUpViewController.swift */; };
-		446FBAC5247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FBAC4247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift */; };
 		4478E0EB249694DF006CF2BF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4478E0EA249694DF006CF2BF /* CloudKit.framework */; };
 		448050DC24B0E39200B74EE2 /* MyAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448050DB24B0E39200B74EE2 /* MyAVPlayerViewController.swift */; };
 		449D49FB247A5B830009FF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D49FA247A5B830009FF3C /* AppDelegate.swift */; };
@@ -205,7 +203,6 @@
 		077E87947A489E55DF30209E /* Pods-FudFidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFidTests.release.xcconfig"; path = "Target Support Files/Pods-FudFidTests/Pods-FudFidTests.release.xcconfig"; sourceTree = "<group>"; };
 		0BF364B0F9CDCCA3EA74AE5E /* Pods-FudFid-FudFidUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid-FudFidUITests.release.xcconfig"; path = "Target Support Files/Pods-FudFid-FudFidUITests/Pods-FudFid-FudFidUITests.release.xcconfig"; sourceTree = "<group>"; };
 		29F61F3D4EF4408CA43C99A4 /* Pods-FudFid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FudFid.release.xcconfig"; path = "Target Support Files/Pods-FudFid/Pods-FudFid.release.xcconfig"; sourceTree = "<group>"; };
-		443DFF052483D08D0091E685 /* VideoEditorOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorOld.swift; sourceTree = "<group>"; };
 		444828FA249C99C200C82478 /* VideoEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEffectsViewController.swift; sourceTree = "<group>"; };
 		444A71AF247BA6C90084032B /* SystemImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImageButton.swift; sourceTree = "<group>"; };
 		444A71B1247BF3560084032B /* celebrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celebrationVC.swift; sourceTree = "<group>"; };
@@ -357,7 +354,6 @@
 		446FB96B247A825900C556AC /* Bokeh - 5196.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bokeh - 5196.mp4"; path = "../Bokeh - 5196.mp4"; sourceTree = "<group>"; };
 		446FBAC0247AD7B200C556AC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		446FBAC2247AD7DB00C556AC /* signUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
-		446FBAC4247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperWhizzyVideoEditorViewController.swift; sourceTree = "<group>"; };
 		4478E0E9249694DB006CF2BF /* FudFid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FudFid.entitlements; sourceTree = "<group>"; };
 		4478E0EA249694DF006CF2BF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		448050DB24B0E39200B74EE2 /* MyAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAVPlayerViewController.swift; sourceTree = "<group>"; };
@@ -469,8 +465,6 @@
 				449D4A00247A5B830009FF3C /* AddViewController.swift */,
 				446FBAC2247AD7DB00C556AC /* signUpViewController.swift */,
 				446FBAC0247AD7B200C556AC /* SignInViewController.swift */,
-				446FBAC4247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift */,
-				443DFF052483D08D0091E685 /* VideoEditorOld.swift */,
 				444A71B1247BF3560084032B /* celebrationVC.swift */,
 				448050DB24B0E39200B74EE2 /* MyAVPlayerViewController.swift */,
 				444828FA249C99C200C82478 /* VideoEffectsViewController.swift */,
@@ -1125,13 +1119,11 @@
 				446FB862247A7BCC00C556AC /* InteractionUtil.swift in Sources */,
 				446FB879247A7C3C00C556AC /* FeedFetchService.swift in Sources */,
 				449D4A07247A5B830009FF3C /* FudFid.xcdatamodeld in Sources */,
-				446FBAC5247AF17B00C556AC /* SuperWhizzyVideoEditorViewController.swift in Sources */,
 				446FBAC1247AD7B200C556AC /* SignInViewController.swift in Sources */,
 				446FBAC3247AD7DB00C556AC /* signUpViewController.swift in Sources */,
 				446FB86E247A7BD700C556AC /* ProfileItemCollectionViewCell.swift in Sources */,
 				446D85A124F2364B003A27A7 /* VideoEditViewController.swift in Sources */,
 				446FB860247A7BCC00C556AC /* Constant.swift in Sources */,
-				443DFF062483D08D0091E685 /* VideoEditorOld.swift in Sources */,
 				446FB87B247A7E4400C556AC /* StoryboardScene.swift in Sources */,
 				444828FB249C99C200C82478 /* VideoEffectsViewController.swift in Sources */,
 				4461DFD724D15D4C008DF4A5 /* Onboarding2ViewController.swift in Sources */,
