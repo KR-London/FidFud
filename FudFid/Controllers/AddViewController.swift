@@ -17,12 +17,12 @@ class AddViewControllerNew: YPImagePicker, UIAdaptivePresentationControllerDeleg
     required init?(coder: NSCoder) {
         var config = YPImagePickerConfiguration()
         config.isScrollToChangeModesEnabled = true
-        config.onlySquareImagesFromCamera = true
+        config.onlySquareImagesFromCamera = false
         config.usesFrontCamera = false
         config.showsPhotoFilters = true
         config.showsVideoTrimmer = true
         config.shouldSaveNewPicturesToAlbum = true
-        config.albumName = "DefaultYPImagePickerAlbumName"
+        config.albumName = "FudFid"
         config.startOnScreen = YPPickerScreen.video
         config.screens = [.library, .video]
         config.showsCrop = .none
@@ -32,7 +32,7 @@ class AddViewControllerNew: YPImagePicker, UIAdaptivePresentationControllerDeleg
         config.hidesBottomBar = false
         config.hidesCancelButton = false
         config.preferredStatusBarStyle = UIStatusBarStyle.default
-        config.maxCameraZoomFactor = 1.0
+        config.maxCameraZoomFactor = 3.0
 
         config.library.options = nil
         config.library.onlySquare = false

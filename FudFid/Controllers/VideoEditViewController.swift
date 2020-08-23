@@ -10,7 +10,9 @@ import UIKit
 import AVFoundation
 
 class VideoEditViewController: UIViewController {
+    
     private let editor = VideoEditor()
+    
     var videoURL: URL? {
       didSet {
         loadVideo()
@@ -71,7 +73,10 @@ class VideoEditViewController: UIViewController {
     @objc func addOverlay() {
         if let url = videoURL {
             self.editor.makeBirthdayCard(fromVideoAt: url, forName: "Cassie") { exportedURL in
-                self.videoURL = exportedURL!
+                if let unwrapped = exportedURL
+                {
+                    self.videoURL = unwrapped
+                }
             }
         }
     }

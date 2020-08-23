@@ -30,6 +30,7 @@ import UIKit
 import AVFoundation
 
 class VideoEditor {
+    
   func makeBirthdayCard(fromVideoAt videoURL: URL, forName name: String, onComplete: @escaping (URL?) -> Void) {
     print(videoURL)
     let asset = AVURLAsset(url: videoURL)

@@ -10,7 +10,7 @@ pod 'Firebase/Auth'
 pod 'FirebaseUI/Storage'
 pod 'ProgressHUD'
 pod 'IQKeyboardManagerSwift'
-pod 'YPImagePicker', :git => 'https://github.com/Daniel1of1/YPImagePicker', :branch => 'storyboard-support'
+pod 'YPImagePicker', :git => '../../.git'
 
 target 'FudFid' do
   # Comment the next line if you don't want to use dynamic frameworks
